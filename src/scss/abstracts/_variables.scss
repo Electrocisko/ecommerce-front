@@ -2,20 +2,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600;800&display=swap');
 
 
-@import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@700&family=Sriracha&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:ital,wght@0,100..700;1,100..700&display=swap');
+
+
 
 
 $MainFont: 'Montserrat', sans-serif;
-$Cursive: 'Dancing Script', cursive;
+$Satoshi:   "Roboto Mono", monospace;
 
 
-:root {
---font-personal: 'Montserrat', sans-serif;
---color-Navbar: hsl(0, 0%, 8%);
---color-Navbar_font: white;
---color-Rosa: hsl(37, 66%, 93%);
---color-Logo-oscuro: hsl(190, 100%, 14%);
-}
+
 
 // Colors
 $Dark: hsl(0, 0%, 8%);
