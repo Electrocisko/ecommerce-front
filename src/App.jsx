@@ -1,5 +1,6 @@
 import './app.scss';
 import Navbar from './components/Navbar';
+import HomeMain from './components/HomeMain';
 
 
 
@@ -7,7 +8,7 @@ const App = () => {
   return (
     <div>
       <Navbar/>
-      <h1 className='titel'>App Page</h1>
+      <HomeMain/>
     </div>
   )
 }
