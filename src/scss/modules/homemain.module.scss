@@ -1,13 +1,74 @@
+@import "../abstracts/variables";
+
 .image_container{
  
-    width: 663px;
-    height: 600px;
-    background-image: url("../../../public/models.png");
+    width: 700px;
+    height: 500px;
+    background-image: url("../../../public/pexels-liane-cumming-224181355-15045083.jpg");
     background-position: center;
     background-size: cover;
+    border-radius: 10px;
 }
 
 .container{
     display: flex;
     margin: 0 100px;
+}
+
+.title {
+    font-size: 64px;
+    font-weight: bold;
+    width: 577px;
+}
+
+.text{
+    font-family: $Satoshi;
+    width: 545px;
+    color: rgba(0, 0, 0, 0.6);
+    margin-bottom: 32px;
+}
+
+.button {
+    margin: 10px 0px;
+}
+
+.data_container{
+    display: flex;
+    width: 596px;
+    gap: 32px;
+  margin-top: 32px;
+}
+
+.text_data_small{
+    color: rgba(0, 0, 0, 0.6);
+    font-family: $Satoshi;
+    font-size: 14px;
+}
+
+.text_data{
+    // font-family: $Satoshi;
+    font-size: 40px;
+    font-weight:600;
+}
+
+.branchs_container{
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    background-color: $Dark ;
+    color: $Light;
+    height: 80px;
+    margin: 10px 0px 45px 0px;
+
+
+    p {
+        font-size: 2rem;
+    }
+   
+}
+
+.h2 {
+    font-size: 3rem;
+    font-weight: bold;
+    text-align: center;
 }
