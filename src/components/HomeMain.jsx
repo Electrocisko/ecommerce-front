@@ -1,5 +1,7 @@
 import Button from "./smalls/Button";
 import style from "../scss/modules/homemain.module.scss";
+import Card from "./Card";
+import ButtonLight from "./smalls/ButtonLight";
 
 const HomeMain = () => {
   return (
@@ -37,8 +39,18 @@ const HomeMain = () => {
          <p>PRADA</p>
          <p>Calvin Klein</p>
        </div>
-       <section>
+       <section className={style.arrivals}>
        <h2 className={style.h2}>NEW ARRIVALS</h2>
+       <div className={style.card_container}>
+       <Card/>
+       <Card/>
+       <Card/>
+       <Card/>
+       </div>
+       <ButtonLight/>
+
+    
+
        </section>
        <section>
        <h2 className={style.h2}>TOP SELLING</h2>

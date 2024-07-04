@@ -1,11 +1,10 @@
-@import "../base/base";
+@import "../abstracts/variables";
 
 .button {
     display: inline-block;
     height: 52px;
     padding: 16px 54px;
     border-radius: 62px;
-    background: $Dark;
-    color: white;
-    font-size: 1rem;
+    border: solid 1px $Dark;
+    color: $Dark;
 }
