@@ -4,7 +4,7 @@
 
     width: 700px;
     height: 500px;
-    background-image: url("/public/images/models.jpg");
+    background-image: url("/images/models.jpg");
     background-position: top;
     background-size: cover;
     border-radius: 10px;
@@ -18,7 +18,7 @@
 .title {
     font-size: 64px;
     font-weight: bold;
-    width: 577px;
+    width: 577px;   
 }
 
 .text {
@@ -94,6 +94,7 @@
 
 .style_section {
     margin: 0px 100px;
+    margin-bottom: 76px;
     background-color: $LightGray;
     border-radius: 40px;
 

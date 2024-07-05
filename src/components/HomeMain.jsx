@@ -2,6 +2,7 @@ import Button from "./smalls/Button";
 import style from "../scss/modules/homemain.module.scss";
 import Card from "./Card";
 import ButtonLight from "./smalls/ButtonLight";
+import StayUpdated from "./smalls/StayUpdated";
 
 const HomeMain = () => {
   return (
@@ -76,6 +77,12 @@ const HomeMain = () => {
         <div className={style.styles_gym}><p>Gym</p> <img src="/images/gym.png" alt="gym clothes" /></div>
        </div>
        </section>
+
+      <section>
+        <StayUpdated/>
+      </section>
+
+
        </>
   );
 };

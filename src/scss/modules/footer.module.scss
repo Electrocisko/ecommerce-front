@@ -1,0 +1,47 @@
+@import "../abstracts/variables";
+
+.footer {
+    margin: 50px 100px;
+    display: flex;
+    justify-content: space-between;
+
+
+}
+
+.card {
+    display: flex;
+    flex-direction: column;
+    max-width: 340px;
+
+    h2 {
+        margin-bottom: 26px;
+    }
+
+    p {
+        font-size: 14px;
+        font-family: $Satoshi;
+        font-style: normal;
+        font-weight: 400;
+        line-height: 22px;
+        /* 157.143% */
+
+    }
+
+    h3 {
+        font-family: $Satoshi;
+        font-size: 1rem;
+        font-size: 16px;
+        font-style: normal;
+        font-weight: 500;
+        line-height: 18px;
+        /* 112.5% */
+        letter-spacing: 3px;
+        text-transform: uppercase;
+        margin-bottom: 26px;
+    }
+
+    .links {
+        display: flex;
+        flex-direction: column;
+    }
+}
