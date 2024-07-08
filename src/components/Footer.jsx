@@ -9,6 +9,7 @@ const Footer = () => {
   return (
     <footer >
       <div className={style.footer}>
+        
       <div className={style.card}>
         <h2>SHOP.CO</h2>
         <div>
