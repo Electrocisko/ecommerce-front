@@ -2,7 +2,7 @@
 
 const CategoryPage = () => {
   return (
-    <div>CategoryPage</div>
+    <h1 style={{ textAlign: 'center'}}>CategoryPage</h1>
   )
 }
 

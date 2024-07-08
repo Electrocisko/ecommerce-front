@@ -2,7 +2,7 @@
 
 const CartPage = () => {
   return (
-    <div>CartPage</div>
+    <h1 style={{ textAlign: 'center'}}>CartPage</h1>
   )
 }
 

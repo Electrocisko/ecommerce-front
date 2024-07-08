@@ -2,7 +2,7 @@
 
 const ComingSoon = () => {
   return (
-    <div>ComingSoon</div>
+    <h1 style={{ textAlign: 'center'}}>ComingSoon</h1>
   )
 }
 

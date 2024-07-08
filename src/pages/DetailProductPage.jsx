@@ -2,7 +2,7 @@
 
 const DetailProductPage = () => {
   return (
-    <div>DetailProductPage</div>
+    <h1 style={{ textAlign: 'center'}}>DetailProductPage</h1>
   )
 }
 
