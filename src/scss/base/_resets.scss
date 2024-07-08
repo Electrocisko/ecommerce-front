@@ -9,7 +9,9 @@ li {
 }
 
 a {
-    text-decoration: none;
+    outline: none;
+  text-decoration: none;
+  color: inherit;
 }
 
 button {
