@@ -4,8 +4,6 @@
     margin: 50px 100px;
     display: flex;
     justify-content: space-between;
-
-
 }
 
 .card {
@@ -21,10 +19,6 @@
         font-style: normal;
         font-weight: 400;
         line-height: 22px;
-     
-     
-        /* 157.143% */
-
     }
 
     h3 {
@@ -47,7 +41,7 @@
         font-weight: 400;
    
         a{
-            margin-bottom: 19px;
+            margin-top: 19px;
         }
     }
 }
@@ -63,4 +57,14 @@
 
 .icon {
     font-size: 28px;
+}
+
+.bottom {
+    margin: 0px 100px;
+
+    p {
+        padding-top: 30px;
+        padding-bottom: 15px;
+        font-size: 14px;
+    }
 }
