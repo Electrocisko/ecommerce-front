@@ -7,7 +7,6 @@ const StayUpdated = () => {
     <h2>STAY UPTO DATE ABOUT OUR LATEST OFFERS</h2>
     <form>
         <p> <MdOutlineMail/></p>
-       
         <input type="text" placeholder="Enter your email address" />
         <button type="submit">Subscribe to Newsletter</button>
     </form>
