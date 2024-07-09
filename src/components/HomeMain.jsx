@@ -7,7 +7,7 @@ import StayUpdated from "./smalls/StayUpdated";
 const HomeMain = () => {
   return (
     <>
-    <main className={style.container}>
+    {/* <main className={style.container}>
       <div>
         <h1 className={style.title}>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
         <p className={style.text}>
@@ -61,7 +61,7 @@ const HomeMain = () => {
        </div>
         <a href="/" className={style.button_center}><ButtonLight text={"View All"}/></a>
     
-       </section>
+       </section> */}
 
        <section className={style.style_section}>
        <h2 className={style.h2}>BROWSE BY DRESS STYLE</h2>
