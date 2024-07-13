@@ -39,7 +39,7 @@ const HomeMain = () => {
          <p>GUCCI</p>
          <p>PRADA</p>
          <p>Calvin Klein</p>
-       </div>
+       </div> */}
        <section className={style.section}>
        <h2 className={style.h2}>NEW ARRIVALS</h2>
        <div className={style.card_container}>
@@ -61,7 +61,7 @@ const HomeMain = () => {
        </div>
         <a href="/" className={style.button_center}><ButtonLight text={"View All"}/></a>
     
-       </section> */}
+       </section>
 
        <section className={style.style_section}>
        <h2 className={style.h2}>BROWSE BY DRESS STYLE</h2>
