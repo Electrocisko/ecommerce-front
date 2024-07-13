@@ -187,16 +187,19 @@
 @media (max-width: 375px) {
 
     .image_container {
-        width: 200px;
-        height: auto;
-        background-image: url("/images/models.jpg");
+        width: 348px;
+        height: 400px;
+       
+        background-image: url("/images/models-mobil.jpg");
         background-position: top;
-        background-size: cover;
+        background-size:cover;
+        background-repeat: no-repeat;
         border-radius: 10px;
     }
     
     .container {
         display: flex;
+        flex-direction: column;
         margin: 0 17px;
     }
     
