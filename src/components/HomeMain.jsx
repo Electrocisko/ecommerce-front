@@ -32,14 +32,14 @@ const HomeMain = () => {
         </div>
       </div>
       <div className={style.image_container}></div>
-    </main>
+    </main> */}
          <div className={style.branchs_container}>
          <p>VERSACE</p>
          <p>ZARA</p>
          <p>GUCCI</p>
          <p>PRADA</p>
          <p>Calvin Klein</p>
-       </div> */}
+       </div>
        <section className={style.section}>
        <h2 className={style.h2}>NEW ARRIVALS</h2>
        <div className={style.card_container}>
