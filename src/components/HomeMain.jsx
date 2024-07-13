@@ -7,7 +7,7 @@ import StayUpdated from "./smalls/StayUpdated";
 const HomeMain = () => {
   return (
     <>
-    {/* <main className={style.container}>
+    <main className={style.container}>
       <div>
         <h1 className={style.title}>FIND CLOTHES THAT MATCHES YOUR STYLE</h1>
         <p className={style.text}>
@@ -32,7 +32,7 @@ const HomeMain = () => {
         </div>
       </div>
       <div className={style.image_container}></div>
-    </main> */}
+    </main>
          <div className={style.branchs_container}>
          <p>VERSACE</p>
          <p>ZARA</p>

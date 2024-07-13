@@ -187,8 +187,8 @@
 @media (max-width: 375px) {
 
     .image_container {
-        width: 700px;
-        height: 500px;
+        width: 200px;
+        height: auto;
         background-image: url("/images/models.jpg");
         background-position: top;
         background-size: cover;
@@ -197,18 +197,20 @@
     
     .container {
         display: flex;
-        margin: 0 100px;
+        margin: 0 17px;
     }
     
     .title {
-        font-size: 64px;
+        font-size:2.2rem;
         font-weight: bold;
-        width: 577px;   
+        width: 360px;   
+        line-height: 34px;
+        margin-bottom: 20px;
     }
     
     .text {
         font-family: $Satoshi;
-        width: 545px;
+        width: 360px;
         color: rgba(0, 0, 0, 0.6);
         margin-bottom: 32px;
     }
@@ -219,7 +221,9 @@
     
     .data_container {
         display: flex;
-        width: 596px;
+        justify-content: center;
+        flex-wrap: wrap;
+        width: 360px;
         gap: 32px;
         margin-top: 32px;
     }
@@ -227,12 +231,12 @@
     .text_data_small {
         color: rgba(0, 0, 0, 0.6);
         font-family: $Satoshi;
-        font-size: 14px;
+        font-size: 12px;
     }
     
     .text_data {
         // font-family: $Satoshi;
-        font-size: 40px;
+        font-size: 1.4rem;
         font-weight: 600;
     }
     
