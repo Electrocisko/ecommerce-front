@@ -1,9 +1,11 @@
 import style from "../scss/modules/navbar.module.scss";
 import { LuShoppingCart } from "react-icons/lu";
 import { FaRegCircleUser } from "react-icons/fa6";
-import { FaAngleDown } from "react-icons/fa6";
+// import { FaAngleDown } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
 import { Link } from "react-router-dom";
+import { menuItemsData } from "../data/menuItemsData";
+import MenuItems from "./smalls/MenuItems";
 
 const Navbar = () => {
   return (
@@ -14,19 +16,27 @@ const Navbar = () => {
         </li>
 
         <div className={style.center_links}>
-          <li className={style.dropdown}>
+
+          {/* <li className={style.dropdown}>
             Shop <FaAngleDown />
-          </li>
-          <li>
-            {" "}
-            <Link to={"/onsale"}>On Sale</Link>
-          </li>
-          <li>
-            <Link to={"/new"}>New Arrivals</Link>
-          </li>
-          <li>
-            <Link to={"brands"}>Brands</Link>
-          </li>
+          </li>   */}
+{/* Show menu items */}
+
+{
+      menuItemsData.map((menu, index) => (
+        <MenuItems items={menu} key={index}/>
+      ))
+    }
+
+
+    {/* {
+      menuItemsData.map((menu, index) => (
+        <li key={index}>
+        <Link to={menu.url}>{menu.title}</Link>
+      </li>
+      ))
+    } */}
+
         </div>
 
         <li className={style.searchbar}>
