@@ -9,34 +9,16 @@ import MenuItems from "./smalls/MenuItems";
 
 const Navbar = () => {
   return (
-    <nav>
+    <nav className={style.navbar}>
       <ul className={style.ul_list}>
         <li className={style.logo}>
           <Link to={"/"}>SHOP.CO</Link>
         </li>
-
         <div className={style.center_links}>
-
-          {/* <li className={style.dropdown}>
-            Shop <FaAngleDown />
-          </li>   */}
-{/* Show menu items */}
-
-{
-      menuItemsData.map((menu, index) => (
-        <MenuItems items={menu} key={index}/>
-      ))
-    }
-
-
-    {/* {
-      menuItemsData.map((menu, index) => (
-        <li key={index}>
-        <Link to={menu.url}>{menu.title}</Link>
-      </li>
-      ))
-    } */}
-
+          {/* Show menu items */}
+          {menuItemsData.map((menu, index) => (
+            <MenuItems items={menu} key={index} />
+          ))}
         </div>
 
         <li className={style.searchbar}>

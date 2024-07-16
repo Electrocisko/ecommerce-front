@@ -2,21 +2,27 @@
 import { useState } from "react";
 import DropDown from "./DropDown";
 import { Link } from "react-router-dom";
+import style from "../../scss/modules/menuitems.module.scss";
+import { FaAngleDown } from "react-icons/fa6";
+import { FaAngleUp } from "react-icons/fa6";
 
 const MenuItems = ({ items }) => {
-  const [dropdown, setDropdown] = useState(true);
+  const [dropdown, setDropdown] = useState(false);
 
   return (
-    <li>
+    <li className={style.li}>
       {items.subMenu ? (
         <>
           <button
             type="button"
             aria-haspopup="menu"
             aria-expanded={dropdown ? "true" : "false"}
-            onClick={(prev) => setDropdown(!prev)}
+            onClick={() => setDropdown((prev) => !prev)}
+            className={style.dropdown_button}
           >
-            {items.title}
+            {items.title} {" "}
+            {dropdown ?  <FaAngleUp /> :  <FaAngleDown /> }
+              
           </button>
           <DropDown subMenus={items.subMenu} dropdown={dropdown} />
         </>

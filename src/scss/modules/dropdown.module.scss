@@ -1,0 +1,23 @@
+@import "../abstracts/variables";
+
+.dropdown_container {
+
+    position: absolute; 
+    z-index: 100;
+    background-color: $Light;
+    display: block;
+
+
+    li {
+        margin-top: 5px;
+        display: block;
+        margin-right: 10px;
+        
+    }
+
+
+}
+
+.hide {
+    display: none;
+}

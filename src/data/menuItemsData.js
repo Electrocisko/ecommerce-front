@@ -4,15 +4,15 @@ export const menuItemsData = [
     url: "/detail",
     subMenu: [
       {
-        title:"Women_new",
+        title:"Women",
         url:"/new"
       },
       {
-        title:"Men-brands",
+        title:"Men",
         url:"/detail"
       },
       {
-        title:"Unisex-onsale",
+        title:"Unisex",
         url:"/onsale"
         }
     ]
