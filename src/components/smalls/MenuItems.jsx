@@ -1,13 +1,11 @@
 /* eslint-disable react/prop-types */
-import { useState } from "react";
 import DropDown from "./DropDown";
 import { Link } from "react-router-dom";
 import style from "../../scss/modules/menuitems.module.scss";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaAngleUp } from "react-icons/fa6";
 
-const MenuItems = ({ items }) => {
-  const [dropdown, setDropdown] = useState(false);
+const MenuItems = ({ items, setDropdown, dropdown }) => {
 
   return (
     <li className={style.li}>
@@ -24,7 +22,7 @@ const MenuItems = ({ items }) => {
             {dropdown ?  <FaAngleUp /> :  <FaAngleDown /> }
               
           </button>
-          <DropDown subMenus={items.subMenu} dropdown={dropdown} />
+          <DropDown subMenus={items.subMenu} dropdown={dropdown} setDropdown={setDropdown} />
         </>
       ) : (
         <Link to={items.url}>{items.title}</Link>

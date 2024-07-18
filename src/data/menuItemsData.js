@@ -5,11 +5,11 @@ export const menuItemsData = [
     subMenu: [
       {
         title:"Women",
-        url:"/new"
+        url:"/women"
       },
       {
         title:"Men",
-        url:"/detail"
+        url:"/men"
       },
       {
         title:"Unisex",

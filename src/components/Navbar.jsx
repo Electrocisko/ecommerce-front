@@ -7,7 +7,11 @@ import { Link } from "react-router-dom";
 import { menuItemsData } from "../data/menuItemsData";
 import MenuItems from "./smalls/MenuItems";
 
+import { useState } from "react";
+
 const Navbar = () => {
+
+  const [dropdown, setDropdown] = useState(false);
   return (
     <nav className={style.navbar}>
       <ul className={style.ul_list}>
@@ -17,7 +21,7 @@ const Navbar = () => {
         <div className={style.center_links}>
           {/* Show menu items */}
           {menuItemsData.map((menu, index) => (
-            <MenuItems items={menu} key={index} />
+            <MenuItems items={menu} key={index} dropdown={dropdown} setDropdown={setDropdown} />
           ))}
         </div>
 
@@ -34,6 +38,9 @@ const Navbar = () => {
           </li>
         </div>
       </ul>
+ 
+
+      
     </nav>
   );
 };

@@ -1,24 +1,19 @@
 /* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
-import style from "../../scss/modules/dropdown.module.scss"
+import style from "../../scss/modules/dropdown.module.scss";
 
-
-
-const DropDown = ({subMenus, dropdown}) => {
-
+const DropDown = ({ subMenus, dropdown, setDropdown }) => {
   return (
-   <ul className={dropdown? style.dropdown_container : style.hide }>
+    <ul className={dropdown ? style.dropdown_container : style.hide}>
+      {subMenus.map((sub, index) => (
+        <li key={index}>
+          <button onClick={() => setDropdown((prev) => !prev)}>
+            <Link className={style.link} to={sub.url}>{sub.title}</Link>
+          </button>
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-    {
-        subMenus.map((sub, index) => (
-            <li key={index}>
-                <Link to={sub.url}>{sub.title}</Link>
-            </li>
-        ))
-    }
-   </ul>
-  ) 
-}
-
-export default DropDown 
-
+export default DropDown;

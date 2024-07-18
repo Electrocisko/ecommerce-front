@@ -9,6 +9,8 @@ import BrandsPage from "../pages/BrandsPage";
 import HomePage from "../pages/HomePage";
 import NotFound from "../components/NotFound";
 import LayoutPublic from "../layout/LayOut";
+import WomenPage from "../pages/WomenPage";
+import ManPage from "../pages/ManPage";
 
 export const router = createBrowserRouter([
     {
@@ -51,6 +53,14 @@ export const router = createBrowserRouter([
             {
                 path: "/brands",
                 element: <BrandsPage/>,
+            },
+            {
+                path: "/women",
+                element: <WomenPage/>,
+            },
+            {
+                path: "/men",
+                element: <ManPage/>,
             },
         ]
     }

@@ -7,12 +7,14 @@
     background-color: $Light;
     display: block;
 
+   
+
 
     li {
         margin-top: 5px;
         display: block;
         margin-right: 10px;
-        
+      
     }
 
 
@@ -20,4 +22,9 @@
 
 .hide {
     display: none;
+}
+
+.link{
+  
+    font-size: 1rem;
 }
