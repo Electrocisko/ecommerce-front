@@ -6,8 +6,8 @@ const LayoutPublic = () => {
     return (
         <>
           <Navbar/>
-            <Outlet />
-            <Footer/>
+            {/* <Outlet />
+            <Footer/> */}
         </>
     );
 };
