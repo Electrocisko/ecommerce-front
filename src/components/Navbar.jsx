@@ -1,8 +1,8 @@
 import style from "../scss/modules/navbar.module.scss";
 import { LuShoppingCart } from "react-icons/lu";
 import { FaRegCircleUser } from "react-icons/fa6";
-// import { FaAngleDown } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
+import { FaBars } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { menuItemsData } from "../data/menuItemsData";
 import MenuItems from "./smalls/MenuItems";
@@ -10,18 +10,32 @@ import MenuItems from "./smalls/MenuItems";
 import { useState } from "react";
 
 const Navbar = () => {
-
   const [dropdown, setDropdown] = useState(false);
+  const [links, setLinks] = useState(false);
+
   return (
     <nav className={style.navbar}>
       <ul className={style.ul_list}>
+        <li
+          className={style.mobil_menu}
+          onClick={() => setLinks((prev) => !prev)}
+        >
+          <FaBars />
+        </li>
+
         <li className={style.logo}>
           <Link to={"/"}>SHOP.CO</Link>
         </li>
+
         <div className={style.center_links}>
           {/* Show menu items */}
           {menuItemsData.map((menu, index) => (
-            <MenuItems items={menu} key={index} dropdown={dropdown} setDropdown={setDropdown} />
+            <MenuItems
+              items={menu}
+              key={index}
+              dropdown={dropdown}
+              setDropdown={setDropdown}
+            />
           ))}
         </div>
 
@@ -29,7 +43,11 @@ const Navbar = () => {
           <FaSearch />
           Search for products....
         </li>
+
         <div className={style.right_links}>
+          <li className={style.mobil_searchbar}>
+            <FaSearch />
+          </li>
           <li className={style.icon}>
             <LuShoppingCart />
           </li>
@@ -38,9 +56,18 @@ const Navbar = () => {
           </li>
         </div>
       </ul>
- 
-
-      
+      {links && (
+        <div className={style.mobile_menu_expanded}>
+          {menuItemsData.map((menu, index) => (
+            <MenuItems
+              items={menu}
+              key={index}
+              dropdown={dropdown}
+              setDropdown={setDropdown}
+            />
+          ))}
+        </div>
+      )}
     </nav>
   );
 };
