@@ -12,8 +12,8 @@ export const menuItemsData = [
         url:"/men"
       },
       {
-        title:"Unisex",
-        url:"/onsale"
+        title:"All",
+        url:"/shop"
         }
     ]
   },

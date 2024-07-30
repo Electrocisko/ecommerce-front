@@ -3,6 +3,7 @@ import style from "../scss/modules/homemain.module.scss";
 import Card from "./Card";
 import ButtonLight from "./smalls/ButtonLight";
 import StayUpdated from "./smalls/StayUpdated";
+import {Link} from "react-router-dom"
 
 const HomeMain = () => {
   return (
@@ -15,7 +16,8 @@ const HomeMain = () => {
           designed to bring out your individuality and cater to your sense of
           style.
         </p>
-        <Button text={"Shop Now"} />
+        <Link to="/shop"><Button text={"Shop Now"} /></Link>
+        
         <div className={style.data_container}>
           <div>
             <h3 className={style.text_data}>200+</h3>

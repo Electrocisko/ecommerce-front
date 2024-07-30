@@ -11,6 +11,7 @@ import NotFound from "../components/NotFound";
 import LayoutPublic from "../layout/LayOut";
 import WomenPage from "../pages/WomenPage";
 import ManPage from "../pages/ManPage";
+import ShopPage from "../pages/ShopPage";
 
 export const router = createBrowserRouter([
     {
@@ -53,6 +54,10 @@ export const router = createBrowserRouter([
             {
                 path: "/brands",
                 element: <BrandsPage/>,
+            },
+            {
+                path: "/shop",
+                element: <ShopPage/>,
             },
             {
                 path: "/women",

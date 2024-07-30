@@ -2,6 +2,7 @@ import style from "../scss/modules/navbar.module.scss";
 import { LuShoppingCart } from "react-icons/lu";
 import { FaRegCircleUser } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
+import { IoSearchSharp } from "react-icons/io5";
 import { FaBars } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { menuItemsData } from "../data/menuItemsData";
@@ -46,7 +47,8 @@ const Navbar = () => {
 
         <div className={style.right_links}>
           <li className={style.mobil_searchbar}>
-            <FaSearch />
+            <IoSearchSharp /> 
+            
           </li>
           <li className={style.icon}>
             <LuShoppingCart />
