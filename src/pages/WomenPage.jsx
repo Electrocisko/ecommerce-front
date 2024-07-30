@@ -4,9 +4,10 @@ import ByProductNav from "../components/smalls/ByProductNav";
 const WomenPage = () => {
   return (
     <main className={style.main_container}>
+      <h1>Women</h1>
         <ByProductNav/>
 
-<h1>Women</h1>
+
     </main>
     
   )

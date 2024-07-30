@@ -5,7 +5,10 @@ import style from "../../scss/modules/menuitems.module.scss";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaAngleUp } from "react-icons/fa6";
 
-const MenuItems = ({ items, setDropdown, dropdown }) => {
+const MenuItems = ({ items, setDropdown, dropdown, setLinks }) => {
+  const handleClick = () => {
+    setDropdown((prev) => !prev);
+  };
 
   return (
     <li className={style.li}>
@@ -15,17 +18,22 @@ const MenuItems = ({ items, setDropdown, dropdown }) => {
             type="button"
             aria-haspopup="menu"
             aria-expanded={dropdown ? "true" : "false"}
-            onClick={() => setDropdown((prev) => !prev)}
+            onClick={() => handleClick()}
             className={style.dropdown_button}
           >
-            {items.title} {" "}
-            {dropdown ?  <FaAngleUp /> :  <FaAngleDown /> }
-              
+            {items.title} {dropdown ? <FaAngleUp /> : <FaAngleDown />}
           </button>
-          <DropDown subMenus={items.subMenu} dropdown={dropdown} setDropdown={setDropdown} />
+          <DropDown
+            subMenus={items.subMenu}
+            dropdown={dropdown}
+            setDropdown={setDropdown}
+            setLinks={setLinks}
+          />
         </>
       ) : (
-        <Link to={items.url}>{items.title}</Link>
+        <div onClick={() => setLinks((prev) => !prev)}>
+          <Link to={items.url}>{items.title}</Link>
+        </div>
       )}
     </li>
   );
