@@ -12,6 +12,7 @@ import LayoutPublic from "../layout/LayOut";
 import WomenPage from "../pages/WomenPage";
 import ManPage from "../pages/ManPage";
 import ShopPage from "../pages/ShopPage";
+import { loaderProducts } from "../loaders/productsLoader.js";
 
 export const router = createBrowserRouter([
     {
@@ -22,6 +23,7 @@ export const router = createBrowserRouter([
             {
                 index: true,
                 element: <HomePage/>,
+                loader: loaderProducts
           
             },
             {
@@ -50,6 +52,8 @@ export const router = createBrowserRouter([
             {
                 path: "/new",
                 element: <NewArrivalsPage/>,
+                loader: loaderProducts
+            
             },
             {
                 path: "/brands",

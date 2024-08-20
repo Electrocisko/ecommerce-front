@@ -1,11 +1,12 @@
-import style from "../scss/modules/card.module.scss"
+import style from "../scss/modules/card.module.scss";
 
-const Card = () => {
+
+const Card = ({name, price, urlImage}) => {
   return (
     <div className={style.card}>
-        <img src="/images/camisa_azul_hombre-removebg-preview.png" alt="camisa azul" />
-        <h3>Blue Shirt</h3>
-        <h4>$212</h4>
+        <img src={urlImage} alt="camisa azul" />
+        <h3>{name}</h3>
+        <h4>{price}</h4>
     </div>
   )
 }

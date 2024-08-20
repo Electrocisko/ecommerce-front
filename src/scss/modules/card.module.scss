@@ -13,6 +13,7 @@
         width: 18rem;
         height: 18rem;
         background-color: $LightGray;
+        object-fit: cover;
     }
 
     h3 {
@@ -43,6 +44,7 @@
             width: 147px;
             height: 147px;
             background-color: $LightGray;
+            object-fit: cover;
         }
     
         h3 {

@@ -6,8 +6,6 @@ const WomenPage = () => {
     <main className={style.main_container}>
       <h1>Women</h1>
         <ByProductNav/>
-
-
     </main>
     
   )

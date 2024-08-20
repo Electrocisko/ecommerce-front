@@ -1,11 +1,19 @@
 import Button from "./smalls/Button";
 import style from "../scss/modules/homemain.module.scss";
-import Card from "./Card";
+import { useLoaderData } from "react-router-dom";
+import Card from "../components/Card";
+import {urlServer} from "../data/endpoints.js"
 import ButtonLight from "./smalls/ButtonLight";
 import StayUpdated from "./smalls/StayUpdated";
-import {Link} from "react-router-dom"
+import {Link} from "react-router-dom";
+
 
 const HomeMain = () => {
+
+  const { products } = useLoaderData();
+  const items = products.data;
+  const firstFourItems = items.slice(0, 4);
+
   return (
     <>
     <main className={style.container}>
@@ -45,10 +53,9 @@ const HomeMain = () => {
        <section className={style.section}>
        <h2 className={style.h2}>NEW ARRIVALS</h2>
        <div className={style.card_container}>
-       <Card/>
-       <Card/>
-       <Card/>
-       <Card/>
+     {firstFourItems.map((item) => (
+          <Card key={item.key} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
+     ))}
        </div>
        <a href="/" className={style.button_center}><ButtonLight text={"View All"}/></a>
        </section>
@@ -56,10 +63,9 @@ const HomeMain = () => {
        <section className={style.section}>
        <h2 className={style.h2}>TOP SELLING</h2>
        <div className={style.card_container}>
-       <Card/>
-       <Card/>
-       <Card/>
-       <Card/>
+       {firstFourItems.map((item) => (
+          <Card key={item.key} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
+     ))}
        </div>
         <a href="/" className={style.button_center}><ButtonLight text={"View All"}/></a>
     
