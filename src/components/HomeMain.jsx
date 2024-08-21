@@ -10,10 +10,11 @@ import {Link} from "react-router-dom";
 
 const HomeMain = () => {
 
-  const { products } = useLoaderData();
-  const items = products.data;
-  const firstFourItems = items.slice(0, 4);
+const { newProducts, topProducts } = useLoaderData();
 
+ const firstNewsProducts = newProducts.newProducts.slice(0,4);
+ const firstTopProducts = topProducts.topsells.slice(0, 4);
+  
   return (
     <>
     <main className={style.container}>
@@ -53,8 +54,8 @@ const HomeMain = () => {
        <section className={style.section}>
        <h2 className={style.h2}>NEW ARRIVALS</h2>
        <div className={style.card_container}>
-     {firstFourItems.map((item) => (
-          <Card key={item.key} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
+     {firstNewsProducts.map((item, index) => (
+          <Card key={index} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
      ))}
        </div>
        <a href="/" className={style.button_center}><ButtonLight text={"View All"}/></a>
@@ -63,8 +64,8 @@ const HomeMain = () => {
        <section className={style.section}>
        <h2 className={style.h2}>TOP SELLING</h2>
        <div className={style.card_container}>
-       {firstFourItems.map((item) => (
-          <Card key={item.key} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
+       {firstTopProducts.map((item,index ) => (
+          <Card key={index} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
      ))}
        </div>
         <a href="/" className={style.button_center}><ButtonLight text={"View All"}/></a>
