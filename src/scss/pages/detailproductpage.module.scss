@@ -1,0 +1,23 @@
+@import "../base/base";
+@import "../abstracts/variables";
+
+
+.title{
+   text-transform: uppercase;
+   font-size: 1.5rem;
+    margin-bottom: 12px;
+   margin-top: 20px;
+   text-align: left;
+}   
+
+.image_container{
+ margin: 0 17px;
+}
+
+.image {
+    border-radius: 10px;
+    width: 100%;
+    height: 18rem;
+    background-color: $LightGray;
+    object-fit: cover;
+}

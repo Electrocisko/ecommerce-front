@@ -55,7 +55,7 @@ const { newProducts, topProducts } = useLoaderData();
        <h2 className={style.h2}>NEW ARRIVALS</h2>
        <div className={style.card_container}>
      {firstNewsProducts.map((item) => (
-          <Card key={item.product_id} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
+               <Link to={"/detail/"+item.product_id} key={item.product_id}><Card  name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/></Link>
      ))}
        </div>
        <a href="/" className={style.button_center}><ButtonLight text={"View All"}/></a>
