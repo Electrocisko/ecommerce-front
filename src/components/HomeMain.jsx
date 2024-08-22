@@ -54,8 +54,8 @@ const { newProducts, topProducts } = useLoaderData();
        <section className={style.section}>
        <h2 className={style.h2}>NEW ARRIVALS</h2>
        <div className={style.card_container}>
-     {firstNewsProducts.map((item, index) => (
-          <Card key={index} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
+     {firstNewsProducts.map((item) => (
+          <Card key={item.product_id} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
      ))}
        </div>
        <a href="/" className={style.button_center}><ButtonLight text={"View All"}/></a>
@@ -64,8 +64,10 @@ const { newProducts, topProducts } = useLoaderData();
        <section className={style.section}>
        <h2 className={style.h2}>TOP SELLING</h2>
        <div className={style.card_container}>
-       {firstTopProducts.map((item,index ) => (
-          <Card key={index} name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/>
+       {firstTopProducts.map((item) => (
+        <Link to={"/detail/"+item.product_id} key={item.product_id}><Card  name={item.name} price={item.price} urlImage={urlServer+"images/"+item.imageurl}/></Link>
+
+          
      ))}
        </div>
         <a href="/" className={style.button_center}><ButtonLight text={"View All"}/></a>

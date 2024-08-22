@@ -36,6 +36,7 @@ const Navbar = () => {
               key={index}
               dropdown={dropdown}
               setDropdown={setDropdown}
+              
             />
           ))}
         </div>

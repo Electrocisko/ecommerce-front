@@ -12,7 +12,7 @@ import LayoutPublic from "../layout/LayOut";
 import WomenPage from "../pages/WomenPage";
 import ManPage from "../pages/ManPage";
 import ShopPage from "../pages/ShopPage";
-import { loaderProducts, loaderHomePage } from "../loaders/productsLoader.js";
+import { loaderProducts, loaderHomePage, loaderProductDetail } from "../loaders/productsLoader.js";
 
 export const router = createBrowserRouter([
     {
@@ -24,22 +24,19 @@ export const router = createBrowserRouter([
                 index: true,
                 element: <HomePage/>,
                 loader: loaderHomePage
-          
             },
             {
-                path: "/detail",
+                path: "/detail/:id",
                 element: <DetailProductPage/>,
-          
+                loader: loaderProductDetail
             },
             {
                 path: "/cart",
                 element: <CartPage/>,
-          
             },
             {
                 path: "/category",
                 element: <CategoryPage/>,
-          
             },
             {
                 path: "/soon",

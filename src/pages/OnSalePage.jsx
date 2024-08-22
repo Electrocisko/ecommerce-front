@@ -1,8 +1,15 @@
 
 
+
+
 const OnSalePage = () => {
+
+
   return (
-    <h1 style={{ textAlign: 'center'}}>OnSalePage</h1>
+    <div>
+       <h1 style={{ textAlign: 'center'}}>OnSalePage</h1>
+    </div>
+   
   )
 }
 
