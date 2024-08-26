@@ -4,7 +4,6 @@ import { useLoaderData } from "react-router-dom";
 import Card from "../components/Card";
 import {urlServer} from "../data/endpoints.js"
 import ButtonLight from "./smalls/ButtonLight";
-import StayUpdated from "./smalls/StayUpdated";
 import {Link} from "react-router-dom";
 
 
@@ -89,9 +88,7 @@ const { newProducts, topProducts } = useLoaderData();
        </div>
        </section>
 
-      <section>
-        <StayUpdated/>
-      </section>
+
 
 
        </>

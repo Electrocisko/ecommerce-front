@@ -2,13 +2,14 @@ import style from "../scss/pages/detailproductpage.module.scss";
 import { useLoaderData } from "react-router-dom";
 import { urlServer } from "../data/endpoints.js";
 import { ScrollRestoration } from "react-router-dom";
+import Button from "../components/smalls/Button.jsx";
+
+
 
 const DetailProductPage = () => {
   const { productDetail } = useLoaderData();
 
   const product = productDetail.data;
- 
-
 
   const productPrice = Math.trunc(product.price);
   const ofertPrice = Math.trunc(
@@ -43,34 +44,40 @@ const DetailProductPage = () => {
         <h3 className={style.subtitle}>Select Colors</h3>
 
         <div className={style.colorsContainer}>
-
-      {product.color_stock.map((item, index) => (
-     
-        <div
-        key={index}
-        className={style.circle}
-        style={{ backgroundColor: `rgba${item.color}`  }}
-      ></div>
-      ))}
-
+          {product.color_stock.map((item, index) => (
+            <div
+              key={index}
+              className={style.circle}
+              style={{ backgroundColor: `rgba${item.color}` }}
+            ></div>
+          ))}
         </div>
 
-
-                {/* ////////////////////////////////////////////////////////////////////////////////////// */}
+        {/* ////////////////////////////////////////////////////////////////////////////////////// */}
 
         <hr className={style.hr} />
         <h3 className={style.subtitle}>Choose Size</h3>
 
         <div className={style.colorsContainer}>
-
-      {product.sizes_stock.map((item, index) => (
-        <p className={style.size_badge} key={index}>{item.size}</p>
-      ))}
-
-
+          {product.sizes_stock.map((item, index) => (
+            <p className={style.size_badge} key={index}>
+              {item.size}
+            </p>
+          ))}
         </div>
 
         <hr className={style.hr} />
+
+        <div className={style.buttons_container}>
+ 
+        </div>
+        <div className={style.buttons_container}>
+        <Button text={"Add to Cart"}/>
+        </div>
+
+   
+
+
       </div>
 
       <ScrollRestoration />

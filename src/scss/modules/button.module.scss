@@ -9,5 +9,15 @@
     background: $Dark;
     color: white;
     font-size: 1rem;
+    width: auto;
+    text-align: center;
  
+}
+
+@media (max-width: 415px) {
+
+    .button {
+        width: 100%;
+    }
+
 }

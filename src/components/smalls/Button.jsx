@@ -3,12 +3,12 @@ import PropTypes from 'prop-types';
 
 
 const Button = ({text}) => {
-  return (
-    <div className={style.button}>{text}</div>
-  )
+
+
+
+return (
+<div className={style.button}>{text}</div>)
 }
-
-
 Button.propTypes = {
   text: PropTypes.string
 }
