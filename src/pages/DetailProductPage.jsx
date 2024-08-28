@@ -4,9 +4,14 @@ import { urlServer } from "../data/endpoints.js";
 import { ScrollRestoration } from "react-router-dom";
 import Button from "../components/smalls/Button.jsx";
 import CartButton from "../components/smalls/CartButton.jsx";
+import ButtonLight from "../components/smalls/ButtonLight.jsx";
+import { Link } from "react-router-dom";
+import Card from "../components/Card.jsx";
 
 const DetailProductPage = () => {
-  const { productDetail } = useLoaderData();
+  const { productDetail, newProducts } = useLoaderData();
+
+  const firstNewsProducts = newProducts.newProducts.slice(0, 4);
 
   const product = productDetail.data;
   const productPrice = Math.trunc(product.price);
@@ -66,12 +71,27 @@ const DetailProductPage = () => {
 
         <hr className={style.hr} />
 
-        
         <div className={style.buttons_container}>
           <CartButton />
           <Button text={"Add to Cart"} />
         </div>
       </div>
+
+      <section className={style.section}>
+        <h2 className={style.h2}>YOU MIGHT ALSO LIKE</h2>
+        <div className={style.card_container}>
+          {firstNewsProducts.map((item) => (
+            <Link to={"/detail/" + item.product_id} key={item.product_id}>
+              <Card
+                name={item.name}
+                price={item.price}
+                urlImage={urlServer + "images/" + item.imageurl}
+              />
+            </Link>
+          ))}
+        </div>
+
+      </section>
 
       <ScrollRestoration />
     </>

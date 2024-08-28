@@ -46,21 +46,21 @@
     margin: 24px 0px;
 }
 
-.subtitle{
-    color: rgba(0, 0, 0, 0.60); 
+.subtitle {
+    color: rgba(0, 0, 0, 0.60);
     font-size: 14px;
     font-style: normal;
     font-weight: 400;
     line-height: normal;
 }
 
-.circle{
+.circle {
     border-radius: 50%;
     width: 40px;
     height: 40px;
 }
 
-.colorsContainer{
+.colorsContainer {
     display: flex;
     gap: 10px;
     margin-top: 16px;
@@ -75,10 +75,33 @@
     font-weight: 400;
 }
 
-.buttons_container{
+.buttons_container {
     display: flex;
-    flex-direction: column;
     gap: 10px;
     margin-top: 10px;
     margin-bottom: 10px;
+}
+
+.section {
+    margin: 12px 17px;
+    margin-top: 47px;
+    margin: 47px 17px 47px 17px;
+
+    .h2 {
+        padding: 0 50px;
+        text-align: center;
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: 36px;
+        /* 112.5% */
+    }
+}
+
+.card_container {
+    display: flex;
+    gap: 10px;
+    overflow: scroll;
+    margin-top: 47px;
+
 }
