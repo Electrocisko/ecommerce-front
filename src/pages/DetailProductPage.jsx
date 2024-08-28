@@ -4,15 +4,12 @@ import { urlServer } from "../data/endpoints.js";
 import { ScrollRestoration } from "react-router-dom";
 import Button from "../components/smalls/Button.jsx";
 import CartButton from "../components/smalls/CartButton.jsx";
-import ButtonLight from "../components/smalls/ButtonLight.jsx";
 import { Link } from "react-router-dom";
 import Card from "../components/Card.jsx";
 
 const DetailProductPage = () => {
   const { productDetail, newProducts } = useLoaderData();
-
   const firstNewsProducts = newProducts.newProducts.slice(0, 4);
-
   const product = productDetail.data;
   const productPrice = Math.trunc(product.price);
   const ofertPrice = Math.trunc(
@@ -73,8 +70,9 @@ const DetailProductPage = () => {
 
         <div className={style.buttons_container}>
           <CartButton />
-          <Button text={"Add to Cart"} />
-        </div>
+          <Link to={"/soon"}> <Button text={"Add to Cart"} /></Link>
+         
+        </div>  
       </div>
 
       <section className={style.section}>
@@ -90,7 +88,6 @@ const DetailProductPage = () => {
             </Link>
           ))}
         </div>
-
       </section>
 
       <ScrollRestoration />

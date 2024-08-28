@@ -10,7 +10,6 @@ import {Link} from "react-router-dom";
 const HomeMain = () => {
 
 const { newProducts, topProducts } = useLoaderData();
-
  const firstNewsProducts = newProducts.newProducts.slice(0,4);
  const firstTopProducts = topProducts.topsells.slice(0, 4);
   
