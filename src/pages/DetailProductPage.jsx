@@ -3,14 +3,12 @@ import { useLoaderData } from "react-router-dom";
 import { urlServer } from "../data/endpoints.js";
 import { ScrollRestoration } from "react-router-dom";
 import Button from "../components/smalls/Button.jsx";
-
-
+import CartButton from "../components/smalls/CartButton.jsx";
 
 const DetailProductPage = () => {
   const { productDetail } = useLoaderData();
 
   const product = productDetail.data;
-
   const productPrice = Math.trunc(product.price);
   const ofertPrice = Math.trunc(
     product.price - product.price * (product.discount / 100)
@@ -68,16 +66,11 @@ const DetailProductPage = () => {
 
         <hr className={style.hr} />
 
+        
         <div className={style.buttons_container}>
- 
+          <CartButton />
+          <Button text={"Add to Cart"} />
         </div>
-        <div className={style.buttons_container}>
-        <Button text={"Add to Cart"}/>
-        </div>
-
-   
-
-
       </div>
 
       <ScrollRestoration />
