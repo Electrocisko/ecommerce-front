@@ -6,6 +6,7 @@ import Button from "../components/smalls/Button.jsx";
 import CartButton from "../components/smalls/CartButton.jsx";
 import { Link } from "react-router-dom";
 import Card from "../components/Card.jsx";
+import { useState } from "react";
 
 const DetailProductPage = () => {
   const { productDetail, newProducts } = useLoaderData();
@@ -15,6 +16,8 @@ const DetailProductPage = () => {
   const ofertPrice = Math.trunc(
     product.price - product.price * (product.discount / 100)
   );
+
+  const [quantity, setQuantity] = useState(1);
 
   return (
     <>
@@ -39,10 +42,7 @@ const DetailProductPage = () => {
         <p>{product.description}</p>
         <hr className={style.hr} />
 
-        {/* ////////////////////////////////////////////////////////////////////////////////////// */}
-
         <h3 className={style.subtitle}>Select Colors</h3>
-
         <div className={style.colorsContainer}>
           {product.color_stock.map((item, index) => (
             <div
@@ -52,8 +52,6 @@ const DetailProductPage = () => {
             ></div>
           ))}
         </div>
-
-        {/* ////////////////////////////////////////////////////////////////////////////////////// */}
 
         <hr className={style.hr} />
         <h3 className={style.subtitle}>Choose Size</h3>
@@ -69,10 +67,11 @@ const DetailProductPage = () => {
         <hr className={style.hr} />
 
         <div className={style.buttons_container}>
-          <CartButton />
-          <Link to={"/soon"}> <Button text={"Add to Cart"} /></Link>
-         
-        </div>  
+          <CartButton quantity={quantity}  setQuantity={setQuantity}/>
+          <Link to={"/soon"}>
+            <Button text={"Add to Cart"} />
+          </Link>
+        </div>
       </div>
 
       <section className={style.section}>
