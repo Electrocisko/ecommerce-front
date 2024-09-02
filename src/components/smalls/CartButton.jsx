@@ -19,9 +19,9 @@ const CartButton = ({quantity, setQuantity}) => {
   
   return (
     <div className={style.button}>
-      <FaMinus onClick={subtractQuantity} />
+      <FaMinus onClick={subtractQuantity} className={style.cursor_pointer} />
       <p>{quantity}</p>
-      <FaPlus onClick={addQuantity} />
+      <FaPlus onClick={addQuantity}  className={style.cursor_pointer} />
     </div>
   );
 
