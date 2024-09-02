@@ -52,7 +52,7 @@ const Navbar = () => {
             
           </li>
           <li className={style.icon}>
-            <LuShoppingCart />
+            <LuShoppingCart /><span className={style.cart_items}>1</span>
           </li>
           <li className={style.icon}>
             <FaRegCircleUser />

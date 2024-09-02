@@ -19,6 +19,12 @@ const DetailProductPage = () => {
 
   const [quantity, setQuantity] = useState(1);
 
+  const handleClickAdd = () => {
+    console.log(productDetail);
+    // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
+    // Las validaciones los podria hacer aca y luego tambien en el server
+  }
+
   return (
     <>
       <div className={style.image_container}>
@@ -70,9 +76,9 @@ const DetailProductPage = () => {
 
 <div className={style.cart_buttons_container}>
   <CartButton quantity={quantity} setQuantity={setQuantity} />
-  <Link to={"/soon"}>
-    <Button text={"Add to Cart"} />
-  </Link>
+  <span onClick={handleClickAdd}> <Button text={"Add to Cart"}  /></span>
+   
+
 </div>
         </div>
 
