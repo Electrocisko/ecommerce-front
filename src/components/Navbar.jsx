@@ -7,6 +7,7 @@ import { FaBars } from "react-icons/fa6";
 import { Link } from "react-router-dom";
 import { menuItemsData } from "../data/menuItemsData";
 import MenuItems from "./smalls/MenuItems";
+import PropTypes from 'prop-types';
 
 
 import { useState } from "react";
@@ -55,7 +56,7 @@ const Navbar = ( {itemsInCart}) => {
             
           </li>
           <li className={style.icon}>
-            <LuShoppingCart /><span className={style.cart_items}>{itemsInCart}</span>
+            <LuShoppingCart /><span className={style.cart_items}>{itemsInCart > 0 ? itemsInCart : null}</span>
           </li>
           <li className={style.icon}>
             <FaRegCircleUser />
@@ -79,4 +80,8 @@ const Navbar = ( {itemsInCart}) => {
   );
 };
 
+
+Navbar.propTypes = {
+  itemsInCart: PropTypes.number
+}
 export default Navbar;
