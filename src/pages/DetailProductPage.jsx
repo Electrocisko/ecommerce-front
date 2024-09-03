@@ -6,6 +6,7 @@ import Button from "../components/smalls/Button.jsx";
 import CartButton from "../components/smalls/CartButton.jsx";
 import { Link } from "react-router-dom";
 import Card from "../components/Card.jsx";
+import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
 
 const DetailProductPage = () => {
@@ -17,10 +18,20 @@ const DetailProductPage = () => {
     product.price - product.price * (product.discount / 100)
   );
 
+
+ 
   const [quantity, setQuantity] = useState(1);
+  const[itemsInCart, setItemsInCart] = useOutletContext();
 
   const handleClickAdd = () => {
     console.log(productDetail);
+    console.log("Cantidad en Carrito",itemsInCart);
+    if (quantity > 0) {
+      setItemsInCart(itemsInCart+1)
+    }
+
+   
+  
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
     // Las validaciones los podria hacer aca y luego tambien en el server
   }

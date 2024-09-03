@@ -8,11 +8,14 @@ import { Link } from "react-router-dom";
 import { menuItemsData } from "../data/menuItemsData";
 import MenuItems from "./smalls/MenuItems";
 
+
 import { useState } from "react";
 
-const Navbar = () => {
+const Navbar = ( {itemsInCart}) => {
   const [dropdown, setDropdown] = useState(false);
   const [links, setLinks] = useState(false);
+
+
 
   return (
     <nav className={style.navbar}>
@@ -52,7 +55,7 @@ const Navbar = () => {
             
           </li>
           <li className={style.icon}>
-            <LuShoppingCart /><span className={style.cart_items}>1</span>
+            <LuShoppingCart /><span className={style.cart_items}>{itemsInCart}</span>
           </li>
           <li className={style.icon}>
             <FaRegCircleUser />
