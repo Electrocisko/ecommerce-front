@@ -71,11 +71,7 @@
     line-height: normal;
 }
 
-.circle {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px;
-}
+
 
 .colorsContainer {
     display: flex;
@@ -108,6 +104,32 @@
         /* 112.5% */
     }
 }
+
+/* ColorPicker.module.scss */
+.circle {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    cursor: pointer;
+    transition: border-color 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .circle:hover {
+    opacity: 0.8;
+  }
+  
+  .selected {
+  display: block;
+  color: white;
+  }
+  
+  .unselected {
+   display: none;
+  }
 
 .card_container {
     display: flex;

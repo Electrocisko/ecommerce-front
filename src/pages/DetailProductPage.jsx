@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 import Card from "../components/Card.jsx";
 import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
+import { FaCheck } from "react-icons/fa6";
 
 const DetailProductPage = () => {
   const { productDetail, newProducts } = useLoaderData();
@@ -17,9 +18,10 @@ const DetailProductPage = () => {
   const ofertPrice = Math.trunc(
     product.price - product.price * (product.discount / 100)
   );
+  
+  const initColor = product.color_stock[0].color;
 
-
- 
+  const [selectedColor, setSelectedColor] = useState(initColor);
   const [quantity, setQuantity] = useState(1);
   const[itemsInCart, setItemsInCart] = useOutletContext();
 
@@ -29,12 +31,14 @@ const DetailProductPage = () => {
     if (quantity > 0) {
       setItemsInCart(itemsInCart+1)
     }
-
-   
-  
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
     // Las validaciones los podria hacer aca y luego tambien en el server
   }
+
+  const handleColorClick = (color) => {
+    setSelectedColor(color);
+    console.log(color);
+  };
 
   return (
     <>
@@ -68,7 +72,11 @@ const DetailProductPage = () => {
       key={index}
       className={style.circle}
       style={{ backgroundColor: `rgba${item.color}` }}
-    ></div>
+      onClick={() => handleColorClick(item.color)}
+    >
+      <span className={`${selectedColor === item.color ? style.selected : style.unselected}`}><FaCheck /></span>
+      
+    </div>
   ))}
 </div>
 
