@@ -19,7 +19,8 @@ const DetailProductPage = () => {
     product.price - product.price * (product.discount / 100)
   );
 
-  const initColor = product.color_stock[0].color; // Color inicial si no seleciona ninguno
+  const initColor = product.color_stock[0]; // Color inicial si no seleciona ninguno
+
   const [selectedColor, setSelectedColor] = useState(initColor);
   const [quantity, setQuantity] = useState(1);
   const [itemsInCart, setItemsInCart] = useOutletContext();
@@ -35,7 +36,8 @@ const DetailProductPage = () => {
 
   const handleColorClick = (color) => {
     setSelectedColor(color);
-    console.log(color);
+    console.log("llega : ", color);
+    
   };
 
   return (
@@ -65,7 +67,11 @@ const DetailProductPage = () => {
 
           <h3 className={style.subtitle}>Select Colors</h3>
 
-          <ColorPicker product={product} handleColorClick={handleColorClick} selectedColor={selectedColor}/>
+          <ColorPicker
+            product={product}
+            handleColorClick={handleColorClick}
+            selectedColor={selectedColor}
+          />
 
           <hr className={style.hr} />
           <h3 className={style.subtitle}>Choose Size</h3>

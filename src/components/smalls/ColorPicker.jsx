@@ -4,10 +4,6 @@ import { FaCheck } from "react-icons/fa6";
 
 const ColorPicker = ({product, handleColorClick, selectedColor}) => {
 
-
-
-
-
   return (
     <div className={style.colorsContainer}>
     {product.color_stock.map((item, index) => (
@@ -15,11 +11,11 @@ const ColorPicker = ({product, handleColorClick, selectedColor}) => {
         key={index}
         className={style.circle}
         style={{ backgroundColor: `rgba${item.color}` }}
-        onClick={() => handleColorClick(item.color)}
+        onClick={() => handleColorClick(item)}
       >
         <span
           className={`${
-            selectedColor === item.color
+            selectedColor.color === item.color
               ? style.selected
               : style.unselected
           }`}
