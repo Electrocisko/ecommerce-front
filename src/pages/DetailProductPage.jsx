@@ -8,7 +8,7 @@ import { Link } from "react-router-dom";
 import Card from "../components/Card.jsx";
 import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
-import { FaCheck } from "react-icons/fa6";
+import ColorPicker from "../components/smalls/ColorPicker.jsx";
 
 const DetailProductPage = () => {
   const { productDetail, newProducts } = useLoaderData();
@@ -18,22 +18,20 @@ const DetailProductPage = () => {
   const ofertPrice = Math.trunc(
     product.price - product.price * (product.discount / 100)
   );
-  
-  const initColor = product.color_stock[0].color;
 
+  const initColor = product.color_stock[0].color; // Color inicial si no seleciona ninguno
   const [selectedColor, setSelectedColor] = useState(initColor);
   const [quantity, setQuantity] = useState(1);
-  const[itemsInCart, setItemsInCart] = useOutletContext();
+  const [itemsInCart, setItemsInCart] = useOutletContext();
 
   const handleClickAdd = () => {
-    console.log(productDetail);
-    console.log("Cantidad en Carrito",itemsInCart);
+    console.log(productDetail.data.color_stock);
     if (quantity > 0) {
-      setItemsInCart(itemsInCart+1)
+      setItemsInCart(itemsInCart + 1);
     }
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
     // Las validaciones los podria hacer aca y luego tambien en el server
-  }
+  };
 
   const handleColorClick = (color) => {
     setSelectedColor(color);
@@ -50,58 +48,46 @@ const DetailProductPage = () => {
         />
 
         <div className={style.buttons_container}>
-        <h1 className={style.title}>{product.name}</h1>
+          <h1 className={style.title}>{product.name}</h1>
 
-{product.discount === 0 ? (
-  <h2 className={style.price}>$ {productPrice}</h2>
-) : (
-  <h2>
-    <span className={style.price}>${ofertPrice}</span>
-    <span className={style.original_price}> ${productPrice}</span>
-    <span className={style.discount}>-{product.discount}%</span>
-  </h2>
-)}
+          {product.discount === 0 ? (
+            <h2 className={style.price}>$ {productPrice}</h2>
+          ) : (
+            <h2>
+              <span className={style.price}>${ofertPrice}</span>
+              <span className={style.original_price}> ${productPrice}</span>
+              <span className={style.discount}>-{product.discount}%</span>
+            </h2>
+          )}
 
-<p>{product.description}</p>
-<hr className={style.hr} />
+          <p>{product.description}</p>
+          <hr className={style.hr} />
 
-<h3 className={style.subtitle}>Select Colors</h3>
-<div className={style.colorsContainer}>
-  {product.color_stock.map((item, index) => (
-    <div
-      key={index}
-      className={style.circle}
-      style={{ backgroundColor: `rgba${item.color}` }}
-      onClick={() => handleColorClick(item.color)}
-    >
-      <span className={`${selectedColor === item.color ? style.selected : style.unselected}`}><FaCheck /></span>
-      
-    </div>
-  ))}
-</div>
+          <h3 className={style.subtitle}>Select Colors</h3>
 
-<hr className={style.hr} />
-<h3 className={style.subtitle}>Choose Size</h3>
+          <ColorPicker product={product} handleColorClick={handleColorClick} selectedColor={selectedColor}/>
 
-<div className={style.colorsContainer}>
-  {product.sizes_stock.map((item, index) => (
-    <p className={style.size_badge} key={index}>
-      {item.size}
-    </p>
-  ))}
-</div>
+          <hr className={style.hr} />
+          <h3 className={style.subtitle}>Choose Size</h3>
 
-<hr className={style.hr} />
+          <div className={style.colorsContainer}>
+            {product.sizes_stock.map((item, index) => (
+              <p className={style.size_badge} key={index}>
+                {item.size}
+              </p>
+            ))}
+          </div>
 
-<div className={style.cart_buttons_container}>
-  <CartButton quantity={quantity} setQuantity={setQuantity} />
-  <span onClick={handleClickAdd}> <Button text={"Add to Cart"}  /></span>
-   
+          <hr className={style.hr} />
 
-</div>
+          <div className={style.cart_buttons_container}>
+            <CartButton quantity={quantity} setQuantity={setQuantity} />
+            <span onClick={handleClickAdd}>
+              {" "}
+              <Button text={"Add to Cart"} />
+            </span>
+          </div>
         </div>
-
-       
       </div>
 
       <section className={style.section}>
