@@ -9,6 +9,7 @@ import Card from "../components/Card.jsx";
 import { useOutletContext } from "react-router-dom";
 import { useState } from "react";
 import ColorPicker from "../components/smalls/ColorPicker.jsx";
+import SizePicker from "../components/smalls/SizePicker.jsx";
 
 const DetailProductPage = () => {
   const { productDetail, newProducts } = useLoaderData();
@@ -20,25 +21,30 @@ const DetailProductPage = () => {
   );
 
   const initColor = product.color_stock[0]; // Color inicial si no seleciona ninguno
-
   const [selectedColor, setSelectedColor] = useState(initColor);
   const [quantity, setQuantity] = useState(1);
   const [itemsInCart, setItemsInCart] = useOutletContext();
 
+  const handleSizeClick = () => {
+    console.log("Clickeando den sizes");
+  }
+
+
+
+  const handleColorClick = (color) => {
+    setSelectedColor(color);    
+  };
+
   const handleClickAdd = () => {
-    console.log(productDetail.data.color_stock);
-    if (quantity > 0) {
+    console.log(selectedColor);
+    if (quantity > 0 & quantity <= selectedColor.quantity) {
       setItemsInCart(itemsInCart + 1);
     }
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
     // Las validaciones los podria hacer aca y luego tambien en el server
   };
 
-  const handleColorClick = (color) => {
-    setSelectedColor(color);
-    console.log("llega : ", color);
-    
-  };
+
 
   return (
     <>
@@ -76,20 +82,14 @@ const DetailProductPage = () => {
           <hr className={style.hr} />
           <h3 className={style.subtitle}>Choose Size</h3>
 
-          <div className={style.colorsContainer}>
-            {product.sizes_stock.map((item, index) => (
-              <p className={style.size_badge} key={index}>
-                {item.size}
-              </p>
-            ))}
-          </div>
+
+          <SizePicker product={product} handleSizeClick={handleSizeClick}/>
 
           <hr className={style.hr} />
 
           <div className={style.cart_buttons_container}>
             <CartButton quantity={quantity} setQuantity={setQuantity} />
             <span onClick={handleClickAdd}>
-              {" "}
               <Button text={"Add to Cart"} />
             </span>
           </div>
