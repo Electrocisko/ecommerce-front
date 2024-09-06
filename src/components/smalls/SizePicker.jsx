@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-import { CiLineHeight } from "react-icons/ci";
 import style from "../../scss/modules/sizepicker.module.scss";
 
 const SizePicker = ({ product, handleSizeClick, selectedSize }) => {
