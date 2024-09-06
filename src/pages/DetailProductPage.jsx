@@ -24,9 +24,11 @@ const DetailProductPage = () => {
   const [selectedColor, setSelectedColor] = useState(initColor);
   const [quantity, setQuantity] = useState(1);
   const [itemsInCart, setItemsInCart] = useOutletContext();
+  const [selectedSize, setSelectedSize] = useState('s');
 
-  const handleSizeClick = () => {
-    console.log("Clickeando den sizes");
+  const handleSizeClick = (item) => {
+    console.log("Clickeando den sizes", item.size);
+    setSelectedSize(item.size)
   }
 
 
@@ -83,7 +85,7 @@ const DetailProductPage = () => {
           <h3 className={style.subtitle}>Choose Size</h3>
 
 
-          <SizePicker product={product} handleSizeClick={handleSizeClick}/>
+          <SizePicker product={product} handleSizeClick={handleSizeClick} selectedSize={selectedSize}/>
 
           <hr className={style.hr} />
 

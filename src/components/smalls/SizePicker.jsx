@@ -1,18 +1,26 @@
 /* eslint-disable react/prop-types */
-import style from "../../scss/modules/sizepicker.module.scss"
+import { CiLineHeight } from "react-icons/ci";
+import style from "../../scss/modules/sizepicker.module.scss";
 
+const SizePicker = ({ product, handleSizeClick, selectedSize }) => {
 
+    console.log(selectedSize);
 
-const SizePicker = ({product, handleSizeClick}) => {
   return (
     <div className={style.sizesContainer}>
-    {product.sizes_stock.map((item, index) => (
-      <p className={style.size_badge} key={index} onClick={handleSizeClick}>
-        {item.size}
-      </p>
-    ))}
-  </div>
-  )
-}
+      {product.sizes_stock.map((item, index) => (
 
-export default SizePicker
+    
+        <p
+          className={`${ selectedSize == item.size ? style.size_badge_dark : style.size_badge}`}
+          key={index}
+          onClick={ ()=> handleSizeClick(item)}
+        >
+          {item.size}
+        </p>
+      ))}
+    </div>
+  );
+};
+
+export default SizePicker;
