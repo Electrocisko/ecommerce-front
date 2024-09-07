@@ -13,27 +13,40 @@ import SizePicker from "../components/smalls/SizePicker.jsx";
 
 const DetailProductPage = () => {
   const { productDetail, newProducts } = useLoaderData();
-  const product = productDetail.data[0];
-  const stock = productDetail.stock;
+  const firstNewsProducts = newProducts.newProducts.slice(0, 4);
+  const product = productDetail.data;
   const productPrice = Math.trunc(product.price);
   const ofertPrice = Math.trunc(
     product.price - product.price * (product.discount / 100)
   );
 
-  const colors = new Set();
-  const sizes = new Set();
-  for (let index = 0; index < stock.length; index++) {
-    const item = stock[index];
-    colors.add(item.rgb_code);
-    sizes.add(item.size_name);
+  const initColor = product.color_stock[0]; // Color inicial si no seleciona ninguno
+  const [selectedColor, setSelectedColor] = useState(initColor);
+  const [quantity, setQuantity] = useState(1);
+  const [itemsInCart, setItemsInCart] = useOutletContext();
+  const [selectedSize, setSelectedSize] = useState('s');
+
+  const handleSizeClick = (item) => {
+    console.log("Clickeando den sizes", item.size);
+    setSelectedSize(item.size)
   }
-  const colorsList = Array.from(colors);
-  const initColor = colorsList; // Color inicial si no seleciona ninguno
-  const [selectedColor, setSelectedColor] = useState(initColor[0]);
+
+
 
   const handleColorClick = (color) => {
-    setSelectedColor(color);  
+    setSelectedColor(color);    
   };
+
+  const handleClickAdd = () => {
+    console.log(selectedColor);
+    if (quantity > 0 & quantity <= selectedColor.quantity) {
+      setItemsInCart(itemsInCart + 1);
+    }
+    // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
+    // Las validaciones los podria hacer aca y luego tambien en el server
+  };
+
+
 
   return (
     <>
@@ -63,7 +76,7 @@ const DetailProductPage = () => {
           <h3 className={style.subtitle}>Select Colors</h3>
 
           <ColorPicker
-            colorsList={colorsList}
+            product={product}
             handleColorClick={handleColorClick}
             selectedColor={selectedColor}
           />
@@ -71,19 +84,35 @@ const DetailProductPage = () => {
           <hr className={style.hr} />
           <h3 className={style.subtitle}>Choose Size</h3>
 
-          {/* 
-          <SizePicker product={product} handleSizeClick={handleSizeClick} selectedSize={selectedSize}/> */}
+
+          <SizePicker product={product} handleSizeClick={handleSizeClick} selectedSize={selectedSize}/>
 
           <hr className={style.hr} />
 
-          {/* <div className={style.cart_buttons_container}>
+          <div className={style.cart_buttons_container}>
             <CartButton quantity={quantity} setQuantity={setQuantity} />
             <span onClick={handleClickAdd}>
               <Button text={"Add to Cart"} />
             </span>
-          </div> */}
+          </div>
         </div>
       </div>
+
+      <section className={style.section}>
+        <h2 className={style.h2}>YOU MIGHT ALSO LIKE</h2>
+        <div className={style.card_container}>
+          {firstNewsProducts.map((item) => (
+            <Link to={"/detail/" + item.product_id} key={item.product_id}>
+              <Card
+                name={item.name}
+                price={item.price}
+                urlImage={urlServer + "images/" + item.imageurl}
+              />
+            </Link>
+          ))}
+        </div>
+      </section>
+
       <ScrollRestoration />
     </>
   );

@@ -13,7 +13,7 @@ const LayoutPublic = () => {
     return (
         <>
           <Navbar itemsInCart={itemsInCart}/>
-          <Outlet context={[itemsInCart, setItemsInCart]} />;
+          <Outlet context={[itemsInCart, setItemsInCart]} />
             <StayUpdated/>
             <Footer/>
         </>

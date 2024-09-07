@@ -19,6 +19,7 @@ const loaderHomePage = async () => {
 const loaderProductDetail = async ({ params }) => {
   let response = await fetch(URL + "/new");
   const newProducts = await response.json();
+
   const url = urlServer + "api/product/" + params.id;
   response = await fetch(url);
   const productDetail = await response.json();
