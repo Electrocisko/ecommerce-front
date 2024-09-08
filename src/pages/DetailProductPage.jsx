@@ -28,12 +28,20 @@ const DetailProductPage = () => {
     sizes.add(item.size_name);
   }
   const colorsList = Array.from(colors);
+  const sizeList = Array.from(sizes);
+
   const initColor = colorsList; // Color inicial si no seleciona ninguno
   const [selectedColor, setSelectedColor] = useState(initColor[0]);
 
   const handleColorClick = (color) => {
     setSelectedColor(color);  
   };
+
+  const [selectedSize, setSelectedSize] = useState('S');
+
+  const handleSizeClick = (item) => {
+     setSelectedSize(item)
+  }
 
   return (
     <>
@@ -71,8 +79,8 @@ const DetailProductPage = () => {
           <hr className={style.hr} />
           <h3 className={style.subtitle}>Choose Size</h3>
 
-          {/* 
-          <SizePicker product={product} handleSizeClick={handleSizeClick} selectedSize={selectedSize}/> */}
+          
+          <SizePicker product={sizeList} handleSizeClick={handleSizeClick} selectedSize={selectedSize}/>
 
           <hr className={style.hr} />
 
