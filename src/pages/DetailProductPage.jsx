@@ -12,7 +12,10 @@ import ColorPicker from "../components/smalls/ColorPicker.jsx";
 import SizePicker from "../components/smalls/SizePicker.jsx";
 
 const DetailProductPage = () => {
+  const [quantity, setQuantity] = useState(1);
+  const [itemsInCart, setItemsInCart] = useOutletContext();
   const { productDetail, newProducts } = useLoaderData();
+  const firstNewsProducts = newProducts.newProducts.slice(0, 4);
   const product = productDetail.data[0];
   const stock = productDetail.stock;
   const productPrice = Math.trunc(product.price);
@@ -42,6 +45,15 @@ const DetailProductPage = () => {
   const handleSizeClick = (item) => {
      setSelectedSize(item)
   }
+
+  const handleClickAdd = () => {
+// Falta validacion de stock
+    if (quantity > 0) {
+      setItemsInCart(itemsInCart + 1);
+    }
+    // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
+    // Las validaciones los podria hacer aca y luego tambien en el server
+  };
 
   return (
     <>
@@ -84,14 +96,28 @@ const DetailProductPage = () => {
 
           <hr className={style.hr} />
 
-          {/* <div className={style.cart_buttons_container}>
+          <div className={style.cart_buttons_container}>
             <CartButton quantity={quantity} setQuantity={setQuantity} />
             <span onClick={handleClickAdd}>
               <Button text={"Add to Cart"} />
             </span>
-          </div> */}
+          </div>
         </div>
       </div>
+      <section className={style.section}>
+        <h2 className={style.h2}>YOU MIGHT ALSO LIKE</h2>
+        <div className={style.card_container}>
+          {firstNewsProducts.map((item) => (
+            <Link to={"/detail/" + item.product_id} key={item.product_id}>
+              <Card
+                name={item.name}
+                price={item.price}
+                urlImage={urlServer + "images/" + item.imageurl}
+              />
+            </Link>
+          ))}
+        </div>
+      </section>
       <ScrollRestoration />
     </>
   );
