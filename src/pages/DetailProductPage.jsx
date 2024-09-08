@@ -23,6 +23,7 @@ const DetailProductPage = () => {
     product.price - product.price * (product.discount / 100)
   );
 
+  //Aca convierto a set la lista de colores y tallas para que no queden repetidos al mostrar en el front
   const colors = new Set();
   const sizes = new Set();
   for (let index = 0; index < stock.length; index++) {
@@ -30,6 +31,7 @@ const DetailProductPage = () => {
     colors.add(item.rgb_code);
     sizes.add(item.size_name);
   }
+  //Los paso a Arrays para poder iterarlos
   const colorsList = Array.from(colors);
   const sizeList = Array.from(sizes);
 
@@ -37,22 +39,32 @@ const DetailProductPage = () => {
   const [selectedColor, setSelectedColor] = useState(initColor[0]);
 
   const handleColorClick = (color) => {
-    setSelectedColor(color);  
+    setSelectedColor(color);
   };
 
-  const [selectedSize, setSelectedSize] = useState('S');
+  const [selectedSize, setSelectedSize] = useState("S");
 
   const handleSizeClick = (item) => {
-     setSelectedSize(item)
+    setSelectedSize(item);
+  };
+
+  // Función para obtener el stock de un color y talla específicos
+  function getStock(color, size) {
+    const stockItem = stock.find(
+      (item) => item.rgb_code === color && item.size_name === size
+    );
+    return stockItem ? stockItem.quantity : 0;
   }
 
   const handleClickAdd = () => {
-// Falta validacion de stock
-    if (quantity > 0) {
+    const stock = getStock(selectedColor, selectedSize);
+
+    if (quantity > 0 && quantity <= stock) {
       setItemsInCart(itemsInCart + 1);
-    }
+    } else {
+      alert("Sin stock ")
+    } // Falta un else con algun sweet alert
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
-    // Las validaciones los podria hacer aca y luego tambien en el server
   };
 
   return (
@@ -91,8 +103,11 @@ const DetailProductPage = () => {
           <hr className={style.hr} />
           <h3 className={style.subtitle}>Choose Size</h3>
 
-          
-          <SizePicker product={sizeList} handleSizeClick={handleSizeClick} selectedSize={selectedSize}/>
+          <SizePicker
+            product={sizeList}
+            handleSizeClick={handleSizeClick}
+            selectedSize={selectedSize}
+          />
 
           <hr className={style.hr} />
 
