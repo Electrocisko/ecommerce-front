@@ -6,14 +6,16 @@ import Button from "../components/smalls/Button.jsx";
 import CartButton from "../components/smalls/CartButton.jsx";
 import { Link } from "react-router-dom";
 import Card from "../components/Card.jsx";
-import { useOutletContext } from "react-router-dom";
-import { useState } from "react";
+import { useState, useContext } from "react";
+import {GlobalContext} from "../context/GlobalContext.jsx";
 import ColorPicker from "../components/smalls/ColorPicker.jsx";
 import SizePicker from "../components/smalls/SizePicker.jsx";
 
 const DetailProductPage = () => {
   const [quantity, setQuantity] = useState(1);
-  const [itemsInCart, setItemsInCart] = useOutletContext();
+
+const {itemsInCart, setItemsInCart} = useContext(GlobalContext);
+
   const { productDetail, newProducts } = useLoaderData();
   const firstNewsProducts = newProducts.newProducts.slice(0, 4);
   const product = productDetail.data[0];

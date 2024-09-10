@@ -8,14 +8,16 @@ import { Link } from "react-router-dom";
 import { menuItemsData } from "../data/menuItemsData";
 import MenuItems from "./smalls/MenuItems";
 import PropTypes from 'prop-types';
+import { useState, useContext } from "react";
+import {GlobalContext} from "../context/GlobalContext.jsx"; 
 
 
-import { useState } from "react";
 
-const Navbar = ( {itemsInCart}) => {
+
+const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
   const [links, setLinks] = useState(false);
-
+  const {itemsInCart} = useContext(GlobalContext);
 
 
   return (

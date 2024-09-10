@@ -26,7 +26,7 @@ export const menuItemsData = [
     url: "/new",
   },
   {
-    title: "Brands",
-    url: "/brands",
+    title: "Admin",
+    url: "/admin",
   },
 ];

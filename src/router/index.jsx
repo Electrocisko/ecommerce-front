@@ -71,6 +71,7 @@ export const router = createBrowserRouter([
                 element: <ManPage/>,
             },
 
+
         ]
     },
     {
@@ -83,8 +84,6 @@ export const router = createBrowserRouter([
             }
         ]
     }
-
-
 
 
 ]);
