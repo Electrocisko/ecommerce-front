@@ -28,9 +28,8 @@ const loaderProductDetail = async ({ params }) => {
 
 const loaderColors = async () => {
   const response = await fetch(urlServer + "api/colors");
-  const data = await response.json();
-  const colorsList = data.colors
-  return { colorsList };
+  const colors = await response.json();
+  return { colors };
 };
 
 export { loaderHomePage, loaderProducts, loaderProductDetail, loaderColors };
