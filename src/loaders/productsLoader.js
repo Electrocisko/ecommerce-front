@@ -26,10 +26,12 @@ const loaderProductDetail = async ({ params }) => {
   return { productDetail, newProducts };
 };
 
-const loaderColors = async () => {
-  const response = await fetch(urlServer + "api/colors");
-  const colors = await response.json();
-  return { colors };
+const loaderStockData = async () => {
+  const response1 = await fetch(urlServer + "api/colors");
+  const response2 = await fetch(urlServer + "api/sizes");
+  const colors = await response1.json();
+  const sizes = await response2.json();
+  return { colors,sizes };
 };
 
-export { loaderHomePage, loaderProducts, loaderProductDetail, loaderColors };
+export { loaderHomePage, loaderProducts, loaderProductDetail, loaderStockData };

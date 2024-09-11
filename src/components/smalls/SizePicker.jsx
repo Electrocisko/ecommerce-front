@@ -4,6 +4,7 @@ import style from "../../scss/modules/sizepicker.module.scss";
 const SizePicker = ({ product, handleSizeClick, selectedSize }) => {
 
   return (
+
     <div className={style.sizesContainer}>
       {product.map((item, index) => (
         <p
