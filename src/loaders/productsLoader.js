@@ -26,4 +26,11 @@ const loaderProductDetail = async ({ params }) => {
   return { productDetail, newProducts };
 };
 
-export { loaderHomePage, loaderProducts, loaderProductDetail };
+const loaderColors = async () => {
+  const response = await fetch(urlServer + "api/colors");
+  const data = await response.json();
+  const colorsList = data.colors
+  return { colorsList };
+};
+
+export { loaderHomePage, loaderProducts, loaderProductDetail, loaderColors };

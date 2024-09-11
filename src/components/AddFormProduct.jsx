@@ -50,6 +50,7 @@ const AddFormProduct = () => {
 
 
   return (
+    
     <form onSubmit={handleSubmit} className={style.form}>
       <input
         type="text"
@@ -113,9 +114,9 @@ const AddFormProduct = () => {
         value={product.gender}
       />
 
-      <input type="file" name="imageurl" onChange={handleChange} />
+      <input  type="file" name="imageurl" onChange={handleChange} />
 
-      <button type="submit">Submit</button>
+      <button className={style.button} type="submit">Submit</button>
     </form>
   );
 };

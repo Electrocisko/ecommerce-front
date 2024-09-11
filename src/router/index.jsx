@@ -12,7 +12,7 @@ import LayoutPublic from "../layout/LayOut";
 import WomenPage from "../pages/WomenPage";
 import ManPage from "../pages/ManPage";
 import ShopPage from "../pages/ShopPage";
-import { loaderProducts, loaderHomePage, loaderProductDetail } from "../loaders/productsLoader.js";
+import { loaderProducts, loaderHomePage, loaderProductDetail, loaderColors } from "../loaders/productsLoader.js";
 import AdminPage from "../pages/AdminPage.jsx";
 import PrivateLayout from "../layout/PrivateLayout.jsx";
 
@@ -80,7 +80,8 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <AdminPage/>
+                element: <AdminPage/>,
+                loader: loaderColors
             }
         ]
     }
