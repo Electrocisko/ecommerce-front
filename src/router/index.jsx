@@ -15,6 +15,7 @@ import ShopPage from "../pages/ShopPage";
 import { loaderProducts, loaderHomePage, loaderProductDetail, loaderStockData } from "../loaders/productsLoader.js";
 import AdminPage from "../pages/AdminPage.jsx";
 import PrivateLayout from "../layout/PrivateLayout.jsx";
+import FullProduct from "../pages/FullProduct.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -82,8 +83,12 @@ export const router = createBrowserRouter([
                 index: true,
                 element: <AdminPage/>,
                 loader: loaderStockData
-            }
-        ]
+            },
+            {
+                path: "/admin/full",
+                element: <FullProduct/>,
+            },
+        ]   
     }
 
 

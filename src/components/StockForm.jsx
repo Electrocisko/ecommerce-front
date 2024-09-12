@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import ColorStockPicker from "../components/smalls/ColorStockPicker ";
 import { useLoaderData } from "react-router-dom";
 import style from "../scss/modules/stockform.module.scss";
@@ -5,7 +6,10 @@ import { useState } from "react";
 import SizeStockPicker from "./smalls/SizeStockPicker";
 import { urlServer } from "../data/endpoints";
 
-const StockForm = () => {
+const StockForm = ({productId}) => {
+
+  const id = productId;
+
   const { colors, sizes } = useLoaderData();
   const [selectedColor, setSelectedColor] = useState("#FFFFFF");
   const [selectedSize, setSelectedSize] = useState("S");
@@ -19,8 +23,10 @@ const StockForm = () => {
     }));
   };
 
+
+
   const [stock, setStock] = useState({
-    product_id: "",
+    product_id: id,
     color_id: "1",
     size_id: "1",
     quantity: "",
@@ -45,6 +51,8 @@ const StockForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const stockData = JSON.stringify(stock);
+
+    console.log(stockData);
     try {
       const response = await fetch(urlServer + "api/stock", {
         method: "POST",
@@ -66,6 +74,8 @@ const StockForm = () => {
     }
   };
 
+ 
+
   return (
     <form className={style.form} onSubmit={handleSubmit}>
       <input type="color" value={selectedColor} onChange={() => {}} />
@@ -81,8 +91,9 @@ const StockForm = () => {
           className={style.input}
           type="text"
           placeholder="Enter Product ID"
-          onChange={handleChange}
+          value={productId}
           name="product_id"
+          onChange={handleChange}
         />
         <input
           className={style.input}

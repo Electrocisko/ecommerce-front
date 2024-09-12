@@ -1,9 +1,9 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import style from "../scss/modules/addformproduct.module.scss";
-import { urlServer } from "../data/endpoints";
+import style from "../../scss/modules/addformproduct.module.scss";
+import { urlServer } from "../../data/endpoints";
 
-const AddFormProduct = ({setProductId}) => {
+const FullForm = () => {
 
   const [product, setProduct] = useState({
     name: "",
@@ -14,6 +14,9 @@ const AddFormProduct = ({setProductId}) => {
     branch: "",
     gender: "",
     imageurl: null,
+    color_id: "",
+    size_id: "",
+    quantity: ""
   });
 
   const handleChange = (e) => {
@@ -34,17 +37,20 @@ const AddFormProduct = ({setProductId}) => {
     formData.append("style", product.style);
     formData.append("branch", product.branch);
     formData.append("gender", product.gender);
+    formData.append("color_id", product.color_id);
+    formData.append("size_id", product.size_id);
+    formData.append("quantity", product.quantity);
     if (product.imageurl) {
       formData.append("imageurl", product.imageurl);
     }
 
     try {
-      const response = await fetch(urlServer+'api/product', {
+      const response = await fetch(urlServer+'api/fullproduct', {
         method: 'POST',
         body: formData,
       });
       const result = await response.json();
-      setProductId(result.product_id)
+      
 // Reemplazar por un alert o directamente al value de form stock
     alert(result.product_id)
     } catch (error) {
@@ -120,9 +126,41 @@ const AddFormProduct = ({setProductId}) => {
 
       <input  type="file" name="imageurl" onChange={handleChange} />
 
+      <input
+        type="text"
+        className={style.input}
+        placeholder="Enter color_id"
+        name="color_id"
+        onChange={handleChange}
+        value={product.color_id}
+      />
+
+<input
+        type="text"
+        className={style.input}
+        placeholder="Enter size_id"
+        name="size_id"
+        onChange={handleChange}
+        value={product.size_id}
+      />    
+
+<input
+        type="text"
+        className={style.input}
+        placeholder="Enterquantity"
+        name="quantity"
+        onChange={handleChange}
+        value={product.quantity}
+      /> 
+
+
+
+
+
+
       <button className={style.button} type="submit">Submit</button>
     </form>
   );
 };
 
-export default AddFormProduct;
+export default FullForm;
