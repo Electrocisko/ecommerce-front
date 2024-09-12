@@ -42,7 +42,8 @@ const AddFormProduct = () => {
         body: formData,
       });
       const result = await response.json();
-      console.log(result);
+// Reemplazar por un alert o directamente al value de form stock
+    alert(result.product_id)
     } catch (error) {
       console.error('Error to send form :', error);
     }
