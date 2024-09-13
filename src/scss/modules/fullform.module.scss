@@ -38,6 +38,16 @@
     background-color: #3449b0;
   }
 
+  .inputs_container{
+    border: solid 1px lightgray;
+    padding: 15px;
+    border-radius: 10px;
+
+    p {
+      margin-bottom: 10px;
+    }
+  }
+
   .sizes_container{
     display: flex;
     gap: 15px;

@@ -1,11 +1,28 @@
 /* eslint-disable react/prop-types */
 import { useState } from "react";
-import style from "../../scss/modules/addformproduct.module.scss";
+import style from "../../scss/modules/fullform.module.scss";
 import { urlServer } from "../../data/endpoints";
 import ColorStockPicker from "../smalls/ColorStockPicker ";
 import { useLoaderData } from "react-router-dom";
 
 const FullForm = () => {
+
+    // Valores iniciales para el formulario
+    const initialProductState = {
+      name: "",
+      price: "",
+      description: "",
+      discount: "0",
+      style: "",
+      branch: "",
+      gender: "",
+      imageurl: null,
+      color_id: 2,
+      sizeS: "",
+      sizeM: "",
+      sizeL: "",
+      sizeXL: "",
+    };
 
   const { colors } = useLoaderData();
   const [selectedColor, setSelectedColor] = useState({
@@ -20,7 +37,7 @@ const FullForm = () => {
     name: "",
     price: "",
     description: "",
-    discount: "",
+    discount: "0",
     style: "",
     branch: "",
     gender: "",
@@ -33,9 +50,6 @@ const FullForm = () => {
   });
 
   const handleColorClick = (color) => {
-
-   
-
     setSelectedColor(color);
     setProduct((prev) => ({
       ...prev,
@@ -77,6 +91,14 @@ const FullForm = () => {
       });
       const result = await response.json();
       if (!result.statusOk) throw new Error("Error: products could not be entered, check if the data is complete")
+
+      // Resetea el formulario y el color seleccionado
+      setProduct(initialProductState);
+      setSelectedColor({
+        color_id: 2,
+        color_name: "Blanco",
+        rgb_code: '#FFFFFF'
+      });
       
 // Reemplazar por un alert o directamente al value de form stock
     alert("Agregado correctamente");
@@ -171,17 +193,15 @@ const FullForm = () => {
       </span>
 
 
+    <div className={style.inputs_container}>
+    <p>Enter the quantity of each size</p>
       <div className={style.sizes_container}>
         <input  className={style.input} type="text" name="sizeS" placeholder="S" onChange={handleChange}   value={product.sizeS}/>
         <input  className={style.input} type="text" name="sizeM" placeholder="M" onChange={handleChange}   value={product.sizeM} />
         <input  className={style.input} type="text" name="sizeL" placeholder="L" onChange={handleChange}   value={product.sizeL} />
         <input  className={style.input} type="text" name="sizeXL" placeholder="XL" onChange={handleChange} value={product.sizeXL} />
       </div>
-
-
-
-
-
+    </div>
 
 
       <button className={style.button} type="submit">Submit</button>
