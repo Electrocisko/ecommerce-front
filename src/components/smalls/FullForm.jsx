@@ -8,7 +8,13 @@ import { useLoaderData } from "react-router-dom";
 const FullForm = () => {
 
   const { colors } = useLoaderData();
-  const [selectedColor, setSelectedColor] = useState("#FFFFFF");
+  const [selectedColor, setSelectedColor] = useState({
+    color_id: 2,
+    color_name: "Blanco",
+    rgb_code: '#FFFFFF'
+  });
+
+  const colorID = selectedColor.color_id
 
   const [product, setProduct] = useState({
     name: "",
@@ -19,9 +25,7 @@ const FullForm = () => {
     branch: "",
     gender: "",
     imageurl: null,
-    color_id: "",
-    size_id: "",
-    quantity: "",
+    color_id: colorID,
     sizeS: "",
     sizeM: "",
     sizeL: "",
@@ -29,7 +33,10 @@ const FullForm = () => {
   });
 
   const handleColorClick = (color) => {
-    setSelectedColor(color.rgb_code);
+
+   
+
+    setSelectedColor(color);
     setProduct((prev) => ({
       ...prev,
       color_id: color.color_id,
@@ -55,8 +62,6 @@ const FullForm = () => {
     formData.append("branch", product.branch);
     formData.append("gender", product.gender);
     formData.append("color_id", product.color_id);
-    formData.append("size_id", product.size_id);
-    formData.append("quantity", product.quantity);
     formData.append("sizeS", product.sizeS);
     formData.append("sizeM", product.sizeM);
     formData.append("sizeL", product.sizeL);
@@ -71,11 +76,12 @@ const FullForm = () => {
         body: formData,
       });
       const result = await response.json();
-      console.log(result);
+      if (!result.statusOk) throw new Error("Error: products could not be entered, check if the data is complete")
       
 // Reemplazar por un alert o directamente al value de form stock
     alert("Agregado correctamente");
     } catch (error) {
+      alert("Error")
       console.error('Error to send form :', error);
     }
   };
@@ -91,6 +97,7 @@ const FullForm = () => {
         name="name"
         onChange={handleChange}
         value={product.name}
+        required
       />
 
       <input
@@ -100,6 +107,7 @@ const FullForm = () => {
         name="price"
         onChange={handleChange}
         value={product.price}
+        required
       />
 
       <textarea
@@ -109,6 +117,7 @@ const FullForm = () => {
         onChange={handleChange}
         value={product.description}
         rows={4}
+        required
       ></textarea>
 
       <input
@@ -127,6 +136,7 @@ const FullForm = () => {
         name="style"
         onChange={handleChange}
         value={product.style}
+        required
       />
 
       <input
@@ -136,6 +146,7 @@ const FullForm = () => {
         name="branch"
         onChange={handleChange}
         value={product.branch}
+        required
       />
       <input
         type="text"
@@ -144,45 +155,21 @@ const FullForm = () => {
         name="gender"
         onChange={handleChange}
         value={product.gender}
+        required
       />
 
       <input  type="file" name="imageurl" onChange={handleChange} />
 
-      <input type="color" value={selectedColor} onChange={() => {}} />
+      <input type="color" value={selectedColor.rgb_code} onChange={() => {}} />
       <span>
         Choose Color
         <ColorStockPicker
           colorsList={colors}
           handleColorClick={handleColorClick}
+          selectedColor={selectedColor}
         />
       </span>
-{/* 
-      <input
-        type="text"
-        className={style.input}
-        placeholder="Enter color_id"
-        name="color_id"
-        onChange={handleChange}
-        value={product.color_id}
-      />
 
-<input
-        type="text"
-        className={style.input}
-        placeholder="Enter size_id"
-        name="size_id"
-        onChange={handleChange}
-        value={product.size_id}
-      />     */}
-
-<input
-        type="text"
-        className={style.input}
-        placeholder="Enterquantity"
-        name="quantity"
-        onChange={handleChange}
-        value={product.quantity}
-      /> 
 
       <div className={style.sizes_container}>
         <input  className={style.input} type="text" name="sizeS" placeholder="S" onChange={handleChange}   value={product.sizeS}/>

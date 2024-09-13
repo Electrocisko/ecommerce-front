@@ -16,7 +16,7 @@ const ColorStockPicker = ({ colorsList, handleColorClick, selectedColor }) => {
         >
           <span
             className={`${
-              selectedColor === item
+              selectedColor === item.rgb_code
                 ? style.selected
                 : style.unselected
             }`}
