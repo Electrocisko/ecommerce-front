@@ -87,6 +87,7 @@ export const router = createBrowserRouter([
             {
                 path: "/admin/full",
                 element: <FullProduct/>,
+                loader: loaderStockData
             },
         ]   
     }

@@ -2,8 +2,13 @@
 import { useState } from "react";
 import style from "../../scss/modules/addformproduct.module.scss";
 import { urlServer } from "../../data/endpoints";
+import ColorStockPicker from "../smalls/ColorStockPicker ";
+import { useLoaderData } from "react-router-dom";
 
 const FullForm = () => {
+
+  const { colors } = useLoaderData();
+  const [selectedColor, setSelectedColor] = useState("#FFFFFF");
 
   const [product, setProduct] = useState({
     name: "",
@@ -16,8 +21,20 @@ const FullForm = () => {
     imageurl: null,
     color_id: "",
     size_id: "",
-    quantity: ""
+    quantity: "",
+    sizeS: "",
+    sizeM: "",
+    sizeL: "",
+    sizeXL: "",
   });
+
+  const handleColorClick = (color) => {
+    setSelectedColor(color.rgb_code);
+    setProduct((prev) => ({
+      ...prev,
+      color_id: color.color_id,
+    }));
+  };
 
   const handleChange = (e) => {
     const { name, value, files } = e.target;
@@ -40,6 +57,10 @@ const FullForm = () => {
     formData.append("color_id", product.color_id);
     formData.append("size_id", product.size_id);
     formData.append("quantity", product.quantity);
+    formData.append("sizeS", product.sizeS);
+    formData.append("sizeM", product.sizeM);
+    formData.append("sizeL", product.sizeL);
+    formData.append("sizeXL", product.sizeXL);
     if (product.imageurl) {
       formData.append("imageurl", product.imageurl);
     }
@@ -50,9 +71,10 @@ const FullForm = () => {
         body: formData,
       });
       const result = await response.json();
+      console.log(result);
       
 // Reemplazar por un alert o directamente al value de form stock
-    alert(result.product_id)
+    alert("Agregado correctamente");
     } catch (error) {
       console.error('Error to send form :', error);
     }
@@ -126,6 +148,15 @@ const FullForm = () => {
 
       <input  type="file" name="imageurl" onChange={handleChange} />
 
+      <input type="color" value={selectedColor} onChange={() => {}} />
+      <span>
+        Choose Color
+        <ColorStockPicker
+          colorsList={colors}
+          handleColorClick={handleColorClick}
+        />
+      </span>
+{/* 
       <input
         type="text"
         className={style.input}
@@ -142,7 +173,7 @@ const FullForm = () => {
         name="size_id"
         onChange={handleChange}
         value={product.size_id}
-      />    
+      />     */}
 
 <input
         type="text"
@@ -152,6 +183,14 @@ const FullForm = () => {
         onChange={handleChange}
         value={product.quantity}
       /> 
+
+      <div className={style.sizes_container}>
+        <input  className={style.input} type="text" name="sizeS" placeholder="S" onChange={handleChange}   value={product.sizeS}/>
+        <input  className={style.input} type="text" name="sizeM" placeholder="M" onChange={handleChange}   value={product.sizeM} />
+        <input  className={style.input} type="text" name="sizeL" placeholder="L" onChange={handleChange}   value={product.sizeL} />
+        <input  className={style.input} type="text" name="sizeXL" placeholder="XL" onChange={handleChange} value={product.sizeXL} />
+      </div>
+
 
 
 

@@ -37,3 +37,12 @@
   .button:active {
     background-color: #3449b0;
   }
+
+  .sizes_container{
+    display: flex;
+    gap: 15px;
+
+    input{
+      width: 50px;
+    }
+  }
