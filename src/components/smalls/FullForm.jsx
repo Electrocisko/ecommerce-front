@@ -179,28 +179,35 @@ const FullForm = () => {
         value={product.branch}
         required
       />
-      <input
-        type="text"
-        className={style.input}
-        placeholder="Enter gender"
-        name="gender"
-        onChange={handleChange}
-        value={product.gender}
-        required
-      />
+
+      <fieldset className={style.radio_group}>
+            <legend>Select gender:</legend>
+            <label className={style.radio_label}>
+                <input type="radio" id="men" name="gender" value="Men"/>
+                <span htmlFor="men">Men</span>
+            </label>
+            <label className={style.radio_label}>
+                <input type="radio" id="women" name="gender" value="Women"/>
+                <span htmlFor="women">Women</span>
+            </label>
+            <label className={style.radio_label}>
+                <input type="radio" id="unisex" name="gender" value="Unisex"/>
+                <span htmlFor="unisex">Unisex</span>
+            </label>
+        </fieldset>
 
       <input  type="file" name="imageurl" onChange={handleChange} />
 
+      <div className={style.colors_container}>
       <input type="color" value={selectedColor.rgb_code} onChange={() => {}} />
-      <span>
-        Choose Color
+     <p> Choose Color</p>
         <ColorStockPicker
           colorsList={colors}
           handleColorClick={handleColorClick}
           selectedColor={selectedColor}
         />
-      </span>
-
+     
+      </div>
 
     <div className={style.inputs_container}>
     <p>Enter the quantity of each size</p>

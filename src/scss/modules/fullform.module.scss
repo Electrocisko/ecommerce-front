@@ -50,9 +50,33 @@
 
   .sizes_container{
     display: flex;
-    gap: 15px;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: start;
+    align-items: start;
 
     input{
       width: 50px;
     }
   }
+
+  .colors_container{
+    border: solid 1px lightgray;
+    padding: 15px;
+    border-radius: 10px;
+  }
+
+  .radio_group{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 10px;
+    width: 150px;
+    border-radius: 10px;
+  }
+
+  .radio_label {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
