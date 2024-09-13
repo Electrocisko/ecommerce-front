@@ -18,10 +18,13 @@ const FullForm = () => {
       gender: "",
       imageurl: null,
       color_id: 2,
+      sizeXS:"",
       sizeS: "",
       sizeM: "",
       sizeL: "",
       sizeXL: "",
+      sizeXXL:"",
+      size3XL:""
     };
 
   const { colors } = useLoaderData();
@@ -43,10 +46,13 @@ const FullForm = () => {
     gender: "",
     imageurl: null,
     color_id: colorID,
+    sizeXS:"",
     sizeS: "",
     sizeM: "",
     sizeL: "",
     sizeXL: "",
+    sizeXXL: "",
+    size3XL: ""
   });
 
   const handleColorClick = (color) => {
@@ -76,10 +82,13 @@ const FullForm = () => {
     formData.append("branch", product.branch);
     formData.append("gender", product.gender);
     formData.append("color_id", product.color_id);
+    formData.append("sizeXS", product.sizeS);
     formData.append("sizeS", product.sizeS);
     formData.append("sizeM", product.sizeM);
     formData.append("sizeL", product.sizeL);
     formData.append("sizeXL", product.sizeXL);
+    formData.append("sizeXXL", product.sizeS);
+    formData.append("size3XL", product.sizeS);
     if (product.imageurl) {
       formData.append("imageurl", product.imageurl);
     }
@@ -196,10 +205,13 @@ const FullForm = () => {
     <div className={style.inputs_container}>
     <p>Enter the quantity of each size</p>
       <div className={style.sizes_container}>
+        <input  className={style.input} type="text" name="sizeXS" placeholder="XS" onChange={handleChange}   value={product.sizeXS}/>
         <input  className={style.input} type="text" name="sizeS" placeholder="S" onChange={handleChange}   value={product.sizeS}/>
         <input  className={style.input} type="text" name="sizeM" placeholder="M" onChange={handleChange}   value={product.sizeM} />
         <input  className={style.input} type="text" name="sizeL" placeholder="L" onChange={handleChange}   value={product.sizeL} />
         <input  className={style.input} type="text" name="sizeXL" placeholder="XL" onChange={handleChange} value={product.sizeXL} />
+        <input  className={style.input} type="text" name="sizeXXL" placeholder="XXL" onChange={handleChange} value={product.sizeXXL} />
+        <input  className={style.input} type="text" name="size3XL" placeholder="3XL" onChange={handleChange} value={product.size3XL} />
       </div>
     </div>
 
