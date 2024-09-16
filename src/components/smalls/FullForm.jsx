@@ -121,7 +121,9 @@ const FullForm = () => {
 
   return (
     <form onSubmit={handleSubmit} className={style.form}>
+      <label htmlFor="name">Name</label>
       <input
+        id="name"
         type="text"
         className={style.input}
         placeholder="Enter product name"
@@ -131,9 +133,9 @@ const FullForm = () => {
         required
       />
 
-
-
+      <label htmlFor="description"> Product Description</label>
       <textarea
+        id="description"
         name="description"
         className={style.input}
         placeholder="Enter description "
@@ -143,10 +145,9 @@ const FullForm = () => {
         required
       ></textarea>
 
-
-
- 
+      <label htmlFor="branch"> Branch</label>
       <input
+        id="branch"
         type="text"
         className={style.input}
         placeholder="Enter branch"
@@ -156,8 +157,9 @@ const FullForm = () => {
         required
       />
 
-      <div className={style.radio_container}>
+      <label htmlFor="price">Price</label>
       <input
+        id="price"
         type="number"
         className={style.input}
         placeholder="Enter price"
@@ -167,7 +169,9 @@ const FullForm = () => {
         required
       />
 
-<input
+      <label htmlFor="discount">Discount in %</label>
+      <input
+        id="discount"
         type="number"
         className={style.input}
         placeholder="Enter discount"
@@ -175,46 +179,46 @@ const FullForm = () => {
         onChange={handleChange}
         value={product.discount}
       />
+
+      <div className={style.radio_container}>
+        <fieldset className={style.radio_group}>
+          <legend>Select style:</legend>
+          <label className={style.radio_label}>
+            <input type="radio" id="Casual" name="style" value="Casual" />
+            <span htmlFor="Casual">Casual</span>
+          </label>
+          <label className={style.radio_label}>
+            <input type="radio" id="Formal" name="style" value="Formal" />
+            <span htmlFor="Formal">Formal</span>
+          </label>
+          <label className={style.radio_label}>
+            <input type="radio" id="Party" name="style" value="Party" />
+            <span htmlFor="Party">Party</span>
+          </label>
+        </fieldset>
+
+        <fieldset className={style.radio_group}>
+          <legend>Select gender:</legend>
+          <label className={style.radio_label}>
+            <input type="radio" id="men" name="gender" value="Men" />
+            <span htmlFor="men">Men</span>
+          </label>
+          <label className={style.radio_label}>
+            <input type="radio" id="women" name="gender" value="Women" />
+            <span htmlFor="women">Women</span>
+          </label>
+          <label className={style.radio_label}>
+            <input type="radio" id="unisex" name="gender" value="Unisex" />
+            <span htmlFor="unisex">Unisex</span>
+          </label>
+        </fieldset>
       </div>
-
-    <div className={style.radio_container}>
-    <fieldset className={style.radio_group}>
-        <legend>Select style:</legend>
-        <label className={style.radio_label}>
-          <input type="radio" id="Casual" name="style" value="Casual" />
-          <span htmlFor="Casual">Casual</span>
-        </label>
-        <label className={style.radio_label}>
-          <input type="radio" id="Formal" name="style" value="Formal" />
-          <span htmlFor="Formal">Formal</span>
-        </label>
-        <label className={style.radio_label}>
-          <input type="radio" id="Party" name="style" value="Party" />
-          <span htmlFor="Party">Party</span>
-        </label>
-      </fieldset>
-
-      <fieldset className={style.radio_group}>
-        <legend>Select gender:</legend>
-        <label className={style.radio_label}>
-          <input type="radio" id="men" name="gender" value="Men" />
-          <span htmlFor="men">Men</span>
-        </label>
-        <label className={style.radio_label}>
-          <input type="radio" id="women" name="gender" value="Women" />
-          <span htmlFor="women">Women</span>
-        </label>
-        <label className={style.radio_label}>
-          <input type="radio" id="unisex" name="gender" value="Unisex" />
-          <span htmlFor="unisex">Unisex</span>
-        </label>
-      </fieldset>
-    </div>
-
-
-
-
-      <input type="file" name="imageurl" onChange={handleChange} />
+<div className={style.input_file}>
+<label htmlFor="fileInput">Elegir archivo</label>
+<input type="file" name="imageurl" onChange={handleChange}  id="fileInput" />
+</div>
+ 
+    
 
       <div className={style.colors_container}>
         <input

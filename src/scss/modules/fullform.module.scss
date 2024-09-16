@@ -2,8 +2,21 @@
 .form {
     display: flex;
     flex-direction: column;
-    gap: 15px;
     margin: 10px 0px;
+
+    label {
+      margin-bottom: 3px;
+  
+    }
+}
+.input_file{
+  border: solid 1px gray;
+  padding: 10px;
+  border-radius: 5px;
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+  overflow: hidden;;
 }
 
 
@@ -12,6 +25,7 @@
     border: solid 1px gray;
     padding: 10px;
     border-radius: 5px;
+    margin-bottom: 15px;
  ;
 }
 
@@ -29,6 +43,7 @@
     border: none;
     border-radius: 10px;
     width: 150px;
+    margin-top: 15px;
   }
   
   .button:hover {
@@ -56,12 +71,14 @@
     justify-content: start;
     align-items: start;
 
+
     input{
       width: 50px;
     }
   }
 
   .colors_container{
+    margin:  15px 0px;
     border: solid 1px lightgray;
     padding: 15px;
     border-radius: 10px;
@@ -74,6 +91,7 @@
     padding: 10px;
     width: 150px;
     border-radius: 10px;
+   margin-bottom: 15px;
   }
 
   .radio_label {
