@@ -28,6 +28,19 @@
 
 }
 
+.spinner {
+    border-radius: 10px;
+    width: 18rem;
+    height: 18rem;
+    background-color: $LightGray;
+    object-fit: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+ 
+  }
+
 ///////// Mobil Screen /////////////////////
 
 @media (max-width: 415px) {
