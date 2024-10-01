@@ -1,23 +1,15 @@
-import AddFormProduct from "../components/AddFormProduct";
+import { Link } from "react-router-dom";
 import style from "../scss/pages/adminpage.module.scss";
-import StockForm from "../components/StockForm";
-import { useState } from "react";
 
 const AdminPage = () => {
-
-  const [productId, setProductId] = useState('');
-
   return (
-    <>
-      <div className={style.container}>
-        <h1 style={{ textAlign: "center" }}>Admin Page</h1>
-        <AddFormProduct  setProductId={setProductId} />
-
-
-        <h2>Stock Form</h2>
-        <StockForm productId={productId}/>
-      </div>
-    </>
+    <div className={style.container} >
+      <h1>Dashboard Admin</h1>
+      <h2><Link to="/admin/full">Enter new product</Link></h2>
+      <h2><Link to="/admin/delete">Delete Product by Id</Link></h2>
+      
+      
+    </div>
   );
 };
 

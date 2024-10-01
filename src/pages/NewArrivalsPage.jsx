@@ -1,6 +1,7 @@
 import { useLoaderData } from "react-router-dom";
 import Card from "../components/Card";
 import { urlServer } from "../data/endpoints.js";
+import style from "../scss/pages/newarrivalspage.module.scss";
 
 const NewArrivalsPage = () => {
   const { products } = useLoaderData();
@@ -8,7 +9,9 @@ const NewArrivalsPage = () => {
 
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>NewArrivalsPage</h1>
+      <h1 className={style.h1}>NewArrivalsPage</h1>
+
+      <div className={style.cards_container}>
 
       {data.map((item) => (
         <Card
@@ -18,6 +21,8 @@ const NewArrivalsPage = () => {
           urlImage={urlServer + "images/" + item.imageurl}
         />
       ))}
+      </div>
+
     </div>
   );
 };

@@ -16,6 +16,7 @@ import { loaderProducts, loaderHomePage, loaderProductDetail, loaderStockData } 
 import AdminPage from "../pages/AdminPage.jsx";
 import PrivateLayout from "../layout/PrivateLayout.jsx";
 import FullProduct from "../pages/FullProduct.jsx";
+import DeleteProductPage from "../pages/DeleteProductPage.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -81,12 +82,16 @@ export const router = createBrowserRouter([
         children: [
             {
                 index: true,
-                element: <AdminPage/>,
-                loader: loaderStockData
+                element: <AdminPage/>
             },
             {
                 path: "/admin/full",
                 element: <FullProduct/>,
+                loader: loaderStockData
+            },
+            {
+                path: "/admin/delete",
+                element: <DeleteProductPage/>,
                 loader: loaderStockData
             },
         ]   

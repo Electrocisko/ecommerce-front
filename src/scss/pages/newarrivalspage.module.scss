@@ -1,0 +1,23 @@
+.cards_container{
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin: 10px 50px;
+    
+}
+
+@media (max-width: 415px) {
+
+    .cards_container{
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin: 10px 17px;
+        
+    }
+
+
+    .h1 {
+        font-size: small;
+    }
+}

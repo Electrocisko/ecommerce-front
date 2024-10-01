@@ -27,6 +27,6 @@ export const menuItemsData = [
   },
   {
     title: "Admin",
-    url: "/admin/full",
+    url: "/admin",
   },
 ];
