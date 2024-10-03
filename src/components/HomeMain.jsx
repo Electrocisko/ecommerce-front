@@ -5,6 +5,7 @@ import Card from "../components/Card";
 import {urlServer} from "../data/endpoints.js"
 import ButtonLight from "./smalls/ButtonLight";
 import {Link} from "react-router-dom";
+import StyleSection from "./StyleSection.jsx";
 
 
 const HomeMain = () => {
@@ -72,23 +73,7 @@ const { newProducts, topProducts } = useLoaderData();
     
        </section>
 
-       <section className={style.style_section}>
-       <h2 className={style.h2}>BROWSE BY DRESS STYLE</h2>
-       <div className={style.styles_container}>
-        <div className={style.styles_casual}>
-          <p>Casual</p>
-          <img src="/images/casual_original.png" alt="casual clothes" />
-          </div>
-        <div className={style.styles_formal}>
-        <img src="/images/formal.png" alt="formal clothes" />
-          <p>Formal</p></div>
-        <div className={style.styles_party}><p>Party</p> <img src="/images/party.png" alt="party clothes" /></div>
-        <div className={style.styles_gym}><p>Gym</p> <img src="/images/gym.png" alt="gym clothes" /></div>
-       </div>
-       </section>
-
-
-
+       <StyleSection/>
 
        </>
   );
