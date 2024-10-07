@@ -34,4 +34,14 @@ const loaderStockData = async () => {
   return { colors,sizes };
 };
 
-export { loaderHomePage, loaderProducts, loaderProductDetail, loaderStockData };
+const loaderOnSaleProducts = async () => {
+  const pathToFetch = URL + "/onsale";
+  console.log(pathToFetch);
+
+
+  const response = await fetch(pathToFetch);
+   const products = await response.json();
+  return { products };
+}
+
+export { loaderHomePage, loaderProducts, loaderProductDetail, loaderStockData, loaderOnSaleProducts };
