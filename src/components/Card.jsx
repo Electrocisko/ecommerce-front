@@ -3,14 +3,12 @@ import { useState } from "react";
 import style from "../scss/modules/card.module.scss";
 
 
-const Card = ({name, price, urlImage}) => {
+const Card = ({name, price, urlImage, discount}) => {
 
   const [loading, setLoading] = useState(true);
-
   const handleLoad = () => {
     setLoading(false)
   }
-
 
   return (
     <div className={style.card}>
@@ -21,8 +19,12 @@ const Card = ({name, price, urlImage}) => {
         onLoad={handleLoad} 
         style={{ display: loading ? 'none' : 'block' }} 
       />
-        <h3>{name}</h3>
-        <h4>{price}</h4>
+      <div className={style.info}>
+      <h3>{name}</h3>
+        {/* <h4>{price}  {discount !== 0 ?  discount : null}</h4> */}
+        {discount > 0? <h4 > <span >${price - ((discount/100) * price)}</span> <span >SALE!</span></h4>  : <h4>${price}</h4> }
+      </div>
+       
     </div>
   )
 }

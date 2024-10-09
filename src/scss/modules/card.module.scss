@@ -3,11 +3,11 @@
 
 .card {
     width: 17rem;
-    height: 25rem;
+    height: 24rem;
     overflow: hidden;
     border-radius: 10px;
     font-family: $Satoshi;
-
+  
     img {
         border-radius: 10px;
         width: 18rem;
@@ -26,6 +26,12 @@
         font-size: 1.5rem;
     }
 
+    .info{
+        height: 100px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
 }
 
 .spinner {
@@ -37,9 +43,18 @@
     display: flex;
     justify-content: center;
     align-items: center;
-
- 
   }
+
+
+
+  .crossed {
+    color: red;
+    font-weight: lighter;
+    font-size: 14px;
+    border-radius: 62px;
+    background: rgba(255, 51, 51, 0.10);
+    padding: 6px 12px;
+}
 
 ///////// Mobil Screen /////////////////////
 

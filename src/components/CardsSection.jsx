@@ -16,6 +16,7 @@ const CardsSection = ({ products, title }) => {
               name={item.name}
               price={item.price}
               urlImage={urlServer + "images/" + item.imageurl}
+              discount = {item.discount}
             />
           </Link>
         ))}
