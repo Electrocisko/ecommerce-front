@@ -20,6 +20,7 @@ const NewArrivalsPage = () => {
              name={item.name}
              price={item.price}
              urlImage={urlServer + "images/" + item.imageurl}
+             discount = {item.discount}
            />
          </Link>
           ))}
