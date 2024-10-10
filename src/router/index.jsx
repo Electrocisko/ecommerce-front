@@ -17,6 +17,7 @@ import AdminPage from "../pages/AdminPage.jsx";
 import PrivateLayout from "../layout/PrivateLayout.jsx";
 import FullProduct from "../pages/FullProduct.jsx";
 import DeleteProductPage from "../pages/DeleteProductPage.jsx";
+import StockForm from "../components/StockForm.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -93,6 +94,11 @@ export const router = createBrowserRouter([
             {
                 path: "/admin/delete",
                 element: <DeleteProductPage/>,
+                loader: loaderStockData
+            },
+            {
+                path: "/admin/stock",
+                element: <StockForm/>,
                 loader: loaderStockData
             },
         ]   

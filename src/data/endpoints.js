@@ -1,7 +1,7 @@
 
- const urlServer = "https://api-products-production-1135.up.railway.app/";
+ //const urlServer = "https://api-products-production-1135.up.railway.app/";
 
-//const urlServer = "http://localhost:8080/";
+const urlServer = "http://localhost:8080/";
 
 
 
