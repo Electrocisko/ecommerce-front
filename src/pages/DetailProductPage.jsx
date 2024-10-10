@@ -7,15 +7,13 @@ import CartButton from "../components/smalls/CartButton.jsx";
 import { Link } from "react-router-dom";
 import Card from "../components/Card.jsx";
 import { useState, useContext } from "react";
-import {GlobalContext} from "../context/GlobalContext.jsx";
+import { GlobalContext } from "../context/GlobalContext.jsx";
 import ColorPicker from "../components/smalls/ColorPicker.jsx";
 import SizePicker from "../components/smalls/SizePicker.jsx";
 
 const DetailProductPage = () => {
   const [quantity, setQuantity] = useState(1);
-
-const {itemsInCart, setItemsInCart} = useContext(GlobalContext);
-
+  const { itemsInCart, setItemsInCart } = useContext(GlobalContext);
   const { productDetail, newProducts } = useLoaderData();
   const firstNewsProducts = newProducts.newProducts.slice(0, 4);
   const product = productDetail.data[0];
@@ -30,7 +28,7 @@ const {itemsInCart, setItemsInCart} = useContext(GlobalContext);
   const sizes = new Set();
   for (let index = 0; index < stock.length; index++) {
     const item = stock[index];
-    colors.add(item.rgb_code);
+    colors.add(item);  ///ACA MANDA EL COLOR !!!!
     sizes.add(item.size_name);
   }
   //Los paso a Arrays para poder iterarlos
@@ -39,6 +37,8 @@ const {itemsInCart, setItemsInCart} = useContext(GlobalContext);
 
   const initColor = colorsList; // Color inicial si no seleciona ninguno
   const [selectedColor, setSelectedColor] = useState(initColor[0]);
+
+
 
   const handleColorClick = (color) => {
     setSelectedColor(color);
@@ -52,8 +52,12 @@ const {itemsInCart, setItemsInCart} = useContext(GlobalContext);
 
   // Función para obtener el stock de un color y talla específicos
   function getStock(color, size) {
+
+    console.log(color.rgb_code);
+    console.log(size);
+
     const stockItem = stock.find(
-      (item) => item.rgb_code === color && item.size_name === size
+      (item) => item.rgb_code === color.rgb_code && item.size_name === size
     );
     return stockItem ? stockItem.quantity : 0;
   }
@@ -61,10 +65,12 @@ const {itemsInCart, setItemsInCart} = useContext(GlobalContext);
   const handleClickAdd = () => {
     const stock = getStock(selectedColor, selectedSize);
 
+    console.log(stock);
+
     if (quantity > 0 && quantity <= stock) {
       setItemsInCart(itemsInCart + 1);
     } else {
-      alert("Sin stock ")
+      alert("Sin stock ");
     } // Falta un else con algun sweet alert
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
   };
