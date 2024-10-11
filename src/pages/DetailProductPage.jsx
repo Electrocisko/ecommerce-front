@@ -62,10 +62,12 @@ const DetailProductPage = () => {
     return stockItem ? stockItem.quantity : 0;
   }
 
+  console.log(selectedColor);
+
   const handleClickAdd = () => {
     const stock = getStock(selectedColor, selectedSize);
 
-    console.log(stock);
+
 
     if (quantity > 0 && quantity <= stock) {
       setItemsInCart(itemsInCart + 1);
@@ -75,12 +77,15 @@ const DetailProductPage = () => {
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
   };
 
+
+
   return (
     <>
       <div className={style.image_container}>
         <img
           className={style.image}
-          src={urlServer + "images/" + product.imageurl}
+           src={urlServer + "images/" + selectedColor.imageurl}
+          // src={urlServer + "images/" + stock[2].imageurl}
           alt={"Imagen de " + product.name}
         />
 

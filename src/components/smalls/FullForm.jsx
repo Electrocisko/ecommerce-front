@@ -114,8 +114,9 @@ const FullForm = () => {
       // Reemplazar por un alert o directamente al value de form stock
       alert("Agregado correctamente");
     } catch (error) {
-      alert("Error");
-      console.error("Error to send form :", error);
+    
+      console.error(error);
+      alert("error");
     }
   };
 
