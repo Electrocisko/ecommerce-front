@@ -4,6 +4,8 @@ import { FaCheck } from "react-icons/fa6";
 
 const ColorPicker = ({ colorsList, handleColorClick, selectedColor }) => {
 
+  console.log(colorsList);
+
 
   return (
     <div className={style.colorsContainer}>

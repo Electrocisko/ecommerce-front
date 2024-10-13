@@ -24,21 +24,29 @@ const DetailProductPage = () => {
   );
 
   //Aca convierto a set la lista de colores y tallas para que no queden repetidos al mostrar en el front
-  const colors = new Set();
+
   const sizes = new Set();
   for (let index = 0; index < stock.length; index++) {
     const item = stock[index];
-    colors.add(item);  ///ACA MANDA EL COLOR !!!!
+
     sizes.add(item.size_name);
   }
-  //Los paso a Arrays para poder iterarlos
-  const colorsList = Array.from(colors);
-  const sizeList = Array.from(sizes);
 
-  const initColor = colorsList; // Color inicial si no seleciona ninguno
-  const [selectedColor, setSelectedColor] = useState(initColor[0]);
+  const [selectedColor, setSelectedColor] = useState(stock[0] || product); //Si no llega por el stock, ver producto
 
+  const sizeList = [];
+  const uniqueColor = new Set();
+  const auxColors = [];
 
+  stock.forEach((element) => {
+    const exist = auxColors.find((color) => color === element.rgb_code);
+    if (!exist) {
+      auxColors.push(element.rgb_code);
+      uniqueColor.add(element);
+    }
+  });
+
+  const colorsList = Array.from(uniqueColor);
 
   const handleColorClick = (color) => {
     setSelectedColor(color);
@@ -52,22 +60,14 @@ const DetailProductPage = () => {
 
   // Función para obtener el stock de un color y talla específicos
   function getStock(color, size) {
-
-    console.log(color.rgb_code);
-    console.log(size);
-
     const stockItem = stock.find(
       (item) => item.rgb_code === color.rgb_code && item.size_name === size
     );
     return stockItem ? stockItem.quantity : 0;
   }
 
-  console.log(selectedColor);
-
   const handleClickAdd = () => {
     const stock = getStock(selectedColor, selectedSize);
-
-
 
     if (quantity > 0 && quantity <= stock) {
       setItemsInCart(itemsInCart + 1);
@@ -77,15 +77,12 @@ const DetailProductPage = () => {
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
   };
 
-
-
   return (
     <>
       <div className={style.image_container}>
         <img
           className={style.image}
-           src={urlServer + "images/" + selectedColor.imageurl}
-          // src={urlServer + "images/" + stock[2].imageurl}
+          src={urlServer + "images/" + selectedColor.imageurl}
           alt={"Imagen de " + product.name}
         />
 
