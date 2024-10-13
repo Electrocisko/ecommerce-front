@@ -25,28 +25,28 @@ const DetailProductPage = () => {
 
   //Aca convierto a set la lista de colores y tallas para que no queden repetidos al mostrar en el front
 
-  const sizes = new Set();
-  for (let index = 0; index < stock.length; index++) {
-    const item = stock[index];
-
-    sizes.add(item.size_name);
-  }
-
   const [selectedColor, setSelectedColor] = useState(stock[0] || product); //Si no llega por el stock, ver producto
 
-  const sizeList = [];
+  const uniqueSize = new Set();
   const uniqueColor = new Set();
   const auxColors = [];
+  const auxSizes = [];
 
   stock.forEach((element) => {
-    const exist = auxColors.find((color) => color === element.rgb_code);
-    if (!exist) {
+    const checkColor = auxColors.find((color) => color === element.rgb_code);
+    if (!checkColor) {
       auxColors.push(element.rgb_code);
       uniqueColor.add(element);
+    }
+    const checkSize = auxSizes.find((size) =>  size === element.size_name);
+    if (!checkSize) {
+      auxSizes.push(element.size_name);
+      uniqueSize.add(element);
     }
   });
 
   const colorsList = Array.from(uniqueColor);
+  const sizeList = Array.from(uniqueSize);
 
   const handleColorClick = (color) => {
     setSelectedColor(color);
@@ -114,7 +114,7 @@ const DetailProductPage = () => {
           <h3 className={style.subtitle}>Choose Size</h3>
 
           <SizePicker
-            product={sizeList}
+            sizeList={sizeList}
             handleSizeClick={handleSizeClick}
             selectedSize={selectedSize}
           />
