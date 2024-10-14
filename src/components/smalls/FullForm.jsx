@@ -81,13 +81,13 @@ const FullForm = () => {
     formData.append("branch", product.branch);
     formData.append("gender", product.gender);
     formData.append("color_id", product.color_id);
-    formData.append("sizeXS", product.sizeS);
+    formData.append("sizeXS", product.sizeXS);
     formData.append("sizeS", product.sizeS);
     formData.append("sizeM", product.sizeM);
     formData.append("sizeL", product.sizeL);
     formData.append("sizeXL", product.sizeXL);
-    formData.append("sizeXXL", product.sizeS);
-    formData.append("size3XL", product.sizeS);
+    formData.append("sizeXXL", product.sizeXXL);
+    formData.append("size3XL", product.size3XL);
     if (product.imageurl) {
       formData.append("imageurl", product.imageurl);
     }

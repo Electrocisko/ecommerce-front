@@ -3,8 +3,6 @@ import style from "../../scss/modules/sizepicker.module.scss";
 
 const SizePicker = ({ sizeList, handleSizeClick, selectedSize }) => {
 
-  console.log(sizeList);
-
   return (
 
     <div className={style.sizesContainer}>

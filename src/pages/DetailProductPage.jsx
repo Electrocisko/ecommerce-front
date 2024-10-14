@@ -6,7 +6,7 @@ import Button from "../components/smalls/Button.jsx";
 import CartButton from "../components/smalls/CartButton.jsx";
 import { Link } from "react-router-dom";
 import Card from "../components/Card.jsx";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext.jsx";
 import ColorPicker from "../components/smalls/ColorPicker.jsx";
 import SizePicker from "../components/smalls/SizePicker.jsx";
@@ -23,8 +23,6 @@ const DetailProductPage = () => {
     product.price - product.price * (product.discount / 100)
   );
 
-  //Aca convierto a set la lista de colores y tallas para que no queden repetidos al mostrar en el front
-
   const [selectedColor, setSelectedColor] = useState(stock[0] || product); //Si no llega por el stock, ver producto
 
   const uniqueSize = new Set();
@@ -39,8 +37,10 @@ const DetailProductPage = () => {
       uniqueColor.add(element);
     }
     const checkSize = auxSizes.find((size) =>  size === element.size_name);
+  
     if (!checkSize) {
       auxSizes.push(element.size_name);
+      console.log(element.quantity);
       uniqueSize.add(element);
     }
   });
