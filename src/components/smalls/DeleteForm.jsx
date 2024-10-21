@@ -15,7 +15,8 @@ const DeleteForm = () => {
         method: "DELETE",
       });
       const result = await response.json();
-      if (result.statusOk == false) throw new Error("Error deleting product");
+      console.log(result);
+      if (result.statusOk == false) throw new Error( result.message || "Error deleting product");
       alert("Sucessfully deleted")
     } catch (error) {
       alert(error.message);

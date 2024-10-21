@@ -24,11 +24,8 @@ const DetailProductPage = () => {
   );
 
   const [selectedColor, setSelectedColor] = useState(stock[0] || product); //Si no llega por el stock, ver producto
-
-  const uniqueSize = new Set();
   const uniqueColor = new Set();
   const auxColors = [];
-  const auxSizes = [];
 
   stock.forEach((element) => {
     const checkColor = auxColors.find((color) => color === element.rgb_code);
@@ -36,23 +33,17 @@ const DetailProductPage = () => {
       auxColors.push(element.rgb_code);
       uniqueColor.add(element);
     }
-    const checkSize = auxSizes.find((size) =>  size === element.size_name);
-  
-    if (!checkSize) {
-      auxSizes.push(element.size_name);
-      console.log(element.quantity);
-      uniqueSize.add(element);
-    }
   });
 
   const colorsList = Array.from(uniqueColor);
-  const sizeList = Array.from(uniqueSize);
-
   const handleColorClick = (color) => {
     setSelectedColor(color);
   };
 
-  const [selectedSize, setSelectedSize] = useState("S");
+  //Sizes
+
+  const [sizeList, setsizeList] = useState([]);
+  const [selectedSize, setSelectedSize] = useState(stock[0]);
 
   const handleSizeClick = (item) => {
     setSelectedSize(item);
@@ -60,10 +51,11 @@ const DetailProductPage = () => {
 
   // Función para obtener el stock de un color y talla específicos
   function getStock(color, size) {
-    const stockItem = stock.find(
-      (item) => item.rgb_code === color.rgb_code && item.size_name === size
-    );
-    return stockItem ? stockItem.quantity : 0;
+
+    // const stockItem = stock.find(
+    //   (item) => item.rgb_code === color.rgb_code && item.size_name === size
+    // );
+    // return stockItem ? stockItem.quantity : 0;
   }
 
   const handleClickAdd = () => {
@@ -76,6 +68,19 @@ const DetailProductPage = () => {
     } // Falta un else con algun sweet alert
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
   };
+
+  useEffect(() => {
+    console.log("Cambio color");
+    // Tengo que conseguir un array con los talles disponibles para ese color.
+    // Asi que primero voy hacer un  array del color unicamente.
+    const listOfSizesByColor = stock.filter(
+      (item) => item.rgb_code === selectedColor.rgb_code
+    );
+    setsizeList(listOfSizesByColor);
+   
+  
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedColor]);
 
   return (
     <>
