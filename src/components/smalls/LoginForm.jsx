@@ -1,10 +1,15 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { GlobalContext } from '../../context/GlobalContext.jsx';
+
 
 
 const LoginForm = () => {
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+    const { user, setUser} = useContext(GlobalContext);
+
+    console.log(user);
 
     const handleLogin = async (e) => {
         e.preventDefault();
@@ -21,9 +26,14 @@ const LoginForm = () => {
                 const errorData = await response.json();
                 throw new Error(errorData.message || 'Error de autenticación');
             }
-
             const data = await response.json();
+
+            // Aca me tiene que mandar el token 
+            //localStorage.setItem('token', data.token); // Ajusta esto según tu respuesta
             console.log(data);
+
+            if (data === "pepe") setUser(""); // ESTO NO VA ES PARA QUE NO SALTE ERROR
+            
             // Manejar la respuesta (almacenar usuario, redirigir, etc.)
         } catch (error) {
            
