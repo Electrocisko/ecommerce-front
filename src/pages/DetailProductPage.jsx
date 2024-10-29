@@ -77,6 +77,8 @@ const DetailProductPage = () => {
       (item) => item.rgb_code === selectedColor.rgb_code
     );
     setsizeList(listOfSizesByColor);
+
+    console.log(selectedColor.imageurl);
    
   
   // eslint-disable-next-line react-hooks/exhaustive-deps

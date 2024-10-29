@@ -5,6 +5,7 @@ import { urlServer } from "../../data/endpoints";
 import ColorStockPicker from "../smalls/ColorStockPicker ";
 import { useLoaderData } from "react-router-dom";
 
+
 const FullForm = () => {
   // Valores iniciales para el formulario
   const initialProductState = {
@@ -93,11 +94,16 @@ const FullForm = () => {
     }
 
     try {
+      const token = localStorage.getItem("authToken");
       const response = await fetch(urlServer + "api/fullproduct", {
         method: "POST",
+        headers: {
+          "Authorization": `Bearer ${token}`
+        },
         body: formData,
       });
       const result = await response.json();
+
       if (!result.statusOk)
         throw new Error(
           "Error: products could not be entered, check if the data is complete"

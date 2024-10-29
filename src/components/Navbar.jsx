@@ -10,6 +10,8 @@ import MenuItems from "./smalls/MenuItems";
 import PropTypes from 'prop-types';
 import { useState, useContext } from "react";
 import {GlobalContext} from "../context/GlobalContext.jsx"; 
+import LoginForm from "../components/smalls/LoginForm.jsx";
+import Modal from "../components/smalls/Modal.jsx";
 
 
 
@@ -18,6 +20,13 @@ const Navbar = () => {
   const [dropdown, setDropdown] = useState(false);
   const [links, setLinks] = useState(false);
   const {itemsInCart} = useContext(GlobalContext);
+
+  // Para modal de login
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
 
   return (
@@ -61,7 +70,21 @@ const Navbar = () => {
             <LuShoppingCart /><span className={style.cart_items}>{itemsInCart > 0 ? itemsInCart : null}</span>
           </li>
           <li className={style.icon}>
-            <FaRegCircleUser />
+           
+
+            <button onClick={toggleModal}>
+            <FaRegCircleUser className={style.icon} />
+      </button>
+
+      <Modal isOpen={isModalOpen} onClose={toggleModal}>
+        <LoginForm />
+      </Modal>
+
+
+
+
+
+
           </li>
         </div>
       </ul>
