@@ -1,8 +1,9 @@
+/* eslint-disable react/prop-types */
 import { useState, useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext.jsx";
 import style from "../../scss/modules/loginform.module.scss";
 
-const LoginForm = () => {
+const LoginForm = ({toggleModal}) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { authenticateUser } = useContext(GlobalContext);
@@ -17,6 +18,8 @@ const LoginForm = () => {
         },
         body: JSON.stringify({ email, password }),
       });
+      if (response.ok)  toggleModal();
+     
       if (!response.ok) {
         const errorData = await response.json();
         throw new Error(errorData.message || "Error de autenticación");
@@ -25,7 +28,6 @@ const LoginForm = () => {
         authenticateUser(data.token);
       }
 
-      // Manejar la respuesta (almacenar usuario, redirigir, etc.)
     } catch (error) {
       console.log(error);
     }
@@ -60,7 +62,7 @@ const LoginForm = () => {
           onChange={(e) => setPassword(e.target.value)}
           placeholder="Contraseña"
         />
-        <button className={style.submit} type="submit">Iniciar sesión</button>
+        <button className={style.submit} type="submit">Submit</button>
       </form>
       <hr />
       <p className={style.help}>Don&lsquo;t have an account? <a href="/">Sign up</a></p>

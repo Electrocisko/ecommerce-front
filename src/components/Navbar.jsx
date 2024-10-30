@@ -77,7 +77,7 @@ const Navbar = () => {
       </button>
 
       <Modal isOpen={isModalOpen} onClose={toggleModal}>
-        <LoginForm />
+        <LoginForm toggleModal={toggleModal} />
       </Modal>
 
 
