@@ -10,9 +10,13 @@ const DeleteForm = () => {
   const handleSubmit = async (e) => {
     try {
       e.preventDefault();
+      const token = localStorage.getItem("authToken");
       const data = urlServer+`api/product/${productId.productId}`;
       const response = await fetch(data,{
         method: "DELETE",
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
       });
       const result = await response.json();
       console.log(result);

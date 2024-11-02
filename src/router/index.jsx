@@ -18,6 +18,7 @@ import PrivateLayout from "../layout/PrivateLayout.jsx";
 import FullProduct from "../pages/FullProduct.jsx";
 import DeleteProductPage from "../pages/DeleteProductPage.jsx";
 import StockForm from "../components/StockForm.jsx";
+import AddColorToProductPage from "../pages/AddColorToProductPage.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -99,6 +100,11 @@ export const router = createBrowserRouter([
             {
                 path: "/admin/stock",
                 element: <StockForm/>,
+                loader: loaderStockData
+            },
+            {
+                path: "/admin/addcolor",
+                element: <AddColorToProductPage/>,
                 loader: loaderStockData
             },
         ]   

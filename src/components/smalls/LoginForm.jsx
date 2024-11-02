@@ -30,6 +30,7 @@ const LoginForm = ({toggleModal}) => {
 
     } catch (error) {
       console.log(error);
+      alert(error.message)
     }
   };
 
