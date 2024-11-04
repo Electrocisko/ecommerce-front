@@ -51,8 +51,6 @@ const StockForm = ({productId}) => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     const stockData = JSON.stringify(stock);
-
-    console.log(stockData);
     try {
       const response = await fetch(urlServer + "api/stock", {
         method: "POST",

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import style from "../scss/pages/detailproductpage.module.scss";
 import { useLoaderData } from "react-router-dom";
 import { urlServer } from "../data/endpoints.js";
@@ -23,6 +24,8 @@ const DetailProductPage = () => {
     product.price - product.price * (product.discount / 100)
   );
 
+ 
+
   const [selectedColor, setSelectedColor] = useState(stock[0] || product); //Si no llega por el stock, ver producto
   const uniqueColor = new Set();
   const auxColors = [];
@@ -36,33 +39,27 @@ const DetailProductPage = () => {
   });
 
   const colorsList = Array.from(uniqueColor);
-  const handleColorClick = (color) => {
-    setSelectedColor(color);
+
+  const handleColorClick = (item) => {
+    setSelectedColor(item);
+    setSelectedSize(item);
   };
 
   //Sizes
 
   const [sizeList, setsizeList] = useState([]);
   const [selectedSize, setSelectedSize] = useState(stock[0]);
+ 
 
   const handleSizeClick = (item) => {
     setSelectedSize(item);
   };
 
-  // Función para obtener el stock de un color y talla específicos
-  function getStock(color, size) {
-
-    // const stockItem = stock.find(
-    //   (item) => item.rgb_code === color.rgb_code && item.size_name === size
-    // );
-    // return stockItem ? stockItem.quantity : 0;
-  }
 
   const handleClickAdd = () => {
-    const stock = getStock(selectedColor, selectedSize);
-
-    if (quantity > 0 && quantity <= stock) {
-      setItemsInCart(itemsInCart + 1);
+    const quantityInStock = selectedSize.quantity;// Para controlar el stock que se agrega al boton de agregar
+    if (quantity > 0 && quantity <= quantityInStock) {
+      setItemsInCart(itemsInCart + quantity);
     } else {
       alert("Sin stock ");
     } // Falta un else con algun sweet alert
@@ -70,18 +67,12 @@ const DetailProductPage = () => {
   };
 
   useEffect(() => {
-    console.log("Cambio color");
-    // Tengo que conseguir un array con los talles disponibles para ese color.
+    // Creo un array con los talles disponibles para ese color.
     // Asi que primero voy hacer un  array del color unicamente.
     const listOfSizesByColor = stock.filter(
       (item) => item.rgb_code === selectedColor.rgb_code
     );
     setsizeList(listOfSizesByColor);
-
-    console.log(selectedColor.imageurl);
-   
-  
-  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedColor]);
 
   return (
@@ -129,7 +120,7 @@ const DetailProductPage = () => {
           <hr className={style.hr} />
 
           <div className={style.cart_buttons_container}>
-            <CartButton quantity={quantity} setQuantity={setQuantity} />
+            <CartButton quantity={quantity} setQuantity={setQuantity} selectedSize={selectedSize} />
             <span onClick={handleClickAdd}>
               <Button text={"Add to Cart"} />
             </span>

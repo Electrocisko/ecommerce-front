@@ -1,19 +1,19 @@
+/* eslint-disable react/prop-types */
 import style from "../../scss/modules/cartbutton.module.scss";
 import PropTypes from 'prop-types';
 import { FaPlus } from "react-icons/fa6";
 import { FaMinus } from "react-icons/fa6";
 
-const CartButton = ({quantity, setQuantity}) => {
+const CartButton = ({quantity, setQuantity,selectedSize}) => {
 
   const addQuantity = () => {
-    setQuantity(quantity+1);
+    if (quantity < selectedSize.quantity)   setQuantity(quantity+1);
   };
 
   const subtractQuantity = () => {
     if (quantity > 0) {
       setQuantity(quantity-1);
     }
-     
   }
 
   
