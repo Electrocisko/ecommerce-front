@@ -13,7 +13,7 @@ import ColorPicker from "../components/smalls/ColorPicker.jsx";
 import SizePicker from "../components/smalls/SizePicker.jsx";
 
 const DetailProductPage = () => {
-  const [quantity, setQuantity] = useState(1);
+  const [quantityAddButton, setQuantityAddButton] = useState(1);
   const { itemsInCart, setItemsInCart } = useContext(GlobalContext);
   const { productDetail, newProducts } = useLoaderData();
   const firstNewsProducts = newProducts.newProducts.slice(0, 4);
@@ -55,20 +55,47 @@ const DetailProductPage = () => {
     setSelectedSize(item);
   };
 
+  const actualizarStock = async (quantity,product_id ,color_id,size_id) => {
+    const token = localStorage.getItem("authToken");
 
-  const handleClickAdd = () => {
+    try {
+      const response = await fetch("http://localhost:8080/api/products/updatestock", {
+        method: "PUT",
+        headers: {
+          "Content-Type": "application/x-www-form-urlencoded",
+          "Authorization": `Bearer ${token}`
+        },
+        body: new URLSearchParams({
+          quantity,
+          product_id,
+          color_id,
+          size_id
+        }).toString()
+      });
+  
+      const data = await response.json();
+      if (response.ok) {
+        console.log("Stock actualizado:", data);
+      } else {
+        console.error("Error al actualizar el stock:", data);
+      }
+    } catch (error) {
+      console.error("Error en la solicitud:", error);
+    }
+  };
+  
+  const handleClickAdd =  () => {
     const quantityInStock = selectedSize.quantity;// Para controlar el stock que se agrega al boton de agregar
-    if (quantity > 0 && quantity <= quantityInStock) {
-      setItemsInCart(itemsInCart + quantity);
+    if (quantityAddButton > 0 && quantityAddButton <= quantityInStock) {
+      setItemsInCart(itemsInCart + quantityAddButton);
     } else {
       alert("Sin stock ");
-    } // Falta un else con algun sweet alert
-    // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, el color y la cantidad.
+    } 
+    // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, talle el color y la cantidad.
+    actualizarStock(quantityAddButton, productDetail.data[0].product_id, selectedSize.color_id, selectedSize.size_id);
   };
 
   useEffect(() => {
-    // Creo un array con los talles disponibles para ese color.
-    // Asi que primero voy hacer un  array del color unicamente.
     const listOfSizesByColor = stock.filter(
       (item) => item.rgb_code === selectedColor.rgb_code
     );
@@ -120,7 +147,7 @@ const DetailProductPage = () => {
           <hr className={style.hr} />
 
           <div className={style.cart_buttons_container}>
-            <CartButton quantity={quantity} setQuantity={setQuantity} selectedSize={selectedSize} />
+            <CartButton quantity={quantityAddButton} setQuantity={setQuantityAddButton} selectedSize={selectedSize} />
             <span onClick={handleClickAdd}>
               <Button text={"Add to Cart"} />
             </span>

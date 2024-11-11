@@ -1,6 +1,5 @@
 import {createBrowserRouter} from "react-router-dom";
 import CartPage from "../pages/CartPage";
-import CategoryPage from "../pages/CategoryPage";
 import ComingSoon from "../pages/ComingSoon";
 import DetailProductPage from "../pages/DetailProductPage";
 import OnSalePage from "../pages/OnSalePage";
@@ -19,6 +18,10 @@ import FullProduct from "../pages/FullProduct.jsx";
 import DeleteProductPage from "../pages/DeleteProductPage.jsx";
 import StockForm from "../components/StockForm.jsx";
 import AddColorToProductPage from "../pages/AddColorToProductPage.jsx";
+import CasualPage from "../pages/CasualPage.jsx";
+import FormalPage from "../pages/FormalPage.jsx";
+import PartyPage from "../pages/PartyPage.jsx";
+import GymPage from "../pages/GymPage.jsx";
 
 export const router = createBrowserRouter([
     {
@@ -41,8 +44,20 @@ export const router = createBrowserRouter([
                 element: <CartPage/>,
             },
             {
-                path: "/category",
-                element: <CategoryPage/>,
+                path: "/casual",
+                element: <CasualPage/>,
+            },
+            {
+                path: "/formal",
+                element: <FormalPage/>,
+            },
+            {
+                path: "/party",
+                element: <PartyPage/>,
+            },
+            {
+                path: "/gym",
+                element: <GymPage/>,
             },
             {
                 path: "/soon",
