@@ -46,6 +46,7 @@ export const router = createBrowserRouter([
             {
                 path: "/casual",
                 element: <CasualPage/>,
+                loader: loaderProducts
             },
             {
                 path: "/formal",

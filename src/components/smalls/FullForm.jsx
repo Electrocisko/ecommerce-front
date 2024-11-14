@@ -5,7 +5,6 @@ import { urlServer } from "../../data/endpoints";
 import ColorStockPicker from "../smalls/ColorStockPicker ";
 import { useLoaderData } from "react-router-dom";
 
-
 const FullForm = () => {
   // Valores iniciales para el formulario
   const initialProductState = {
@@ -98,7 +97,7 @@ const FullForm = () => {
       const response = await fetch(urlServer + "api/fullproduct", {
         method: "POST",
         headers: {
-          "Authorization": `Bearer ${token}`
+          Authorization: `Bearer ${token}`,
         },
         body: formData,
       });
@@ -120,7 +119,6 @@ const FullForm = () => {
       // Reemplazar por un alert o directamente al value de form stock
       alert("Agregado correctamente");
     } catch (error) {
-    
       console.error(error);
       alert("error");
     }
@@ -191,15 +189,36 @@ const FullForm = () => {
         <fieldset className={style.radio_group}>
           <legend>Select style:</legend>
           <label className={style.radio_label}>
-            <input type="radio" id="Casual" name="style" value="Casual" />
+            <input
+              type="radio"
+              id="Casual"
+              name="style"
+              value="Casual"
+              checked={product.style == "Casual"}
+              onChange={handleChange}
+            />
             <span htmlFor="Casual">Casual</span>
           </label>
           <label className={style.radio_label}>
-            <input type="radio" id="Formal" name="style" value="Formal" />
+            <input
+              type="radio"
+              id="Formal"
+              name="style"
+              value="Formal"
+              checked={product.style == "Formal"}
+              onChange={handleChange}
+            />
             <span htmlFor="Formal">Formal</span>
           </label>
           <label className={style.radio_label}>
-            <input type="radio" id="Party" name="style" value="Party" />
+            <input
+              type="radio"
+              id="Party"
+              name="style"
+              value="Party"
+              checked={product.style == "Party"}
+              onChange={handleChange}
+            />
             <span htmlFor="Party">Party</span>
           </label>
         </fieldset>
@@ -207,25 +226,49 @@ const FullForm = () => {
         <fieldset className={style.radio_group}>
           <legend>Select gender:</legend>
           <label className={style.radio_label}>
-            <input type="radio" id="men" name="gender" value="Men" />
+            <input
+              type="radio"
+              id="men"
+              name="gender"
+              value="Men"
+              checked={product.gender == "Men"}
+              onChange={handleChange}
+            />
             <span htmlFor="men">Men</span>
           </label>
           <label className={style.radio_label}>
-            <input type="radio" id="women" name="gender" value="Women" />
+            <input
+              type="radio"
+              id="women"
+              name="gender"
+              value="Women"
+              checked={product.gender == "Women"}
+              onChange={handleChange}
+            />
             <span htmlFor="women">Women</span>
           </label>
           <label className={style.radio_label}>
-            <input type="radio" id="unisex" name="gender" value="Unisex" />
+            <input
+              type="radio"
+              id="unisex"
+              name="gender"
+              value="Unisex"
+              checked={product.gender == "Unisex"}
+              onChange={handleChange}
+            />
             <span htmlFor="unisex">Unisex</span>
           </label>
         </fieldset>
       </div>
-<div className={style.input_file}>
-<label htmlFor="fileInput">Elegir archivo</label>
-<input type="file" name="imageurl" onChange={handleChange}  id="fileInput" />
-</div>
- 
-    
+      <div className={style.input_file}>
+        <label htmlFor="fileInput">Elegir archivo</label>
+        <input
+          type="file"
+          name="imageurl"
+          onChange={handleChange}
+          id="fileInput"
+        />
+      </div>
 
       <div className={style.colors_container}>
         <input
