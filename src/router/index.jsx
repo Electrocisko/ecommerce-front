@@ -11,7 +11,7 @@ import LayoutPublic from "../layout/LayOut";
 import WomenPage from "../pages/WomenPage";
 import ManPage from "../pages/ManPage";
 import ShopPage from "../pages/ShopPage";
-import { loaderProducts, loaderHomePage, loaderProductDetail, loaderStockData, loaderOnSaleProducts } from "../loaders/productsLoader.js";
+import { loaderProducts, loaderHomePage, loaderProductDetail, loaderStockData, loaderOnSaleProducts, loaderCasualProducts } from "../loaders/productsLoader.js";
 import AdminPage from "../pages/AdminPage.jsx";
 import PrivateLayout from "../layout/PrivateLayout.jsx";
 import FullProduct from "../pages/FullProduct.jsx";
@@ -22,6 +22,7 @@ import CasualPage from "../pages/CasualPage.jsx";
 import FormalPage from "../pages/FormalPage.jsx";
 import PartyPage from "../pages/PartyPage.jsx";
 import GymPage from "../pages/GymPage.jsx";
+
 
 export const router = createBrowserRouter([
     {
@@ -46,7 +47,7 @@ export const router = createBrowserRouter([
             {
                 path: "/casual",
                 element: <CasualPage/>,
-                loader: loaderProducts
+                loader: loaderCasualProducts
             },
             {
                 path: "/formal",
