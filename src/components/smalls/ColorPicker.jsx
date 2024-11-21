@@ -10,7 +10,7 @@ const ColorPicker = ({ colorsList, handleColorClick, selectedColor }) => {
         <div
           key={index}
           className={style.circle}
-          style={{ backgroundColor: `${item.rgb_code}` }}
+          style={{ backgroundColor: `${item.hsl_code}` }}
           onClick={() => handleColorClick(item)}
         >
           <span

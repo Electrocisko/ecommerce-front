@@ -6,26 +6,35 @@ import { urlServer } from "../data/endpoints.js";
 import { Link } from "react-router-dom";
 
 const CasualPage = () => {
+  const { products, colors } = useLoaderData();
 
-  const { products } = useLoaderData();
+  const handleColorClick = () => {
+    console.log("Handel click");
+  };
+
+  const selectedColor = "#000000";
   const data = products.data;
   return (
     <div className={style.container}>
       <section>
-        <Filters />
+        <Filters
+          colorsList={colors.colorList}
+          handleColorClick={handleColorClick}
+          selectedColor={selectedColor}
+        />
       </section>
       <section>
         <h1>Casual</h1>
         <div className={style.cards_container}>
           {data.map((item) => (
-           <Link to={"/detail/" + item.product_id} key={item.product_id}>
-           <Card
-             name={item.name}
-             price={item.price}
-             urlImage={urlServer + "images/" + item.imageurl}
-             discount = {item.discount}
-           />
-         </Link>
+            <Link to={"/detail/" + item.product_id} key={item.product_id}>
+              <Card
+                name={item.name}
+                price={item.price}
+                urlImage={urlServer + "images/" + item.imageurl}
+                discount={item.discount}
+              />
+            </Link>
           ))}
         </div>
       </section>

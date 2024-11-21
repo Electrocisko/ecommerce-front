@@ -31,9 +31,9 @@ const DetailProductPage = () => {
   const auxColors = [];
 
   stock.forEach((element) => {
-    const checkColor = auxColors.find((color) => color === element.rgb_code);
+    const checkColor = auxColors.find((color) => color === element.hsl_code);
     if (!checkColor) {
-      auxColors.push(element.rgb_code);
+      auxColors.push(element.hsl_code);
       uniqueColor.add(element);
     }
   });

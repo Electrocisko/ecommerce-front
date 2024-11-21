@@ -11,7 +11,11 @@ const loaderProducts = async () => {
 const loaderCasualProducts = async () => {
   const response = await fetch(`${URL}/filter/?key=style&value=casual`);
   const products = await response.json();
-  return { products };
+  const response1 = await fetch(urlServer + "api/colors");
+  const response2 = await fetch(urlServer + "api/sizes");
+  const colors = await response1.json();
+  const sizes = await response2.json();
+  return { products, colors, sizes };
 };
 
 const loaderHomePage = async () => {
