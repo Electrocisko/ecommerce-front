@@ -97,7 +97,7 @@ const DetailProductPage = () => {
 
   useEffect(() => {
     const listOfSizesByColor = stock.filter(
-      (item) => item.rgb_code === selectedColor.rgb_code
+      (item) => item.hsl_code === selectedColor.hsl_code
     );
     setsizeList(listOfSizesByColor);
   }, [selectedColor]);
