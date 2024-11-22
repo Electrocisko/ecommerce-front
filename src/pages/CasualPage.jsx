@@ -4,25 +4,40 @@ import { useLoaderData } from "react-router-dom";
 import Card from "../components/Card";
 import { urlServer } from "../data/endpoints.js";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const CasualPage = () => {
-  const { products, colors } = useLoaderData();
+  const { products, colors, sizes } = useLoaderData();
 
   const handleColorClick = () => {
     console.log("Handel click");
   };
 
-  const selectedColor = "#000000";
+  const handleSizeClick = () => {
+    console.log("handleclick");
+  };
+
+  const sizeList = sizes.sizesList;
+
   const data = products.data;
+
+ const [priceValue, setPriceValue] = useState(100)
+
   return (
     <div className={style.container}>
       <section>
         <Filters
           colorsList={colors.colorList}
           handleColorClick={handleColorClick}
-          selectedColor={selectedColor}
+          selectedColor={colors.colorList[0]}
+          sizeList={sizeList}
+          selectedSize={sizeList[0]}
+          handleSizeClick={handleSizeClick}
+          priceValue={priceValue}
+          setPriceValue={setPriceValue}
         />
       </section>
+
       <section>
         <h1>Casual</h1>
         <div className={style.cards_container}>

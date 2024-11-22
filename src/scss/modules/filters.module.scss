@@ -1,5 +1,90 @@
+@import "../base/base";
+@import "../abstracts/variables";
+
+
 .container {
+    display: flex;
+    flex-direction: column;
     width: 295px;
-    height: 1220px;
-  
+    height: auto;
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+    margin-right: 21px;
+    padding: 20px 24px;
+    color: #000;
+    font-family: $Satoshi;
+    font-size: 20px;
+    font-style: normal;
+    font-weight: 700;
+    line-height: normal;
+
+    .colors_container {
+        gap: 20px;
+        height: 140px;
+        overflow: hidden;
+        margin-top: 21px;
+        margin-bottom: 21px;
+    }
+
+    .price_container {
+        margin-top: 21px;
+        margin-bottom: 21px;
+
+        input {
+            width: 100%;
+        }
+
+        .range_labels {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .range_slider {
+            width: 100%;
+            appearance: none;
+            background-color: black;
+            height: 6px;
+            border-radius: 5px;
+            outline: none;
+            margin: 10px 0;
+        }
+
+        .range_slider::-webkit-slider-thumb {
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid black;
+          }
+          
+          .range_slider::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            background-color: black;
+            border-radius: 50%;
+            cursor: pointer;
+            border: 2px solid black;
+          }
+          
+
+    }
+
+
+
+    .subtitle {
+        display: flex;
+        justify-content: space-between;
+    }
+
+    h2 {
+        color: #000;
+        font-family: $Satoshi;
+        font-size: 20px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+    }
+
 }
