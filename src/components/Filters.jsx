@@ -5,8 +5,8 @@ import { FaAngleDown } from "react-icons/fa6";
 import { FaAngleUp } from "react-icons/fa6";
 import SizePicker from "./smalls/SizePicker";
 import { useState } from "react";
-import Slider from 'rc-slider';
-import 'rc-slider/assets/index.css';
+import Slider from "rc-slider";
+import "rc-slider/assets/index.css";
 
 const Filters = ({
   colorsList,
@@ -14,34 +14,36 @@ const Filters = ({
   selectedColor,
   sizeList,
   selectedSize,
-  handleSizeClick
+  handleSizeClick,
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
 
-  const [range, setRange] = useState([50, 300]); // Valores iniciales [min, max]
+  const [range, setRange] = useState([0, 500]); // Valores iniciales [min, max]
 
   const handleSlider = (value) => {
-     setRange(value);
-    console.log(value);
+    setRange(value);
   };
 
   return (
     <div className={style.container}>
       <h2>Filters</h2>
-
       <div className={style.price_container}>
         <h4>Price</h4>
-
-    <Slider
-      range
-      min={0}
-      max={500}
-      defaultValue={range}
-      onChange={(e) => handleSlider(e)}
-      
-    />
-            <div className={style.range_labels}>
+        <Slider
+          range
+          min={0}
+          max={500}
+          step={10}
+          defaultValue={range}
+          styles={{
+            track: { backgroundColor: "black", height: 6 }, // Estilo del track (barra activa)
+            handle: { backgroundColor: "black", borderColor: "black" }, // Estilo de los handles
+            rail: { backgroundColor: "#d9d9d9", height: 6 }, // Estilo de la barra inactiva
+          }}
+          onChange={(e) => handleSlider(e)}
+        />
+        <div className={style.range_labels}>
           <span>{range[0] || 0}</span>
           <span>{range[1]}</span>
         </div>
@@ -59,7 +61,7 @@ const Filters = ({
             type="button"
             aria-haspopup="menu"
             aria-expanded={dropdownColor ? "true" : "false"}
-            onClick={() =>  setDropdownColor((prev) => !prev)}
+            onClick={() => setDropdownColor((prev) => !prev)}
             className={style.icon}
           >
             {dropdownColor ? <FaAngleUp /> : <FaAngleDown />}
@@ -80,7 +82,7 @@ const Filters = ({
             type="button"
             aria-haspopup="menu"
             aria-expanded={dropdownSize ? "true" : "false"}
-            onClick={() =>  setDropdownSize((prev) => !prev)}
+            onClick={() => setDropdownSize((prev) => !prev)}
             className={style.icon}
           >
             {dropdownSize ? <FaAngleUp /> : <FaAngleDown />}

@@ -53,40 +53,7 @@
             display: flex;
             justify-content: space-between;
         }
-
-        .range_slider {
-            width: 100%;
-            appearance: none;
-            background-color: black;
-            height: 6px;
-            border-radius: 5px;
-            outline: none;
-            margin: 10px 0;
-        }
-
-        .range_slider::-webkit-slider-thumb {
-            appearance: none;
-            width: 20px;
-            height: 20px;
-            background-color: black;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid black;
-          }
-          
-          .range_slider::-moz-range-thumb {
-            width: 20px;
-            height: 20px;
-            background-color: black;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid black;
-          }
-          
-
     }
-
-
 
     .subtitle {
         display: flex;
