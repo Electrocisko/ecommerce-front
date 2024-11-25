@@ -5,6 +5,8 @@ import { FaAngleDown } from "react-icons/fa6";
 import { FaAngleUp } from "react-icons/fa6";
 import SizePicker from "./smalls/SizePicker";
 import { useState } from "react";
+import Slider from 'rc-slider';
+import 'rc-slider/assets/index.css';
 
 const Filters = ({
   colorsList,
@@ -12,17 +14,17 @@ const Filters = ({
   selectedColor,
   sizeList,
   selectedSize,
-  handleSizeClick,
-  priceValue,
-  setPriceValue,
+  handleSizeClick
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
 
+  const [range, setRange] = useState([50, 300]); // Valores iniciales [min, max]
 
-  const [min, setMin] = useState(100); // Estado para el mínimo
-  const [max, setMax] = useState(500); // Estado para el máximo
-  const [value, setValue] = useState(min); // Estado para el valor actual
+  const handleSlider = (value) => {
+     setRange(value);
+    console.log(value);
+  };
 
   return (
     <div className={style.container}>
@@ -30,16 +32,18 @@ const Filters = ({
 
       <div className={style.price_container}>
         <h4>Price</h4>
-        <input
-          type="range"
-          min={min}
-          max={max}
-          className={style.range_slider}
-          onChange={(e) => setValue(e.target.value)}
-        />
-        <div className={style.range_labels}>
-          <span>{value || min}</span>
-          <span>{max}</span>
+
+    <Slider
+      range
+      min={0}
+      max={500}
+      defaultValue={range}
+      onChange={(e) => handleSlider(e)}
+      
+    />
+            <div className={style.range_labels}>
+          <span>{range[0] || 0}</span>
+          <span>{range[1]}</span>
         </div>
       </div>
       <hr />
