@@ -7,6 +7,7 @@ import SizePicker from "./smalls/SizePicker";
 import { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import { Link } from "react-router-dom";
 
 const Filters = ({
   colorsList,
@@ -18,6 +19,7 @@ const Filters = ({
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
+  const [dropdownStyle, setDropdownStyle] = useState(false);
 
   const [range, setRange] = useState([0, 500]); // Valores iniciales [min, max]
 
@@ -29,7 +31,7 @@ const Filters = ({
     <div className={style.container}>
       <h2>Filters</h2>
       <div className={style.price_container}>
-        <h4>Price</h4>
+        <h2>Price</h2>
         <Slider
           range
           min={0}
@@ -51,9 +53,9 @@ const Filters = ({
       <hr />
 
       <div
-        className={
+        className={`${style.colors_base} ${
           dropdownColor ? style.colors_container : style.colors_full_container
-        }
+        }`}
       >
         <div className={style.subtitle}>
           <h2>Colors</h2>
@@ -77,7 +79,7 @@ const Filters = ({
       <hr />
       <div className={style.sizes_container}>
         <div className={style.subtitle}>
-          <h2>Sizes</h2>
+          <h2>Size</h2>
           <button
             type="button"
             aria-haspopup="menu"
@@ -93,6 +95,44 @@ const Filters = ({
           handleSizeClick={handleSizeClick}
           selectedSize={selectedSize}
         />
+      </div>
+
+      <hr />
+      <div>
+        <div className={style.subtitle}>
+          <h2>Dress Style</h2>
+          <button
+            type="button"
+            aria-haspopup="menu"
+            aria-expanded={dropdownStyle ? "true" : "false"}
+            onClick={() => setDropdownStyle((prev) => !prev)}
+            className={style.icon}
+          >
+            {dropdownStyle ? <FaAngleUp /> : <FaAngleDown />}
+          </button>
+        </div>
+
+        <div className={`${dropdownStyle ? style.show : style.hide}`}>
+          <div>
+            <input type="checkbox" id="casual" name="casual" />
+            <label htmlFor="casual">Casual</label>
+          </div>
+
+          <div>
+            <input type="checkbox" id="formal" name="formal" />
+            <label htmlFor="formal">Formal</label>
+          </div>
+
+          <div>
+            <input type="checkbox" id="party" name="party" />
+            <label htmlFor="party">Party</label>
+          </div>
+
+          <div>
+            <input type="checkbox" id="gym" name="gym" />
+            <label htmlFor="gym">Gym</label>
+          </div>
+        </div>
       </div>
     </div>
   );

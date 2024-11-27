@@ -18,23 +18,22 @@
     font-weight: 700;
     line-height: normal;
 
-    .colors_container {
+    .colors_base {
         gap: 20px;
-        height: 140px;
         overflow: hidden;
         margin-top: 21px;
         margin-bottom: 21px;
+    }
+
+    .colors_container {
+        height: 160px;
     }
 
     .colors_full_container {
-        gap: 20px;
         height: auto;
-        overflow: hidden;
-        margin-top: 21px;
-        margin-bottom: 21px;
     }
 
-    .sizes_container{
+    .sizes_container {
         gap: 20px;
         overflow: hidden;
         margin-top: 21px;
@@ -67,11 +66,81 @@
         font-style: normal;
         font-weight: 700;
         line-height: normal;
+        margin-bottom: 20px;
     }
 
-    .icon{
-      font-size: 20px;
-      cursor: pointer;
+    .icon {
+        font-size: 20px;
+        cursor: pointer;
     }
 
+    .style_base {
+
+        p {
+            margin-bottom: 20px;
+            color: rgba(0, 0, 0, 0.60);
+            font-size: 16px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+        }
+    }
+
+    .style_container{
+        height: 100px;
+    }
+
+    .style_extended_container{
+        height: auto;
+    }
+
+
+    hr {
+        margin-bottom: 24px;
+        margin-top: 24px;
+        color: rgba(0, 0, 0, 0.60);
+    }
+
+/* Oculta el checkbox */
+input[type="checkbox"] {
+    display: none;
+  }
+  
+  /* Estilo base del label */
+  label {
+    font-size: 16px;
+    cursor: pointer;
+    position: relative;
+    color: rgba(0, 0, 0, 0.60); /* Color más claro cuando no está seleccionado */
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    transition: color 0.3s ease; /* Transición suave para el cambio de color */
+  }
+  
+  /* Subrayado al hacer hover (opcional) */
+  label:hover {
+    text-decoration: underline;
+  }
+  
+  /* Cambiar color y subrayar cuando el checkbox está seleccionado */
+  input[type="checkbox"]:checked + label {
+    color: rgba(0, 0, 0, 1); /* Negro puro */
+    text-decoration: underline;
+    text-decoration-thickness: 2px; /* Grosor del subrayado */
+    text-decoration-color: black; /* Color del subrayado */
+  }
+  
+  
+
+}
+
+.show {
+    display: block;
+}
+
+.hide {
+    display: none;
 }
