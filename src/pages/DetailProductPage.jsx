@@ -105,7 +105,7 @@ const DetailProductPage = () => {
   useEffect(() => {
    setSelectedColor(stock[0])
    setSelectedSize(stock[0])
-  })
+  },id)
 
 
   return (
