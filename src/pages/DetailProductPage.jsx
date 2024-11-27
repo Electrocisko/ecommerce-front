@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import style from "../scss/pages/detailproductpage.module.scss";
-import { useLoaderData } from "react-router-dom";
+import { useLoaderData, useParams } from "react-router-dom";
 import { urlServer } from "../data/endpoints.js";
 import { ScrollRestoration } from "react-router-dom";
 import Button from "../components/smalls/Button.jsx";
@@ -13,6 +13,7 @@ import ColorPicker from "../components/smalls/ColorPicker.jsx";
 import SizePicker from "../components/smalls/SizePicker.jsx";
 
 const DetailProductPage = () => {
+  const { id } = useParams(); // Captura el parámetro de la URL
   const [quantityAddButton, setQuantityAddButton] = useState(1);
   const { itemsInCart, setItemsInCart } = useContext(GlobalContext);
   const { productDetail, newProducts } = useLoaderData();
@@ -24,9 +25,7 @@ const DetailProductPage = () => {
     product.price - product.price * (product.discount / 100)
   );
 
- 
-
-  const [selectedColor, setSelectedColor] = useState(stock[0] || product); //Si no llega por el stock, ver producto
+  const [selectedColor, setSelectedColor] = useState(stock[0] ); //Si no llega por el stock, ver producto
   const uniqueColor = new Set();
   const auxColors = [];
 
@@ -101,6 +100,13 @@ const DetailProductPage = () => {
     );
     setsizeList(listOfSizesByColor);
   }, [selectedColor]);
+
+
+  useEffect(() => {
+   setSelectedColor(stock[0])
+   setSelectedSize(stock[0])
+  })
+
 
   return (
     <>

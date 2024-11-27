@@ -4,7 +4,6 @@ import style from "../scss/modules/card.module.scss";
 
 
 const Card = ({name, price, urlImage, discount}) => {
-
   const [loading, setLoading] = useState(true);
   const handleLoad = () => {
     setLoading(false)

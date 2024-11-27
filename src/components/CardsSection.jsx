@@ -11,7 +11,7 @@ const CardsSection = ({ products, title }) => {
       <h2 className={style.h2}>{title}</h2>
       <div className={style.card_container}>
         {products.map((item) => (
-          <Link to={"/detail/" + item.product_id} key={item.product_id}>
+          <Link to={"/detail/" + item.product_id} key={item.product_id} >
             <Card
               name={item.name}
               price={item.price}
