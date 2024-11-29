@@ -28,7 +28,6 @@ const CasualPage = () => {
       ...filters, colors: auxColorsList
     }
     setFilters(auxFilter)
-    console.log(filters);
   };
 
   const [filters, setFilters] = useState(filtersInit);
@@ -55,6 +54,7 @@ const CasualPage = () => {
           handleSizeClick={handleSizeClick}
           priceValue={priceValue}
           setPriceValue={setPriceValue}
+          filters={filters}
         />
       </section>
 

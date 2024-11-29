@@ -2,7 +2,9 @@
 import style from "../../scss/modules/colorpicker.module.scss";
 import { FaCheck } from "react-icons/fa6";
 
-const ColorPicker = ({ colorsList, handleColorClick, selectedColor }) => {
+const ColorPicker = ({ colorsList, handleColorClick, selectedColor, filters }) => {
+
+  console.log(filters);
 
 
   return (

@@ -15,6 +15,7 @@ const Filters = ({
   sizeList,
   selectedSize,
   handleSizeClick,
+  filters
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
@@ -73,6 +74,7 @@ const Filters = ({
           colorsList={colorsList}
           handleColorClick={handleColorClick}
           selectedColor={selectedColor}
+          filters={filters}
         />
       </div>
       <hr />
