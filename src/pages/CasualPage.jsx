@@ -9,9 +9,29 @@ import { useState } from "react";
 const CasualPage = () => {
   const { products, colors, sizes } = useLoaderData();
 
-  const handleColorClick = () => {
-    console.log("Handel click");
+  const filtersInit = {
+    minPrice: 0,
+    maxPrice: 500,
+    colors: [],
+    sizes: []
+  }
+
+  const handleColorClick = (e) => {
+    const auxColorsList = filters.colors;
+    const index = auxColorsList.indexOf(e);
+    if (index != -1) {
+    auxColorsList.splice(index,1)
+    } else {
+      auxColorsList.push(e);
+    }
+    const auxFilter = {
+      ...filters, colors: auxColorsList
+    }
+    setFilters(auxFilter)
+    console.log(filters);
   };
+
+  const [filters, setFilters] = useState(filtersInit);
 
   const handleSizeClick = () => {
     console.log("handleclick");
