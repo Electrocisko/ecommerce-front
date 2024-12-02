@@ -4,8 +4,14 @@ import { FaCheck } from "react-icons/fa6";
 
 const ColorPicker = ({ colorsList, handleColorClick, selectedColor, filters }) => {
 
-  console.log(filters);
 
+  // Esto es porque depende de que componente llame a este puede recibir un color o un array de colores.
+let colorsFilter = [];
+ if (! filters) {
+  colorsFilter = [selectedColor]
+ } else {
+  colorsFilter = filters.colors;
+ }
 
   return (
     <div className={style.colorsContainer}>
@@ -18,7 +24,7 @@ const ColorPicker = ({ colorsList, handleColorClick, selectedColor, filters }) =
         >
           <span
             className={`${
-              selectedColor === item
+              colorsFilter.some((color) => color.hsl_code === item.hsl_code) // si algun color concuerda es true
                 ? style.selected
                 : style.unselected
             }`}
