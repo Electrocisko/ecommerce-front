@@ -95,6 +95,7 @@ const Filters = ({
           sizeList={sizeList}
           handleSizeClick={handleSizeClick}
           selectedSize={selectedSize}
+          filters={filters}
         />
       </div>
 
