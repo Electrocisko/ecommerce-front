@@ -78,7 +78,9 @@ const Filters = ({
         />
       </div>
       <hr />
-      <div className={style.sizes_container}>
+      <div className={`${style.sizes_base} ${
+          dropdownSize ? style.sizes_container : style.sizes_full_container
+        }`}>
         <div className={style.subtitle}>
           <h2>Size</h2>
           <button

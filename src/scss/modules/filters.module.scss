@@ -34,11 +34,19 @@
         height: auto;
     }
 
-    .sizes_container {
+    .sizes_base {
         gap: 20px;
         overflow: hidden;
         margin-top: 21px;
         margin-bottom: 21px;
+    }
+
+    .sizes_container {
+        height: 160px;
+    }
+
+    .sizes_full_container {
+        height: auto;
     }
 
     .price_container {
