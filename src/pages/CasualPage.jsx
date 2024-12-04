@@ -13,34 +13,48 @@ const CasualPage = () => {
     minPrice: 0,
     maxPrice: 500,
     colors: [],
-    sizes: []
-  }
+    sizes: [],
+  };
 
   const handleColorClick = (e) => {
     const auxColorsList = filters.colors;
     const index = auxColorsList.indexOf(e);
     if (index != -1) {
-    auxColorsList.splice(index,1)
+      auxColorsList.splice(index, 1);
     } else {
       auxColorsList.push(e);
     }
     const auxFilter = {
-      ...filters, colors: auxColorsList
-    }
-    setFilters(auxFilter)
+      ...filters,
+      colors: auxColorsList,
+    };
+    setFilters(auxFilter);
+    console.log(filters);
   };
 
   const [filters, setFilters] = useState(filtersInit);
 
-  const handleSizeClick = () => {
-    console.log("handleclick");
+  const handleSizeClick = (e) => {
+    const auxSizesList = filters.sizes;
+    const index = auxSizesList.indexOf(e);
+    if (index != -1) {
+      auxSizesList.splice(index, 1);
+    } else {
+      auxSizesList.push(e);
+    }
+    const auxFilter = {
+      ...filters,
+      sizes: auxSizesList,
+    };
+    setFilters(auxFilter);
+    console.log(filters);
   };
 
   const sizeList = sizes.sizesList;
 
   const data = products.data;
 
- const [priceValue, setPriceValue] = useState(100)
+  const [priceValue, setPriceValue] = useState(100);
 
   return (
     <div className={style.container}>
