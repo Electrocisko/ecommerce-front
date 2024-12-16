@@ -4,6 +4,7 @@ import style from "../../scss/modules/fullform.module.scss";
 import { urlServer } from "../../data/endpoints";
 import ColorStockPicker from "../smalls/ColorStockPicker ";
 import { useLoaderData } from "react-router-dom";
+import ColorPicker from "../smalls/ColorPicker";
 
 const FullForm = () => {
   // Valores iniciales para el formulario
@@ -27,6 +28,7 @@ const FullForm = () => {
   };
 
   const { colors } = useLoaderData();
+
   const [selectedColor, setSelectedColor] = useState({
     color_id: 2,
     color_name: "Blanco",
@@ -271,14 +273,14 @@ const FullForm = () => {
       </div>
 
       <div className={style.colors_container}>
-        <input
-          type="color"
-          value={selectedColor.rgb_code}
-          onChange={() => {}}
-        />
         <p> Choose Color</p>
-        <ColorStockPicker
+        {/* <ColorStockPicker
           colorsList={colors}
+          handleColorClick={handleColorClick}
+          selectedColor={selectedColor}
+        /> */}
+        <ColorPicker
+          colorsList={colors.colorList}
           handleColorClick={handleColorClick}
           selectedColor={selectedColor}
         />

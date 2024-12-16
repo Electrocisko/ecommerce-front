@@ -4,6 +4,8 @@ import { FaCheck } from "react-icons/fa6";
 
 const ColorPicker = ({ colorsList, handleColorClick, selectedColor, filters }) => {
 
+  console.log(colorsList);
+
 
   // Esto es porque depende de que componente llame a este puede recibir un color o un array de colores.
 let colorsFilter = [];
