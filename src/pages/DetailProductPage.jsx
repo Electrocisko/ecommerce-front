@@ -91,6 +91,7 @@ const DetailProductPage = () => {
       alert("Sin stock ");
     } 
     // ACA tengo que hacer un fecth a un endpoint, necesito mandar el id del producto, talle el color y la cantidad.
+    //En realidad no va aca sino tiene que ir al carrito cuando se hace la compra.
     actualizarStock(quantityAddButton, productDetail.data[0].product_id, selectedSize.color_id, selectedSize.size_id);
   };
 

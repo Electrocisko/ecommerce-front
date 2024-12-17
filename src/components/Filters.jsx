@@ -7,6 +7,7 @@ import SizePicker from "./smalls/SizePicker";
 import { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
+import Button from "./smalls/Button";
 
 const Filters = ({
   colorsList,
@@ -15,7 +16,7 @@ const Filters = ({
   sizeList,
   selectedSize,
   handleSizeClick,
-  filters
+  filters,
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
@@ -26,6 +27,10 @@ const Filters = ({
   const handleSlider = (value) => {
     setRange(value);
   };
+
+  const handleFilters = () => {
+    console.log("object");
+  }
 
   return (
     <div className={style.container}>
@@ -78,9 +83,11 @@ const Filters = ({
         />
       </div>
       <hr />
-      <div className={`${style.sizes_base} ${
+      <div
+        className={`${style.sizes_base} ${
           dropdownSize ? style.sizes_container : style.sizes_full_container
-        }`}>
+        }`}
+      >
         <div className={style.subtitle}>
           <h2>Size</h2>
           <button
@@ -137,6 +144,8 @@ const Filters = ({
             <label htmlFor="gym">Gym</label>
           </div>
         </div>
+        <hr />
+        <button className={style.button_filter} onClick={handleFilters}>Apply Filter</button>
       </div>
     </div>
   );
