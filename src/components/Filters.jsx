@@ -8,7 +8,6 @@ import { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 
-
 const Filters = ({
   colorsList,
   handleColorClick,
@@ -20,16 +19,12 @@ const Filters = ({
   minPrice,
   maxPrice,
   handleSlider,
-  handleApplyFilters
-
+  handleApplyFilters,
+  handleStyleChange,
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
   const [dropdownStyle, setDropdownStyle] = useState(false);
-
-
-
-
 
   return (
     <div className={style.container}>
@@ -124,27 +119,53 @@ const Filters = ({
 
         <div className={`${dropdownStyle ? style.show : style.hide}`}>
           <div>
-            <input type="checkbox" id="casual" name="casual" />
+            <input
+              type="checkbox"
+              id="casual"
+              name="casual"
+              onChange={handleStyleChange}
+              checked={filters.styles.includes("casual")}
+            />
             <label htmlFor="casual">Casual</label>
           </div>
 
           <div>
-            <input type="checkbox" id="formal" name="formal" />
+            <input
+              type="checkbox"
+              id="formal"
+              name="formal"
+              onChange={handleStyleChange}
+              checked={filters.styles.includes("formal")}
+            />
             <label htmlFor="formal">Formal</label>
           </div>
 
           <div>
-            <input type="checkbox" id="party" name="party" />
+            <input
+              type="checkbox"
+              id="party"
+              name="party"
+              onChange={handleStyleChange}
+              checked={filters.styles.includes("party")}
+            />
             <label htmlFor="party">Party</label>
           </div>
 
           <div>
-            <input type="checkbox" id="gym" name="gym" />
+            <input
+              type="checkbox"
+              id="gym"
+              name="gym"
+              onChange={handleStyleChange}
+              checked={filters.styles.includes("gym")}
+            />
             <label htmlFor="gym">Gym</label>
           </div>
         </div>
         <hr />
-        <button className={style.button_filter} onClick={handleApplyFilters}>Apply Filter</button>
+        <button className={style.button_filter} onClick={handleApplyFilters}>
+          Apply Filter
+        </button>
       </div>
     </div>
   );

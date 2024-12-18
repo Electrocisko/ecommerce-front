@@ -12,9 +12,10 @@ const CasualPage = () => {
   const filtersInit = {
     minPrice: 0,
     maxPrice: 500,
-    range:[0,500],
+    range: [0, 500],
     colors: [],
     sizes: [],
+    styles: [],
   };
 
   const [filters, setFilters] = useState(filtersInit);
@@ -49,18 +50,31 @@ const CasualPage = () => {
     setFilters(auxFilter);
   };
 
- const  handleApplyFilters = () => {
-console.log("Handle Apply Filters");
-console.log(filters);
- }
-
   const handleSlider = (value) => {
     const auxFilter = {
       ...filters,
       range: value,
     };
     setFilters(auxFilter);
-  };  
+  };
+
+  const handleStyleChange = (e) => {
+    const { name, checked } = e.target;
+    const updatedStyles = checked
+      ? [...filters.styles, name] // Agregar el estilo seleccionado
+      : filters.styles.filter((style) => style !== name);
+
+    const auxFilter = {
+      ...filters,
+      styles: updatedStyles,
+    };
+    setFilters(auxFilter);
+  };
+
+  const handleApplyFilters = () => {
+    console.log("Handle Apply Filters");
+    console.log(filters);
+  };
 
   const sizeList = sizes.sizesList;
 
@@ -85,6 +99,7 @@ console.log(filters);
           maxPrice={filters.maxPrice}
           handleSlider={handleSlider}
           handleApplyFilters={handleApplyFilters}
+          handleStyleChange={handleStyleChange}
         />
       </section>
 
