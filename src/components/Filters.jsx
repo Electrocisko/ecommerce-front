@@ -7,7 +7,7 @@ import SizePicker from "./smalls/SizePicker";
 import { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import Button from "./smalls/Button";
+
 
 const Filters = ({
   colorsList,
@@ -17,20 +17,19 @@ const Filters = ({
   selectedSize,
   handleSizeClick,
   filters,
+  minPrice,
+  maxPrice,
+  handleSlider,
+  handleApplyFilters
+
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
   const [dropdownStyle, setDropdownStyle] = useState(false);
 
-  const [range, setRange] = useState([0, 500]); // Valores iniciales [min, max]
 
-  const handleSlider = (value) => {
-    setRange(value);
-  };
 
-  const handleFilters = () => {
-    console.log("object");
-  }
+
 
   return (
     <div className={style.container}>
@@ -39,10 +38,10 @@ const Filters = ({
         <h2>Price</h2>
         <Slider
           range
-          min={0}
-          max={500}
+          min={minPrice}
+          max={maxPrice}
           step={10}
-          defaultValue={range}
+          value={filters.range}
           styles={{
             track: { backgroundColor: "black", height: 6 }, // Estilo del track (barra activa)
             handle: { backgroundColor: "black", borderColor: "black" }, // Estilo de los handles
@@ -51,8 +50,8 @@ const Filters = ({
           onChange={(e) => handleSlider(e)}
         />
         <div className={style.range_labels}>
-          <span>{range[0] || 0}</span>
-          <span>{range[1]}</span>
+          <span>{filters.range[0] || 0}</span>
+          <span>{filters.range[1]}</span>
         </div>
       </div>
       <hr />
@@ -145,7 +144,7 @@ const Filters = ({
           </div>
         </div>
         <hr />
-        <button className={style.button_filter} onClick={handleFilters}>Apply Filter</button>
+        <button className={style.button_filter} onClick={handleApplyFilters}>Apply Filter</button>
       </div>
     </div>
   );
