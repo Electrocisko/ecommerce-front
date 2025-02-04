@@ -1,8 +1,9 @@
+/* eslint-disable no-fallthrough */
 import Filters from "../components/Filters";
 import style from "../scss/pages/stylespages.module.scss";
+import { urlServer } from "../data/endpoints.js";
 import { useLoaderData } from "react-router-dom";
 import Card from "../components/Card";
-import { urlServer } from "../data/endpoints.js";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
@@ -72,8 +73,16 @@ const CasualPage = () => {
   };
 
   const handleApplyFilters = () => {
-    console.log("Handle Apply Filters");
     console.log(filters);
+    let urlParams = urlServer+"api/products/querys/?";
+    if (filters.colors.length > 0) {
+     const colors =  filters.colors.map((color) => color.color_name )
+     const queryColors = "colors="+colors
+     urlParams=urlParams+queryColors;
+    }
+    filteredProducts(urlParams);
+
+    //SEGUIR TRABAJANDO ACA PARA QUE HAGA FETCH AL ENDPOINT
   };
 
   const sizeList = sizes.sizesList;
@@ -81,6 +90,19 @@ const CasualPage = () => {
   const data = products.data;
 
   const [priceValue, setPriceValue] = useState(100);
+
+  const filteredProducts = async (urlParams) => {
+    try {
+      console.log(urlParams);
+      const resp = await fetch(urlParams);
+      const data = await resp.json();
+      console.log(data);
+ 
+    } catch (error) {
+      console.log("Error");
+    }
+ 
+  }
 
   return (
     <div className={style.container}>
