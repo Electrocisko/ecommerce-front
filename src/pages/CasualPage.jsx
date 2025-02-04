@@ -73,10 +73,9 @@ const CasualPage = () => {
   };
 
   const handleApplyFilters = () => {
-    console.log(filters);
     let urlParams = urlServer+"api/products/querys/?";
     if (filters.colors.length > 0) {
-     const colors =  filters.colors.map((color) => color.color_name )
+     const colors =  filters.colors.map((color) => color.color_id )
      const queryColors = "colors="+colors
      urlParams=urlParams+queryColors;
     }
