@@ -76,10 +76,20 @@ const CasualPage = () => {
     let urlParams = urlServer+"api/products/querys/?";
     if (filters.colors.length > 0) {
      const colors =  filters.colors.map((color) => color.color_id )
-     const queryColors = "colors="+colors
-     urlParams=urlParams+queryColors;
+     const queryColors = "colors="+colors+"&"
+     urlParams+=queryColors;
     }
+
+    if(filters.sizes.length > 0) {
+      const sizes = filters.sizes.map((size) => size.size_id )
+      const querySizes ="sizes="+sizes;
+      urlParams+=querySizes
+    }
+
+
+    
     filteredProducts(urlParams);
+
 
     //SEGUIR TRABAJANDO ACA PARA QUE HAGA FETCH AL ENDPOINT
   };
@@ -92,7 +102,7 @@ const CasualPage = () => {
 
   const filteredProducts = async (urlParams) => {
     try {
-      console.log(urlParams);
+      console.log("URL: "+urlParams);
       const resp = await fetch(urlParams);
       const data = await resp.json();
       console.log(data);
