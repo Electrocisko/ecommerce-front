@@ -73,6 +73,7 @@ const CasualPage = () => {
   };
 
   const handleApplyFilters = () => {
+
     let urlParams = urlServer+"api/products/querys/?";
     if (filters.colors.length > 0) {
      const colors =  filters.colors.map((color) => color.color_id )
@@ -82,12 +83,19 @@ const CasualPage = () => {
 
     if(filters.sizes.length > 0) {
       const sizes = filters.sizes.map((size) => size.size_id )
-      const querySizes ="sizes="+sizes;
+      const querySizes ="sizes="+sizes+"&";
       urlParams+=querySizes
     }
 
+    if (filters.styles.length > 0) {
+      const queryStyles = "styles="+filters.styles+"&";
+     urlParams+=queryStyles
+    }
 
-    
+  
+
+
+
     filteredProducts(urlParams);
 
 

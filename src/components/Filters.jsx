@@ -121,45 +121,45 @@ const Filters = ({
           <div>
             <input
               type="checkbox"
-              id="casual"
-              name="casual"
+              id="Casual"
+              name="Casual"
               onChange={handleStyleChange}
-              checked={filters.styles.includes("casual")}
+              checked={filters.styles.includes("Casual")}
             />
-            <label htmlFor="casual">Casual</label>
+            <label htmlFor="Casual">Casual</label>
           </div>
 
           <div>
             <input
               type="checkbox"
-              id="formal"
-              name="formal"
+              id="Formal"
+              name="Formal"
               onChange={handleStyleChange}
-              checked={filters.styles.includes("formal")}
+              checked={filters.styles.includes("Formal")}
             />
-            <label htmlFor="formal">Formal</label>
+            <label htmlFor="Formal">Formal</label>
           </div>
 
           <div>
             <input
               type="checkbox"
-              id="party"
-              name="party"
+              id="Party"
+              name="Party"
               onChange={handleStyleChange}
-              checked={filters.styles.includes("party")}
+              checked={filters.styles.includes("Party")}
             />
-            <label htmlFor="party">Party</label>
+            <label htmlFor="Party">Party</label>
           </div>
 
           <div>
             <input
               type="checkbox"
-              id="gym"
-              name="gym"
+              id="Gym"
+              name="Gym"
               onChange={handleStyleChange}
-              checked={filters.styles.includes("gym")}
+              checked={filters.styles.includes("Gym")}
             />
-            <label htmlFor="gym">Gym</label>
+            <label htmlFor="Gym">Gym</label>
           </div>
         </div>
         <hr />
