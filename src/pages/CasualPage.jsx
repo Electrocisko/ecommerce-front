@@ -73,33 +73,42 @@ const CasualPage = () => {
   };
 
   const handleApplyFilters = () => {
-
-    let urlParams = urlServer+"api/products/querys/?";
+    let urlParams = urlServer + "api/products/querys/?";
     if (filters.colors.length > 0) {
-     const colors =  filters.colors.map((color) => color.color_id )
-     const queryColors = "colors="+colors+"&"
-     urlParams+=queryColors;
+      const colors = filters.colors.map((color) => color.color_id);
+      const queryColors = "colors=" + colors + "&";
+      urlParams += queryColors;
     }
 
-    if(filters.sizes.length > 0) {
-      const sizes = filters.sizes.map((size) => size.size_id )
-      const querySizes ="sizes="+sizes+"&";
-      urlParams+=querySizes
+    if (filters.sizes.length > 0) {
+      const sizes = filters.sizes.map((size) => size.size_id);
+      const querySizes = "sizes=" + sizes + "&";
+      urlParams += querySizes;
     }
 
     if (filters.styles.length > 0) {
-      const queryStyles = "styles="+filters.styles+"&";
-     urlParams+=queryStyles
+      const queryStyles = "styles=" + filters.styles + "&";
+      urlParams += queryStyles;
     }
 
-  
+    if (filters.range[0] > 0) {
+      const queryMinPrice = "price_min=" + filters.range[0] + "&";
+      urlParams += queryMinPrice;
+    } else {
+      const queryMinPrice = "price_min=" + filters.minPrice + "&";
+      urlParams += queryMinPrice;
+    }
 
-
+    if (filters.range[1] < filters.maxPrice) {
+      const queryMaxPrice = "price_max=" + filters.range[1] + "&";
+      urlParams += queryMaxPrice;
+    } else {
+      const queryMaxPrice = "price_max=" + filters.maxPrice + "&";
+      urlParams += queryMaxPrice;
+    }
 
     filteredProducts(urlParams);
 
-
-    //SEGUIR TRABAJANDO ACA PARA QUE HAGA FETCH AL ENDPOINT
   };
 
   const sizeList = sizes.sizesList;
@@ -110,16 +119,13 @@ const CasualPage = () => {
 
   const filteredProducts = async (urlParams) => {
     try {
-      console.log("URL: "+urlParams);
       const resp = await fetch(urlParams);
       const data = await resp.json();
       console.log(data);
- 
     } catch (error) {
       console.log("Error");
     }
- 
-  }
+  };
 
   return (
     <div className={style.container}>
