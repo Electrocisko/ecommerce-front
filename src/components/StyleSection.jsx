@@ -16,8 +16,9 @@ const StyleSection = () => {
           <div className={style.styles_formal}>
             <Link to={"/formal"}>
               <img src="/images/formal.png" alt="formal clothes" />
+              <p>Formal</p>
             </Link>
-            <p>Formal</p>
+        
           </div>
           <div className={style.styles_party}>
             <p>Party</p>

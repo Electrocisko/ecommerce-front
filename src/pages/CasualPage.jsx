@@ -1,4 +1,4 @@
-/* eslint-disable no-fallthrough */
+
 import Filters from "../components/Filters";
 import style from "../scss/pages/stylespages.module.scss";
 import { urlServer } from "../data/endpoints.js";
