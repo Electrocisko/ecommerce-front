@@ -22,6 +22,7 @@ import CasualPage from "../pages/CasualPage.jsx";
 import FormalPage from "../pages/FormalPage.jsx";
 import PartyPage from "../pages/PartyPage.jsx";
 import GymPage from "../pages/GymPage.jsx";
+import FilterPage from "../pages/FilterPage.jsx";
 
 
 export const router = createBrowserRouter([
@@ -60,6 +61,10 @@ export const router = createBrowserRouter([
             {
                 path: "/gym",
                 element: <GymPage/>,
+            },
+            {
+                path: "/filter",
+                element: <FilterPage/>,
             },
             {
                 path: "/soon",

@@ -22,7 +22,7 @@ const StyleSection = () => {
           </div>
           <div className={style.styles_party}>
             <p>Party</p>
-            <Link to={"/party"}><img src="/images/party.png" alt="party clothes" /></Link> 
+            <Link to={"/filter"}><img src="/images/party.png" alt="party clothes" /></Link> 
           </div>
           <div className={style.styles_gym}>
             <p>Gym</p>
