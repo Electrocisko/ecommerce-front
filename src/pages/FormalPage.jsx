@@ -41,6 +41,7 @@ const FormalPage = () => {
       const resp = await fetch(urlParams);
       const data = await resp.json();
       console.log(data);
+      setProducts(data)
     } catch (error) {
       console.log("Error");
     }
