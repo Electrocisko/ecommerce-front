@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { urlServer } from "../data/endpoints";
 import style from "../scss/pages/stylespages.module.scss";
@@ -5,8 +6,9 @@ import { Link } from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
 
-const FilterPage = () => {
-  const filtersInit = {
+const FilterPage = ({estilo}) => {
+
+  let filtersInit = {
     minPrice: 0,
     maxPrice: 500,
     range: [0, 500],
@@ -14,6 +16,10 @@ const FilterPage = () => {
     sizes: [],
     styles: [],
   };
+
+  if (estilo) {
+    filtersInit={...filtersInit, styles:[estilo]}
+  }
 
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState({ data: [] });
@@ -144,11 +150,17 @@ const FilterPage = () => {
   };
 
   useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const URL = urlServer + "api/products";
 
     try {
       const fetchData = async () => {
-        const response = await fetch(`${URL}/querys/`);
+        let response;
+        if (estilo) {
+          response = await fetch(`${URL}/querys/?styles=${estilo}`);
+        } else {
+          response = await fetch(`${URL}/querys/`);
+        }
         const products = await response.json();
         const response1 = await fetch(urlServer + "api/colors");
         const response2 = await fetch(urlServer + "api/sizes");
@@ -163,7 +175,7 @@ const FilterPage = () => {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [estilo]);
 
   return (
     <div className={style.container}>

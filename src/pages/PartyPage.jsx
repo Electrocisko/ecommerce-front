@@ -1,8 +1,9 @@
+import FilterPage from "./FilterPage"
 
 
 const PartyPage = () => {
   return (
-    <div>PartyPage</div>
+    <FilterPage estilo={"Party"}/>
   )
 }
 
