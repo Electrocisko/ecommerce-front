@@ -2,11 +2,14 @@
 import { useState, useEffect } from "react";
 import { urlServer } from "../data/endpoints";
 import style from "../scss/pages/stylespages.module.scss";
-import { Link } from "react-router-dom";
+import { useLocation, Link } from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
 
-const FilterPage = ({estilo}) => {
+const FilterPage = () => {
+
+  const location = useLocation();
+  const styleFromState = location.state?.styleState || null;
 
   let filtersInit = {
     minPrice: 0,
@@ -14,12 +17,9 @@ const FilterPage = ({estilo}) => {
     range: [0, 500],
     colors: [],
     sizes: [],
-    styles: [],
+    styles: styleFromState ? [styleFromState] : [],
   };
 
-  if (estilo) {
-    filtersInit={...filtersInit, styles:[estilo]}
-  }
 
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState({ data: [] });
@@ -156,11 +156,12 @@ const FilterPage = ({estilo}) => {
     try {
       const fetchData = async () => {
         let response;
-        if (estilo) {
-          response = await fetch(`${URL}/querys/?styles=${estilo}`);
+        if (styleFromState) {
+          response = await fetch(`${URL}/querys/?styles=${styleFromState}`);
         } else {
           response = await fetch(`${URL}/querys/`);
         }
+       
         const products = await response.json();
         const response1 = await fetch(urlServer + "api/colors");
         const response2 = await fetch(urlServer + "api/sizes");
@@ -175,7 +176,7 @@ const FilterPage = ({estilo}) => {
     } catch (error) {
       console.log(error);
     }
-  }, [estilo]);
+  }, [styleFromState]);
 
   return (
     <div className={style.container}>

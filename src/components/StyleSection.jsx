@@ -9,12 +9,12 @@ const StyleSection = () => {
         <div className={style.styles_container}>
           <div className={style.styles_casual}>
             <p>Casual</p>
-            <Link to={"/casual"}>
+            <Link to={"/filter"} state={{ styleState: "Casual" }}>
               <img src="/images/casual_original.png" alt="casual clothes" />
             </Link>
           </div>
           <div className={style.styles_formal}>
-            <Link to={"/formal"}>
+            <Link to={"/filter"} state={{ styleState: "Formal" }}>
               <img src="/images/formal.png" alt="formal clothes" />
               <p>Formal</p>
             </Link>
@@ -22,11 +22,11 @@ const StyleSection = () => {
           </div>
           <div className={style.styles_party}>
             <p>Party</p>
-            <Link to={"/party"}><img src="/images/party.png" alt="party clothes" /></Link> 
+            <Link to={"/filter"} state={{ styleState: "Party" }}><img src="/images/party.png" alt="party clothes" /></Link> 
           </div>
           <div className={style.styles_gym}>
             <p>Gym</p>
-            <Link to={"/gym"}><img src="/images/gym.png" alt="gym clothes" /></Link>
+            <Link to={"/filter"} state={{ styleState: "Gym" }}><img src="/images/gym.png" alt="gym clothes" /></Link>
           </div>
         </div>
       </section>
