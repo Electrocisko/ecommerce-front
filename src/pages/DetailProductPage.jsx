@@ -11,6 +11,7 @@ import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext.jsx";
 import ColorPicker from "../components/smalls/ColorPicker.jsx";
 import SizePicker from "../components/smalls/SizePicker.jsx";
+import Price from "../components/smalls/Price.jsx";
 
 const DetailProductPage = () => {
   const { id } = useParams(); // Captura el parámetro de la URL
@@ -121,7 +122,7 @@ const DetailProductPage = () => {
         <div className={style.buttons_container}>
           <h1 className={style.title}>{product.name}</h1>
 
-          {product.discount === 0 ? (
+          {/* {product.discount === 0 ? (
             <h2 className={style.price}>$ {productPrice}</h2>
           ) : (
             <h2>
@@ -129,7 +130,8 @@ const DetailProductPage = () => {
               <span className={style.original_price}> ${productPrice}</span>
               <span className={style.discount}>-{product.discount}%</span>
             </h2>
-          )}
+          )} */}
+          <Price product={product}/>
 
           <p>{product.description}</p>
           <hr className={style.hr} />
