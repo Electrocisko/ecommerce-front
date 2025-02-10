@@ -3,30 +3,32 @@ import { useState } from "react";
 import style from "../scss/modules/card.module.scss";
 import Price from "./smalls/Price";
 
-
-const Card = ({ urlImage, product}) => {
+const Card = ({ urlImage, product }) => {
   const [loading, setLoading] = useState(true);
   const handleLoad = () => {
-    setLoading(false)
-  }
+    setLoading(false);
+  };
 
   return (
     <div className={style.card}>
-         {loading && <div className={style.spinner}> <h2>Loading...</h2></div>}
-      <img 
-        src={urlImage} 
-        alt={"Imagen de " + name} 
-        onLoad={handleLoad} 
-        style={{ display: loading ? 'none' : 'block' }} 
+      {loading && (
+        <div className={style.spinner}>
+          {" "}
+          <h2>Loading...</h2>
+        </div>
+      )}
+      <img
+        src={urlImage}
+        alt={"Imagen de " + name}
+        onLoad={handleLoad}
+        style={{ display: loading ? "none" : "block" }}
       />
       <div className={style.info}>
-      <h3>{product.name}</h3>
-        {/* {discount > 0? <h4 > <span >${price - ((discount/100) * price)}</span> <span >SALE!</span></h4>  : <h4>${price}</h4> } */}
-       <Price product={product}/>
+        <h3>{product.name}</h3>
+        <Price product={product} />
       </div>
-       
     </div>
-  )
-}
+  );
+};
 
-export default Card
+export default Card;

@@ -17,10 +17,8 @@ const NewArrivalsPage = () => {
           {data.map((item) => (
            <Link to={"/detail/" + item.product_id} key={item.product_id}>
            <Card
-             name={item.name}
-             price={item.price}
+            product={item}
              urlImage={urlServer + "images/" + item.imageurl}
-             discount = {item.discount}
            />
          </Link>
           ))}
