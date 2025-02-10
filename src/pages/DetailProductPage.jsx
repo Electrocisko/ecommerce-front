@@ -12,6 +12,7 @@ import { GlobalContext } from "../context/GlobalContext.jsx";
 import ColorPicker from "../components/smalls/ColorPicker.jsx";
 import SizePicker from "../components/smalls/SizePicker.jsx";
 import Price from "../components/smalls/Price.jsx";
+import CardsSection from "../components/CardsSection.jsx";
 
 const DetailProductPage = () => {
   const { id } = useParams(); // Captura el parámetro de la URL
@@ -163,7 +164,7 @@ const DetailProductPage = () => {
           </div>
         </div>
       </div>
-      <section className={style.section}>
+      {/* <section className={style.section}>
         <h2 className={style.h2}>YOU MIGHT ALSO LIKE</h2>
         <div className={style.card_container}>
           {firstNewsProducts.map((item) => (
@@ -176,8 +177,10 @@ const DetailProductPage = () => {
             </Link>
           ))}
         </div>
-      </section>
+      </section> */}
+      <CardsSection products={firstNewsProducts} title="YOU MIGHT ALSO LIKE" />
       <ScrollRestoration />
+    
     </>
   );
 };
