@@ -5,8 +5,6 @@ import { urlServer } from "../data/endpoints.js";
 import { ScrollRestoration } from "react-router-dom";
 import Button from "../components/smalls/Button.jsx";
 import CartButton from "../components/smalls/CartButton.jsx";
-import { Link } from "react-router-dom";
-import Card from "../components/Card.jsx";
 import { useState, useContext, useEffect } from "react";
 import { GlobalContext } from "../context/GlobalContext.jsx";
 import ColorPicker from "../components/smalls/ColorPicker.jsx";
@@ -22,10 +20,6 @@ const DetailProductPage = () => {
   const firstNewsProducts = newProducts.newProducts.slice(0, 4);
   const product = productDetail.data[0];
   const stock = productDetail.stock;
-  const productPrice = Math.trunc(product.price);
-  const ofertPrice = Math.trunc(
-    product.price - product.price * (product.discount / 100)
-  );
 
   const [selectedColor, setSelectedColor] = useState(stock[0] ); //Si no llega por el stock, ver producto
   const uniqueColor = new Set();
@@ -51,7 +45,6 @@ const DetailProductPage = () => {
   const [sizeList, setsizeList] = useState([]);
   const [selectedSize, setSelectedSize] = useState(stock[0]);
  
-
   const handleSizeClick = (item) => {
     setSelectedSize(item);
   };
@@ -122,21 +115,9 @@ const DetailProductPage = () => {
 
         <div className={style.buttons_container}>
           <h1 className={style.title}>{product.name}</h1>
-
-          {/* {product.discount === 0 ? (
-            <h2 className={style.price}>$ {productPrice}</h2>
-          ) : (
-            <h2>
-              <span className={style.price}>${ofertPrice}</span>
-              <span className={style.original_price}> ${productPrice}</span>
-              <span className={style.discount}>-{product.discount}%</span>
-            </h2>
-          )} */}
           <Price product={product}/>
-
           <p>{product.description}</p>
           <hr className={style.hr} />
-
           <h3 className={style.subtitle}>Select Colors</h3>
 
           <ColorPicker
@@ -164,20 +145,6 @@ const DetailProductPage = () => {
           </div>
         </div>
       </div>
-      {/* <section className={style.section}>
-        <h2 className={style.h2}>YOU MIGHT ALSO LIKE</h2>
-        <div className={style.card_container}>
-          {firstNewsProducts.map((item) => (
-            <Link to={"/detail/" + item.product_id} key={item.product_id}>
-              <Card
-                name={item.name}
-                price={item.price}
-                urlImage={urlServer + "images/" + item.imageurl}
-              />
-            </Link>
-          ))}
-        </div>
-      </section> */}
       <CardsSection products={firstNewsProducts} title="YOU MIGHT ALSO LIKE" />
       <ScrollRestoration />
     
