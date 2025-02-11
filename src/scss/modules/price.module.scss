@@ -1,20 +1,76 @@
+@import "../abstracts/variables";
+
+
+.price_container {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+
 .discount {
     color: red;
-    font-weight: lighter;
-    font-size: 16px;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: normal;
     border-radius: 62px;
     background: rgba(255, 51, 51, 0.10);
     padding: 6px 12px;
+    font-family: $Satoshi;
 }
 
 .original_price {
+    font-weight: 700;
+    font-size: 24px;
     color: rgba(0, 0, 0, 0.40);
     text-decoration: line-through;
     margin-right: 8px;
     display: inline-block;
-    font-weight: 500;
+    font-family: $Satoshi;
+
+
 }
 
 .price {
     margin-right: 8px;
+    font-size: 24px;
+    font-weight: 700;
+    font-family: $Satoshi;
+}
+
+///////// Mobil Screen /////////////////////
+
+@media (max-width: 415px) {
+
+    
+.price_container {
+    display:flex;
+  justify-content: center;
+  align-items: center;
+  
+}
+
+    .discount {
+        color: red;
+        font-weight: 700;
+        font-size: 10px;
+        border-radius: 62px;
+        background: rgba(255, 51, 51, 0.10);
+        padding: 4px 8px;
+    }
+    
+    .original_price {
+        color: rgba(0, 0, 0, 0.40);
+        text-decoration: line-through;
+        margin-right: 8px;
+        display: inline-block;
+        font-weight: 500;
+        font-size: 18px;
+    }
+    
+    .price {
+        margin-right: 8px;
+        font-size: 18px;
+    }
+
 }

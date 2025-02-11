@@ -7,15 +7,15 @@ const Price = ({ product }) => {
     product.price - product.price * (product.discount / 100)
   );
   return (
-    <div>
+    <div className={style.container} >
       {product.discount === 0 ? (
-        <h2 className={style.price}>$ {productPrice}</h2>
+        <div className={style.price}>  $ {productPrice} </div>
       ) : (
-        <h2>
-          <span className={style.price}>${ofertPrice}</span>
-          <span className={style.original_price}> ${productPrice}</span>
+        <div className={style.price_container}>
+          <span className={style.price}> ${ofertPrice} </span>
+          <span className={style.original_price}>${productPrice} </span>
           <span className={style.discount}>-{product.discount}%</span>
-        </h2>
+        </div>
       )}
     </div>
   );
