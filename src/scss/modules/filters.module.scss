@@ -2,7 +2,23 @@
 @import "../abstracts/variables";
 
 
+.border {
+    border-radius: 20px;
+    border: 1px solid rgba(0, 0, 0, 0.10);
+}
 
+.filterButton{
+    display: flex;
+    align-items: center;
+ 
+
+    p{
+        font-size: 10px;
+        margin-left: 3px;
+        color: rgb(157, 152, 152);
+        cursor: pointer;
+    }
+}
 
 .container {
     display: flex;
@@ -10,8 +26,6 @@
     align-items: center;
     width: 280px;
     height: auto;
-    border-radius: 20px;
-    border: 1px solid rgba(0, 0, 0, 0.10);
     margin-right: 21px;
     padding: 20px 24px;
     color: #000;
@@ -23,7 +37,7 @@
 
     .header{
         display: flex;
-        align-items: normal ;
+        align-items:baseline;
         justify-content: space-between;
         width: 100%;
     }
@@ -197,3 +211,11 @@
     transform: translateY(2px); /* Simula un desplazamiento hacia abajo */
   }
   
+  ///////// Mobil Screen /////////////////////
+
+@media (max-width: 415px) {
+    .border {
+        border-radius: 20px;
+        border: 1px solid rgba(0, 0, 0, 0.10);
+    }
+}

@@ -26,20 +26,19 @@ const Filters = ({
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
   const [dropdownStyle, setDropdownStyle] = useState(false);
-  const [showFilters, setShowFilters] = useState(true);
+  const [showFilters, setShowFilters] = useState(window.matchMedia("(max-width: 415px)").matches); // Va de acuerdo a la pantalla
 
   const handleFilterIcon = () => {
     setShowFilters(!showFilters);
   };
 
   return (
-    <div className={style.container}>
+    <div className={` ${style.container} ${!showFilters && style.border}`}>
       <div className={style.header}>
-        <h2>Filters</h2>
-       
+        {!showFilters && <h2>Filters</h2>}
         {showFilters ? (
-          <button onClick={handleFilterIcon}>
-            <RiEqualizer3Line className={style.icon} />
+          <button onClick={handleFilterIcon} className={style.filterButton}>
+            <RiEqualizer3Line className={style.icon} /><p>Filters</p>
           </button>
         ) : (
           <button onClick={handleFilterIcon}>
@@ -47,9 +46,7 @@ const Filters = ({
           </button>
         )}
       </div>
-      <div className={` ${
-            showFilters ? style.hide : style.show
-          }`}>
+      <div className={` ${showFilters ? style.hide : style.show}`}>
         <div className={style.price_container}>
           <hr></hr>
           <h2>Price</h2>
