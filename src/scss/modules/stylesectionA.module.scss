@@ -1,97 +1,10 @@
 @import "../abstracts/variables";
 
-.image_container {
-
-    width: 700px;
-    height: 500px;
-    background-image: url("/images/models.jpg");
-    background-position: top;
-    background-size: cover;
-    border-radius: 10px;
-}
-
-.container {
-    display: flex;
-    margin: 0 100px;
-}
-
-.title {
-    font-size: 64px;
-    font-weight: bold;
-    width: 577px;   
-}
-
-.text {
-    font-family: $Satoshi;
-    width: 545px;
-    color: rgba(0, 0, 0, 0.6);
-    margin-bottom: 32px;
-}
-
-.button {
-    margin: 10px 0px;
-}
-
-.data_container {
-    display: flex;
-    width: 596px;
-    gap: 32px;
-    margin-top: 32px;
-}
-
-.text_data_small {
-    color: rgba(0, 0, 0, 0.6);
-    font-family: $Satoshi;
-    font-size: 14px;
-}
-
-.text_data {
-    // font-family: $Satoshi;
-    font-size: 40px;
-    font-weight: 600;
-}
-
-.branchs_container {
-    display: flex;
-    justify-content: space-evenly;
-    align-items: center;
-    background-color: $Dark ;
-    color: $Light;
-    height: 80px;
-    margin: 10px 0px 45px 0px;
-
-
-    p {
-        font-size: 2rem;
-    }
-
-}
-
 .h2 {
     font-size: 3rem;
     font-weight: bold;
     text-align: center;
     margin-bottom: 55px;
-}
-
-.section {
-    margin-bottom: 80px;
-    margin-left: 100px;
-    margin-right: 100px;
-}
-
-.card_container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 20px;
-    flex-wrap: wrap;
-}
-
-.button_center {
-    display: flex;
-    justify-content: center;
-    margin: 15px;
 }
 
 .style_section {
@@ -101,6 +14,10 @@
     border-radius: 40px;
 
     h2 {
+        font-size: 3rem;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 55px;
         padding: 70px;
         padding-bottom: 15px;
     }
@@ -116,7 +33,7 @@
     margin: 0px 64px;
     padding-bottom: 76px;
 
-    div {
+    .links {
         height: 18rem;
         border-radius: 40px;
         background-color: $Light;
@@ -138,7 +55,6 @@
     .styles_casual {
         grid-column: 1 / 2;
         grid-row: 1;
-        border: solid red 1px;
 
         img {
             position: absolute;
@@ -191,39 +107,39 @@
     .image_container {
         width: 348px;
         height: 400px;
-       
+
         background-image: url("/images/models-mobil.jpg");
         background-position: top;
-        background-size:cover;
+        background-size: cover;
         background-repeat: no-repeat;
         border-radius: 10px;
     }
-    
+
     .container {
         display: flex;
         flex-direction: column;
         margin: 0 17px;
     }
-    
+
     .title {
-        font-size:2.2rem;
+        font-size: 2.2rem;
         font-weight: bold;
-        width: 100%;   
+        width: 100%;
         line-height: 34px;
         margin-bottom: 20px;
     }
-    
+
     .text {
         font-family: $Satoshi;
         width: 100%;
         color: rgba(0, 0, 0, 0.6);
         margin-bottom: 32px;
     }
-    
+
     .button {
         margin: 10px 0px;
     }
-    
+
     .data_container {
         display: flex;
         justify-content: center;
@@ -232,19 +148,19 @@
         gap: 32px;
         margin-top: 32px;
     }
-    
+
     .text_data_small {
         color: rgba(0, 0, 0, 0.6);
         font-family: $Satoshi;
         font-size: 12px;
     }
-    
+
     .text_data {
         // font-family: $Satoshi;
         font-size: 1.4rem;
         font-weight: 600;
     }
-    
+
     .branchs_container {
         display: flex;
         flex-wrap: wrap;
@@ -254,26 +170,26 @@
         background-color: $Dark ;
         color: $Light;
         height: 80px;
-     
-    
-    
+
+
+
         p {
             font-size: 1.5rem;
         }
-    
+
     }
-    
+
     .h2 {
         font-size: 2rem;
         font-weight: bold;
         text-align: center;
         margin-bottom: 32px;
     }
-    
+
     .section {
-      margin: 17px;
+        margin: 17px;
     }
-    
+
     .card_container {
         display: flex;
         justify-content: center;
@@ -281,20 +197,20 @@
         flex-wrap: wrap;
         gap: 20px;
 
-       
+
     }
-    
+
     .button_center {
         display: flex;
         justify-content: center;
     }
-    
+
     .style_section {
         margin: 0px 17px;
         margin-bottom: 76px;
         background-color: $LightGray;
         border-radius: 40px;
-    
+
         h2 {
             padding: 10px;
             padding-bottom: 15px;
@@ -302,16 +218,16 @@
             margin-bottom: 10px;
         }
     }
-    
+
     .styles_container {
-    
+
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         margin: 0px;
-      
-        
+
+
         div {
             height: 190px;
             width: 310px;
@@ -319,7 +235,7 @@
             background-color: $Light;
             overflow: hidden;
             position: relative;
-    
+
             p {
                 position: absolute;
                 left: 20px;
@@ -331,27 +247,27 @@
                 z-index: 1;
             }
 
-    }
+        }
 
-    .styles_formal {
-    
-        img {
-            position: absolute;
-            left: -60px;
-            top: -100px;
+        .styles_formal {
+
+            img {
+                position: absolute;
+                left: -60px;
+                top: -100px;
+            }
         }
-    }
-    
-    .styles_party {
-       
-        img {
-            position: absolute;
-            left: -200px;
-            top: -190px;
-            
+
+        .styles_party {
+
+            img {
+                position: absolute;
+                left: -200px;
+                top: -190px;
+
+            }
         }
-    }
-    
-    
+
+
     }
 }
