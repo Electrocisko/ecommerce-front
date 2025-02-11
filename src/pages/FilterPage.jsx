@@ -2,7 +2,7 @@
 import { useState, useEffect } from "react";
 import { urlServer } from "../data/endpoints";
 import style from "../scss/pages/stylespages.module.scss";
-import { useLocation, Link } from "react-router-dom";
+import { useLocation, Link, ScrollRestoration } from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
 
@@ -222,7 +222,9 @@ const FilterPage = () => {
           )}
         </div>
       </section>
+      <ScrollRestoration/>
     </div>
+ 
   );
 };
 

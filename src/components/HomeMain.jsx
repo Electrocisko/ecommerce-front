@@ -1,6 +1,7 @@
 import Button from "./smalls/Button";
 import style from "../scss/modules/homemain.module.scss";
 import { useLoaderData } from "react-router-dom";
+import { ScrollRestoration } from "react-router-dom";
 import { Link } from "react-router-dom";
 import StyleSection from "./StyleSection.jsx";
 import CardsSection from "./CardsSection.jsx";
@@ -53,6 +54,7 @@ const HomeMain = () => {
       <CardsSection products={firstTopProducts} title="TOP SELLING" />
 
       <StyleSection />
+      <ScrollRestoration />
     </>
   );
 };
