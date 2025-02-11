@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { useState, useEffect } from "react";
 import { urlServer } from "../data/endpoints";
-import style from "../scss/pages/stylespages.module.scss";
+import style from "../scss/pages/filterpages.module.scss";
 import { useLocation, Link, ScrollRestoration } from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
@@ -180,7 +180,7 @@ const FilterPage = () => {
 
   return (
     <div className={style.container}>
-      <section>
+      <section className={style.filter_section}>
         <Filters
           colorsList={colors.colorList}
           handleColorClick={handleColorClick}
@@ -199,7 +199,7 @@ const FilterPage = () => {
         />
       </section>
 
-      <section>
+      <section className={style.cards_section}>
         <div className={style.cards_container}>
           {loading ? (
             <div className={style.message}>
