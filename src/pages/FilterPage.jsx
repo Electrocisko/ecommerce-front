@@ -5,11 +5,12 @@ import style from "../scss/pages/filterpages.module.scss";
 import { useLocation, Link, ScrollRestoration } from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
+import { RiEqualizer3Line, RiCloseLine } from "react-icons/ri";
 
 const FilterPage = () => {
-
   const location = useLocation();
   const styleFromState = location.state?.styleState || null;
+  const [showFilters, setShowFilters] = useState(window.matchMedia("(max-width: 415px)").matches); // Va de acuerdo a la pantalla
 
   let filtersInit = {
     minPrice: 0,
@@ -19,7 +20,6 @@ const FilterPage = () => {
     sizes: [],
     styles: styleFromState ? [styleFromState] : [],
   };
-
 
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState({ data: [] });
@@ -161,7 +161,7 @@ const FilterPage = () => {
         } else {
           response = await fetch(`${URL}/querys/`);
         }
-       
+
         const products = await response.json();
         const response1 = await fetch(urlServer + "api/colors");
         const response2 = await fetch(urlServer + "api/sizes");
@@ -178,53 +178,62 @@ const FilterPage = () => {
     }
   }, [styleFromState]);
 
-  return (
-    <div className={style.container}>
-      <section className={style.filter_section}>
-        <Filters
-          colorsList={colors.colorList}
-          handleColorClick={handleColorClick}
-          selectedColor={colors.colorList[0]}
-          sizeList={sizes.sizesList}
-          selectedSize={sizes.sizesList[0]}
-          handleSizeClick={handleSizeClick}
-          priceValue={priceValue}
-          setPriceValue={setPriceValue}
-          filters={filters}
-          minPrice={filters.minPrice}
-          maxPrice={filters.maxPrice}
-          handleSlider={handleSlider}
-          handleApplyFilters={handleApplyFilters}
-          handleStyleChange={handleStyleChange}
-        />
-      </section>
+  const handleFilterIcon = () => {
+    setShowFilters(!showFilters);
+  };
 
-      <section className={style.cards_section}>
-        <div className={style.cards_container}>
-          {loading ? (
-            <div className={style.message}>
-              <h2>Loading Products...</h2>
-            </div>
-          ) : products.dataFound ? (
-            products.data.map((item) => (
-              <Link to={`/detail/${item.product_id}`} key={item.product_id}>
-                <Card
-                  urlImage={`${urlServer}images/${item.imageurl}`}
-                  discount={item.discount}
-                  product={item}
-                />
-              </Link>
-            ))
-          ) : (
-            <div className={style.message}>
-              <h2> Oops! No products found.</h2> <h3>Try modifying your search.</h3> 
-            </div>
-          )}
-        </div>
-      </section>
-      <ScrollRestoration/>
+  return (
+    <div>
+      <button onClick={handleFilterIcon} className={style.filterButton}>
+        <RiEqualizer3Line className={style.icon} />
+      </button>
+      <div className={style.container}>
+        <section className={ showFilters?  `${style.filter_section}` : `${style.hide}` }>
+          <Filters
+            colorsList={colors.colorList}
+            handleColorClick={handleColorClick}
+            selectedColor={colors.colorList[0]}
+            sizeList={sizes.sizesList}
+            selectedSize={sizes.sizesList[0]}
+            handleSizeClick={handleSizeClick}
+            priceValue={priceValue}
+            setPriceValue={setPriceValue}
+            filters={filters}
+            minPrice={filters.minPrice}
+            maxPrice={filters.maxPrice}
+            handleSlider={handleSlider}
+            handleApplyFilters={handleApplyFilters}
+            handleStyleChange={handleStyleChange}
+          />
+        </section>
+
+        <section className={style.cards_section}>
+          <div className={style.cards_container}>
+            {loading ? (
+              <div className={style.message}>
+                <h2>Loading Products...</h2>
+              </div>
+            ) : products.dataFound ? (
+              products.data.map((item) => (
+                <Link to={`/detail/${item.product_id}`} key={item.product_id}>
+                  <Card
+                    urlImage={`${urlServer}images/${item.imageurl}`}
+                    discount={item.discount}
+                    product={item}
+                  />
+                </Link>
+              ))
+            ) : (
+              <div className={style.message}>
+                <h2> Oops! No products found.</h2>{" "}
+                <h3>Try modifying your search.</h3>
+              </div>
+            )}
+          </div>
+        </section>
+        <ScrollRestoration />
+      </div>
     </div>
- 
   );
 };
 
