@@ -7,7 +7,7 @@ import SizePicker from "./smalls/SizePicker";
 import { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import { RiEqualizer3Line, RiCloseLine } from "react-icons/ri";
+
 
 const Filters = ({
   colorsList,

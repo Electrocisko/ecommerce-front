@@ -10,8 +10,8 @@ import { RiEqualizer3Line, RiCloseLine } from "react-icons/ri";
 const FilterPage = () => {
   const location = useLocation();
   const styleFromState = location.state?.styleState || null;
-  const [showFilters, setShowFilters] = useState(window.matchMedia("(max-width: 415px)").matches); // Va de acuerdo a la pantalla
-
+  //const [showFilters, setShowFilters] = useState(window.matchMedia("(max-width: 415px)").matches); // Va de acuerdo a la pantalla
+  const [showFilters, setShowFilters] = useState(false);
   let filtersInit = {
     minPrice: 0,
     maxPrice: 500,
