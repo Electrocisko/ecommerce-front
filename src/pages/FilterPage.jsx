@@ -184,7 +184,7 @@ const FilterPage = () => {
 
   return (
     <div>
-      <button onClick={handleFilterIcon} className={style.filterButton}>
+      <button onClick={handleFilterIcon} className={ showFilters?  `${style.hide}` : `${style.filterButton}` }>
         <RiEqualizer3Line className={style.icon} />
       </button>
       <div className={style.container}>
