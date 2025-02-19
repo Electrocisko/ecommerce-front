@@ -5,7 +5,7 @@ import style from "../scss/pages/filterpages.module.scss";
 import { useLocation, Link, ScrollRestoration } from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
-import { RiEqualizer3Line, RiCloseLine } from "react-icons/ri";
+import { RiEqualizer3Line} from "react-icons/ri";
 
 const FilterPage = () => {
   const location = useLocation();
@@ -204,6 +204,7 @@ const FilterPage = () => {
             handleSlider={handleSlider}
             handleApplyFilters={handleApplyFilters}
             handleStyleChange={handleStyleChange}
+            handleFilterIcon={handleFilterIcon}
           />
         </section>
 

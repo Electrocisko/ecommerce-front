@@ -7,7 +7,7 @@ import SizePicker from "./smalls/SizePicker";
 import { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-
+import {  RiCloseLine } from "react-icons/ri";
 
 const Filters = ({
   colorsList,
@@ -22,6 +22,7 @@ const Filters = ({
   handleSlider,
   handleApplyFilters,
   handleStyleChange,
+  handleFilterIcon
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
@@ -29,8 +30,11 @@ const Filters = ({
 
   return (
     <div className={` ${style.container}`}>
+      <button className={style.icon_close} onClick={handleFilterIcon}> <RiCloseLine/></button>
+       
       <div className={style.price_container}>
         <h2>Filters</h2>
+      
         <hr></hr>
         <h2>Price</h2>
 
