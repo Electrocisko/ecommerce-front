@@ -2,7 +2,6 @@
 import { useState } from "react";
 import style from "../../scss/modules/fullform.module.scss";
 import { urlServer } from "../../data/endpoints";
-import ColorStockPicker from "../smalls/ColorStockPicker ";
 import { useLoaderData } from "react-router-dom";
 import ColorPicker from "../smalls/ColorPicker";
 
@@ -198,6 +197,7 @@ const FullForm = () => {
               value="Casual"
               checked={product.style == "Casual"}
               onChange={handleChange}
+              required
             />
             <span htmlFor="Casual">Casual</span>
           </label>
@@ -235,6 +235,7 @@ const FullForm = () => {
               value="Men"
               checked={product.gender == "Men"}
               onChange={handleChange}
+              required
             />
             <span htmlFor="men">Men</span>
           </label>
@@ -274,11 +275,6 @@ const FullForm = () => {
 
       <div className={style.colors_container}>
         <p> Choose Color</p>
-        {/* <ColorStockPicker
-          colorsList={colors}
-          handleColorClick={handleColorClick}
-          selectedColor={selectedColor}
-        /> */}
         <ColorPicker
           colorsList={colors.colorList}
           handleColorClick={handleColorClick}
@@ -296,6 +292,7 @@ const FullForm = () => {
             placeholder="XS"
             onChange={handleChange}
             value={product.sizeXS}
+        
           />
           <input
             className={style.input}
