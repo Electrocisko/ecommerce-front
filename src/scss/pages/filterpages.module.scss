@@ -1,5 +1,5 @@
 .container {
-    margin: 0px 100px;
+ 
     display: flex;
 }
 
@@ -13,7 +13,6 @@
 
 .icon {
     font-size: 30px;
-    margin-left: 100px;
     margin-bottom: 10px;
 }
 
@@ -45,7 +44,24 @@
 .filterButton {
     width: 100%;
     text-align: left;
+    color: rgba(0, 0, 0, 0.60);
   
+}
+
+.maindiv{
+    margin: 0px 100px;
+}
+.pagination{
+    width: 100%;
+    text-align: end;
+    margin-bottom: 10px;
+    color: rgba(0, 0, 0, 0.60);
+}
+
+.show_icon_info{
+    display: flex;
+    align-items:center;
+   
 }
 
 @media (max-width: 415px) {
@@ -58,10 +74,6 @@
     }
 
     .filterButton {
-
         width: 100%;
-        text-align: right;
-        padding-right:20px;
-        padding-top: 10px;
     }
 }

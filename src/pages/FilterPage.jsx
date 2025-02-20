@@ -10,7 +10,6 @@ import { RiEqualizer3Line} from "react-icons/ri";
 const FilterPage = () => {
   const location = useLocation();
   const styleFromState = location.state?.styleState || null;
-  //const [showFilters, setShowFilters] = useState(window.matchMedia("(max-width: 415px)").matches); // Va de acuerdo a la pantalla
   const [showFilters, setShowFilters] = useState(false);
   let filtersInit = {
     minPrice: 0,
@@ -149,6 +148,8 @@ const FilterPage = () => {
     filteredProducts(urlParams);
   };
 
+  
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     const URL = urlServer + "api/products";
@@ -170,6 +171,9 @@ const FilterPage = () => {
         setProducts(products);
         setColors(colors);
         setSizes(sizes);
+
+        console.log(products);
+
       };
 
       fetchData();
@@ -183,10 +187,15 @@ const FilterPage = () => {
   };
 
   return (
-    <div>
+    <div className={style.maindiv}>
+
+      <div className={style.show_icon_info}>
       <button onClick={handleFilterIcon} className={ showFilters?  `${style.hide}` : `${style.filterButton}` }>
         <RiEqualizer3Line className={style.icon} />
       </button>
+      <p className={style.pagination}>Showing {products.totalProductShowing} of {products.totalProducts} Products </p>
+      </div>
+ 
       <div className={style.container}>
         <section className={ showFilters?  `${style.filter_section}` : `${style.hide}` }>
           <Filters
