@@ -8,6 +8,12 @@ const loaderProducts = async () => {
   return { products };
 };
 
+const loaderNewArrivalsPage = async () => {
+  let response = await fetch(URL + "/new");
+  const newProducts = await response.json();
+  return { newProducts};
+};
+
 
 
 const loaderHomePage = async () => {
@@ -42,4 +48,4 @@ const loaderOnSaleProducts = async () => {
   return { products };
 }
 
-export { loaderHomePage, loaderProducts, loaderProductDetail, loaderStockData, loaderOnSaleProducts };
+export { loaderHomePage, loaderProducts, loaderProductDetail, loaderStockData, loaderOnSaleProducts, loaderNewArrivalsPage };

@@ -11,7 +11,7 @@ import LayoutPublic from "../layout/LayOut";
 import WomenPage from "../pages/WomenPage";
 import ManPage from "../pages/ManPage";
 import ShopPage from "../pages/ShopPage";
-import { loaderProducts, loaderHomePage, loaderProductDetail, loaderStockData, loaderOnSaleProducts } from "../loaders/productsLoader.js";
+import { loaderHomePage, loaderProductDetail, loaderStockData, loaderOnSaleProducts, loaderNewArrivalsPage } from "../loaders/productsLoader.js";
 import AdminPage from "../pages/AdminPage.jsx";
 import PrivateLayout from "../layout/PrivateLayout.jsx";
 import FullProduct from "../pages/FullProduct.jsx";
@@ -57,7 +57,7 @@ export const router = createBrowserRouter([
             {
                 path: "/new",
                 element: <NewArrivalsPage/>,
-                loader: loaderProducts
+                loader:loaderNewArrivalsPage
             
             },
             {

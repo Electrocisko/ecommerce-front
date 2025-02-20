@@ -50,8 +50,8 @@ const HomeMain = () => {
         <p>Calvin Klein</p>
       </div>
 
-      <CardsSection products={firstNewsProducts} title="NEW ARRIVALS" />
-      <CardsSection products={firstTopProducts} title="TOP SELLING" />
+      <CardsSection products={firstNewsProducts} title="NEW ARRIVALS" urlPath={"/new"} />
+      <CardsSection products={firstTopProducts} title="TOP SELLING"  />
 
       <StyleSection />
       <ScrollRestoration />

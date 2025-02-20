@@ -5,9 +5,7 @@ import ButtonLight from "./smalls/ButtonLight";
 import Card from "./Card";
 import { urlServer } from "../data/endpoints.js";
 
-const CardsSection = ({ products, title }) => {
-
-
+const CardsSection = ({ products, title, urlPath }) => {
 
   return (
     <section className={style.section}>
@@ -23,9 +21,10 @@ const CardsSection = ({ products, title }) => {
           </Link>
         ))}
       </div>
-      <a href="/" className={style.button_center}>
-        <ButtonLight text={"View All"} />
-      </a>
+      {urlPath && <Link to={urlPath} className={style.button_center} onClick={() => window.scrollTo(0, 0)}> <ButtonLight text={"View All"} />
+      </Link> }
+
+      
     </section>
   );
 };

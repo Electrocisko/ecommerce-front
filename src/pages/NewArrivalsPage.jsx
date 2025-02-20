@@ -6,8 +6,8 @@ import StyleSection from "../components/StyleSection.jsx";
 import { Link } from "react-router-dom";
 
 const NewArrivalsPage = () => {
-  const { products } = useLoaderData();
-  const data = products.data;
+  const { newProducts } = useLoaderData();
+  const data =newProducts.newProducts
 
   return (
     <>
