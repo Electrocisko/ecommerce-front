@@ -9,12 +9,12 @@
 
 
 
-.filterButton{
+.filterButton {
     display: flex;
     align-items: center;
- 
 
-    p{
+
+    p {
         font-size: 10px;
         margin-left: 3px;
         color: rgb(157, 152, 152);
@@ -39,14 +39,14 @@
     border-radius: 20px;
     border: 1px solid rgba(0, 0, 0, 0.10);
 
-    button{
+    button {
         width: 100%;
-      text-align: right;
+        text-align: right;
     }
 
-    .header{
+    .header {
         display: flex;
-        align-items:baseline;
+        align-items: baseline;
         justify-content: space-between;
         width: 100%;
     }
@@ -116,11 +116,11 @@
         cursor: pointer;
     }
 
-    
-.icon_close {
-    font-size: 30px;
 
-}
+    .icon_close {
+        font-size: 30px;
+
+    }
 
     .style_base {
 
@@ -186,7 +186,7 @@
         /* Color del subrayado */
     }
 
-  
+
 
 
 
@@ -219,14 +219,28 @@
     line-height: normal;
     cursor: pointer;
     transition: transform 0.1s ease, background-color 0.2s ease;
-  }
-  .button_filter:active {
-    background: #525151; /* Cambia el color de fondo a un gris oscuro */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Añade un poco de sombra para profundidad */
-    transform: translateY(2px); /* Simula un desplazamiento hacia abajo */
-  }
-  
-  ///////// Mobil Screen /////////////////////
+}
+
+.button_filter:active {
+    background: #525151;
+    /* Cambia el color de fondo a un gris oscuro */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    /* Añade un poco de sombra para profundidad */
+    transform: translateY(2px);
+    /* Simula un desplazamiento hacia abajo */
+}
+
+.links {
+    color: rgba(0, 0, 0, 0.60);
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: normal;
+    margin-bottom: 10px;
+
+}
+
+///////// Mobil Screen /////////////////////
 
 @media (max-width: 415px) {
     .border {

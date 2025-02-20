@@ -7,7 +7,8 @@ import SizePicker from "./smalls/SizePicker";
 import { useState } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
-import {  RiCloseLine } from "react-icons/ri";
+import { RiCloseLine } from "react-icons/ri";
+import { Link } from "react-router-dom";
 
 const Filters = ({
   colorsList,
@@ -22,7 +23,7 @@ const Filters = ({
   handleSlider,
   handleApplyFilters,
   handleStyleChange,
-  handleFilterIcon
+  handleFilterIcon,
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
@@ -30,11 +31,14 @@ const Filters = ({
 
   return (
     <div className={` ${style.container}`}>
-      <button className={style.icon_close} onClick={handleFilterIcon}> <RiCloseLine/></button>
-       
+      <button className={style.icon_close} onClick={handleFilterIcon}>
+        {" "}
+        <RiCloseLine />
+      </button>
+
       <div className={style.price_container}>
         <h2>Filters</h2>
-      
+
         <hr></hr>
         <h2>Price</h2>
 
@@ -125,49 +129,38 @@ const Filters = ({
         </div>
 
         <div className={`${dropdownStyle ? style.show : style.hide}`}>
-          <div>
-            <input
-              type="checkbox"
-              id="Casual"
-              name="Casual"
-              onChange={handleStyleChange}
-              checked={filters.styles.includes("Casual")}
-            />
-            <label htmlFor="Casual">Casual</label>
-          </div>
+          <Link
+            className={`${style.styles_casual} ${style.links}`}
+            to={"/filter"}
+            state={{ styleState: "Casual" }}
+          >
+            <p>Casual</p>
+          </Link>
 
-          <div>
-            <input
-              type="checkbox"
-              id="Formal"
-              name="Formal"
-              onChange={handleStyleChange}
-              checked={filters.styles.includes("Formal")}
-            />
-            <label htmlFor="Formal">Formal</label>
-          </div>
+          <Link
+            className={`${style.styles_formal} ${style.links}`}
+            to={"/filter"}
+            state={{ styleState: "Formal" }}
+          >
+            <p>Formal</p>
+          </Link>
 
-          <div>
-            <input
-              type="checkbox"
-              id="Party"
-              name="Party"
-              onChange={handleStyleChange}
-              checked={filters.styles.includes("Party")}
-            />
-            <label htmlFor="Party">Party</label>
-          </div>
+          <Link
+            className={`${style.styles_party} ${style.links}`}
+            to={"/filter"}
+            state={{ styleState: "Party" }}
+          >
+            <p>Party</p>
+          </Link>
 
-          <div>
-            <input
-              type="checkbox"
-              id="Gym"
-              name="Gym"
-              onChange={handleStyleChange}
-              checked={filters.styles.includes("Gym")}
-            />
-            <label htmlFor="Gym">Gym</label>
-          </div>
+          <Link
+            className={`${style.styles_gym} ${style.links}`}
+            to={"/filter"}
+            state={{ styleState: "Gym" }}
+          >
+            <p>Gym</p>
+          </Link>
+
         </div>
         <hr />
         <button className={style.button_filter} onClick={handleApplyFilters}>
