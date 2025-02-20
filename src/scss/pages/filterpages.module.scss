@@ -1,5 +1,5 @@
 .container {
- 
+
     display: flex;
 }
 
@@ -45,23 +45,35 @@
     width: 100%;
     text-align: left;
     color: rgba(0, 0, 0, 0.60);
-  
+
 }
 
-.maindiv{
+.maindiv {
     margin: 0px 100px;
 }
-.pagination{
+
+.pagination {
     width: 100%;
     text-align: end;
     margin-bottom: 10px;
     color: rgba(0, 0, 0, 0.60);
 }
 
-.show_icon_info{
+.show_icon_info {
     display: flex;
-    align-items:center;
-   
+    align-items: center;
+
+}
+
+.cards_section {
+
+    h2 {
+        font-size: 32px;
+        font-style: normal;
+        font-weight: 700;
+        line-height: normal;
+        margin-bottom: 12px;
+    }
 }
 
 @media (max-width: 415px) {

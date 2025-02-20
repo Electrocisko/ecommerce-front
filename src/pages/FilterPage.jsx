@@ -171,9 +171,6 @@ const FilterPage = () => {
         setProducts(products);
         setColors(colors);
         setSizes(sizes);
-
-        console.log(products);
-
       };
 
       fetchData();
@@ -197,6 +194,7 @@ const FilterPage = () => {
       </div>
  
       <div className={style.container}>
+    
         <section className={ showFilters?  `${style.filter_section}` : `${style.hide}` }>
           <Filters
             colorsList={colors.colorList}
@@ -218,6 +216,7 @@ const FilterPage = () => {
         </section>
 
         <section className={style.cards_section}>
+        <h2>{styleFromState}</h2>
           <div className={style.cards_container}>
             {loading ? (
               <div className={style.message}>
