@@ -22,12 +22,14 @@ const Filters = ({
   maxPrice,
   handleSlider,
   handleApplyFilters,
-  handleStyleChange,
   handleFilterIcon,
+  styleFromState,
 }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
   const [dropdownStyle, setDropdownStyle] = useState(false);
+
+  console.log(styleFromState);
 
   return (
     <div className={` ${style.container}`}>
@@ -130,7 +132,9 @@ const Filters = ({
 
         <div className={`${dropdownStyle ? style.show : style.hide}`}>
           <Link
-            className={`${style.styles_casual} ${style.links}`}
+            className={`${
+              styleFromState == "Casual" ? style.bold : style.links
+            }`}
             to={"/filter"}
             state={{ styleState: "Casual" }}
           >
@@ -138,7 +142,9 @@ const Filters = ({
           </Link>
 
           <Link
-            className={`${style.styles_formal} ${style.links}`}
+            className={`${
+              styleFromState == "Formal" ? style.bold : style.links
+            }`}
             to={"/filter"}
             state={{ styleState: "Formal" }}
           >
@@ -146,7 +152,9 @@ const Filters = ({
           </Link>
 
           <Link
-            className={`${style.styles_party} ${style.links}`}
+            className={`${
+              styleFromState == "Party" ? style.bold : style.links
+            }`}
             to={"/filter"}
             state={{ styleState: "Party" }}
           >
@@ -154,13 +162,12 @@ const Filters = ({
           </Link>
 
           <Link
-            className={`${style.styles_gym} ${style.links}`}
+            className={`${styleFromState == "Gym" ? style.bold : style.links}`}
             to={"/filter"}
             state={{ styleState: "Gym" }}
           >
             <p>Gym</p>
           </Link>
-
         </div>
         <hr />
         <button className={style.button_filter} onClick={handleApplyFilters}>

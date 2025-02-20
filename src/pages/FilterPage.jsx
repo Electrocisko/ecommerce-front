@@ -212,6 +212,7 @@ const FilterPage = () => {
             handleApplyFilters={handleApplyFilters}
             handleStyleChange={handleStyleChange}
             handleFilterIcon={handleFilterIcon}
+            styleFromState={styleFromState}
           />
         </section>
 
