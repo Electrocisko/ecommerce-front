@@ -128,6 +128,16 @@ const Filters = ({
         </div>
 
         <div className={`${dropdownStyle ? style.show : style.hide}`}>
+
+        <Link
+            className={`${
+              styleFromState == "All" ? style.bold : style.links
+            }`}
+            to={"/filter"}
+           state={{ styleState: "All" }}
+          >
+            <p>All</p>
+          </Link>
           <Link
             className={`${
               styleFromState == "Casual" ? style.bold : style.links

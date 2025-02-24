@@ -250,7 +250,7 @@ const FilterPage = () => {
         </section>
 
         <section className={style.cards_section}>
-        <h2>{styleFromState}</h2>
+        <h2>{styleFromState} Style</h2>
           <div className={style.cards_container}>
             {loading ? (
               <div className={style.message}>
