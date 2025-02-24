@@ -29,12 +29,9 @@ const Filters = ({
   const [dropdownSize, setDropdownSize] = useState(true);
   const [dropdownStyle, setDropdownStyle] = useState(false);
 
-  console.log(styleFromState);
-
   return (
     <div className={` ${style.container}`}>
       <button className={style.icon_close} onClick={handleFilterIcon}>
-        {" "}
         <RiCloseLine />
       </button>
 

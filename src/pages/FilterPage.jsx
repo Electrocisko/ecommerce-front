@@ -161,7 +161,6 @@ const FilterPage = () => {
   // Tengo que mandar el page y el limit.
   const handleNextPage = () => {
     console.log("Siguiente Pagina");
-    handleApplyFilters(12);
   }
 
   const handlePreviousPage = () => {
