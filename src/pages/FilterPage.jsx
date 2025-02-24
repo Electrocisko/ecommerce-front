@@ -20,8 +20,6 @@ const FilterPage = () => {
     sizes: [],
     styles: styleFromState ? [styleFromState] : [],
   };
-  // limit of pagination
-  const limit = 6;
 
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState({ data: [] });
@@ -46,6 +44,10 @@ const FilterPage = () => {
   });
   const [filters, setFilters] = useState(filtersInit);
   const [priceValue, setPriceValue] = useState(100);
+    // limit of pagination
+    const quantityToShow = 6;
+    const [pagination, setPagination] = useState({limit: quantityToShow, page: 1});
+    const [totalPages, setTotalPages] = useState(1);
 
   const filteredProducts = async (urlParams) => {
     try {
@@ -114,6 +116,7 @@ const FilterPage = () => {
   const handleApplyFilters = () => {
     let urlParams = urlServer + "api/products/querys/?";
     // pagination
+    const {limit} = pagination;
     urlParams+="limit=" + limit + "&";
     
     if (filters.colors.length > 0) {
@@ -160,27 +163,34 @@ const FilterPage = () => {
 
   // Tengo que mandar el page y el limit.
   const handleNextPage = () => {
-    console.log("Siguiente Pagina");
-  }
+    if (pagination.page < totalPages)
+    setPagination((prev) => ({
+      ...prev,
+      page: prev.page + 1
+    }));
+  };
 
+ 
   const handlePreviousPage = () => {
-    console.log("Pagina Anterior");
-  }
+    setPagination((prev) => ({
+      ...prev,
+      page: prev.page > 1 ? prev.page - 1 : 1
+    }));
+  };
+  
   
 
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    // window.scrollTo({ top: 0, behavior: "smooth" });
     const URL = urlServer + "api/products";
-
-    try {
+     try {
       const fetchData = async () => {
         let response;
         if (styleFromState) {
-          response = await fetch(`${URL}/querys/?styles=${styleFromState}&limit=${limit}`);
+          response = await fetch(`${URL}/querys/?styles=${styleFromState}&limit=${pagination.limit}&page=${pagination.page}`);
         } else {
-          response = await fetch(`${URL}/querys/?limit=${limit}`);
+          response = await fetch(`${URL}/querys/?limit=${pagination.limit}&page=${pagination.page}`);
         }
-
         const products = await response.json();
         const response1 = await fetch(urlServer + "api/colors");
         const response2 = await fetch(urlServer + "api/sizes");
@@ -189,13 +199,14 @@ const FilterPage = () => {
         setProducts(products);
         setColors(colors);
         setSizes(sizes);
+        setTotalPages(products.totalPages)
       };
 
       fetchData();
     } catch (error) {
       console.log(error);
     }
-  }, [styleFromState]);
+  }, [styleFromState, pagination]);
 
 
 
@@ -260,7 +271,7 @@ const FilterPage = () => {
         <ScrollRestoration />
       </div>
 
-      <PageButtons page={1} handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}/>
+      <PageButtons page={pagination.page} handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}/>
     </div>
   );
 };
