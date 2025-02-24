@@ -6,6 +6,7 @@ import { useLocation, Link, ScrollRestoration } from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
 import { RiEqualizer3Line} from "react-icons/ri";
+import PageButtons from "../components/PageButtons";
 
 const FilterPage = () => {
   const location = useLocation();
@@ -19,6 +20,8 @@ const FilterPage = () => {
     sizes: [],
     styles: styleFromState ? [styleFromState] : [],
   };
+  // limit of pagination
+  const limit = 6;
 
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState({ data: [] });
@@ -110,6 +113,9 @@ const FilterPage = () => {
 
   const handleApplyFilters = () => {
     let urlParams = urlServer + "api/products/querys/?";
+    // pagination
+    urlParams+="limit=" + limit + "&";
+    
     if (filters.colors.length > 0) {
       const colors = filters.colors.map((color) => color.color_id);
       const queryColors = "colors=" + colors + "&";
@@ -148,6 +154,19 @@ const FilterPage = () => {
     filteredProducts(urlParams);
   };
 
+  const handleFilterIcon = () => {
+    setShowFilters(!showFilters);
+  };
+
+  // Tengo que mandar el page y el limit.
+  const handleNextPage = () => {
+    console.log("Siguiente Pagina");
+    handleApplyFilters(12);
+  }
+
+  const handlePreviousPage = () => {
+    console.log("Pagina Anterior");
+  }
   
 
   useEffect(() => {
@@ -158,9 +177,9 @@ const FilterPage = () => {
       const fetchData = async () => {
         let response;
         if (styleFromState) {
-          response = await fetch(`${URL}/querys/?styles=${styleFromState}`);
+          response = await fetch(`${URL}/querys/?styles=${styleFromState}&limit=${limit}`);
         } else {
-          response = await fetch(`${URL}/querys/`);
+          response = await fetch(`${URL}/querys/?limit=${limit}`);
         }
 
         const products = await response.json();
@@ -179,9 +198,7 @@ const FilterPage = () => {
     }
   }, [styleFromState]);
 
-  const handleFilterIcon = () => {
-    setShowFilters(!showFilters);
-  };
+
 
   return (
     <div className={style.maindiv}>
@@ -243,6 +260,8 @@ const FilterPage = () => {
         </section>
         <ScrollRestoration />
       </div>
+
+      <PageButtons page={1} handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}/>
     </div>
   );
 };
