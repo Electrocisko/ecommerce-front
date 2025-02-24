@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { urlServer } from "../data/endpoints";
 import style from "../scss/pages/filterpages.module.scss";
 import { useLocation, Link, ScrollRestoration } from "react-router-dom";
@@ -8,18 +8,23 @@ import Filters from "../components/Filters";
 import { RiEqualizer3Line} from "react-icons/ri";
 import PageButtons from "../components/PageButtons";
 
+
+
+
+
 const FilterPage = () => {
   const location = useLocation();
   const styleFromState = location.state?.styleState || null;
   const [showFilters, setShowFilters] = useState(false);
-  let filtersInit = {
+
+  const filtersInit = useMemo(() => ({
     minPrice: 0,
     maxPrice: 500,
     range: [0, 500],
     colors: [],
     sizes: [],
     styles: styleFromState ? [styleFromState] : [],
-  };
+  }), [styleFromState]);
 
   const [loading, setLoading] = useState(false);
   const [products, setProducts] = useState({ data: [] });
@@ -200,13 +205,14 @@ const FilterPage = () => {
         setColors(colors);
         setSizes(sizes);
         setTotalPages(products.totalPages)
+        setFilters(filtersInit);
       };
 
       fetchData();
     } catch (error) {
       console.log(error);
     }
-  }, [styleFromState, pagination]);
+  }, [styleFromState, pagination, filtersInit]);
 
 
 
