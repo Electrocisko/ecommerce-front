@@ -2,29 +2,30 @@
 import { useState, useEffect, useMemo } from "react";
 import { urlServer } from "../data/endpoints";
 import style from "../scss/pages/filterpages.module.scss";
-import { useLocation, Link, ScrollRestoration } from "react-router-dom";
+import { useLocation, Link, ScrollRestoration} from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
 import { IoIosOptions } from "react-icons/io";
 import PageButtons from "../components/PageButtons";
-
 
 const FilterPage = () => {
   const location = useLocation();
   const styleFromState = location.state?.styleState || null;
   const [showFilters, setShowFilters] = useState(false);
 
-  const filtersInit = useMemo(() => ({
-    minPrice: 0,
-    maxPrice: 500,
-    range: [0, 500],
-    colors: [],
-    sizes: [],
-    styles: styleFromState ? [styleFromState] : [],
-  }), [styleFromState]);
+  const filtersInit = useMemo(
+    () => ({
+      minPrice: 0,
+      maxPrice: 500,
+      range: [0, 500],
+      colors: [],
+      sizes: [],
+      styles: styleFromState ? [styleFromState] : [],
+    }),
+    [styleFromState]
+  );
 
   const [loading, setLoading] = useState(false);
-  const [products, setProducts] = useState({ data: [] });
   const [sizes, setSizes] = useState({
     statusOk: true,
     sizesList: [
@@ -46,10 +47,15 @@ const FilterPage = () => {
   });
   const [filters, setFilters] = useState(filtersInit);
   const [priceValue, setPriceValue] = useState(100);
-    // limit of pagination
-    const quantityToShow = 8;
-    const [pagination, setPagination] = useState({limit: quantityToShow, page: 1});
-    const [totalPages, setTotalPages] = useState(1);
+  // limit of pagination
+  const quantityToShow = 8;
+  const [pagination, setPagination] = useState({
+    limit: quantityToShow,
+    page: 1,
+  });
+  const [totalPages, setTotalPages] = useState(1);
+
+  const [products, setProducts] = useState({ data: [], productsRange:[0,quantityToShow] });
 
   const filteredProducts = async (urlParams) => {
     try {
@@ -118,9 +124,9 @@ const FilterPage = () => {
   const handleApplyFilters = () => {
     let urlParams = urlServer + "api/products/querys/?";
     // pagination
-    const {limit} = pagination;
-    urlParams+="limit=" + limit + "&";
-    
+    const { limit } = pagination;
+    urlParams += "limit=" + limit + "&";
+
     if (filters.colors.length > 0) {
       const colors = filters.colors.map((color) => color.color_id);
       const queryColors = "colors=" + colors + "&";
@@ -168,29 +174,33 @@ const FilterPage = () => {
   // Tengo que mandar el page y el limit.
   const handleNextPage = () => {
     if (pagination.page < totalPages)
-    setPagination((prev) => ({
-      ...prev,
-      page: prev.page + 1
-    }));
+      setPagination((prev) => ({
+        ...prev,
+        page: prev.page + 1,
+      }));
   };
 
   const handlePreviousPage = () => {
     setPagination((prev) => ({
       ...prev,
-      page: prev.page > 1 ? prev.page - 1 : 1
+      page: prev.page > 1 ? prev.page - 1 : 1,
     }));
   };
-  
+
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     const URL = urlServer + "api/products";
-     try {
+    try {
       const fetchData = async () => {
         let response;
         if (styleFromState) {
-          response = await fetch(`${URL}/querys/?styles=${styleFromState}&limit=${pagination.limit}&page=${pagination.page}`);
+          response = await fetch(
+            `${URL}/querys/?styles=${styleFromState}&limit=${pagination.limit}&page=${pagination.page}`
+          );
         } else {
-          response = await fetch(`${URL}/querys/?limit=${pagination.limit}&page=${pagination.page}`);
+          response = await fetch(
+            `${URL}/querys/?limit=${pagination.limit}&page=${pagination.page}`
+          );
         }
         const products = await response.json();
         const response1 = await fetch(urlServer + "api/colors");
@@ -200,11 +210,8 @@ const FilterPage = () => {
         setProducts(products);
         setColors(colors);
         setSizes(sizes);
-        setTotalPages(products.totalPages)
+        setTotalPages(products.totalPages);
         setFilters(filtersInit);
-
-
-        console.log(products);
       };
 
       fetchData();
@@ -213,21 +220,21 @@ const FilterPage = () => {
     }
   }, [styleFromState, pagination, filtersInit]);
 
-
-
   return (
     <div className={style.maindiv}>
-
       <div className={style.show_icon_info}>
-      <button onClick={handleFilterIcon} className={ showFilters?  `${style.hide}` : `${style.filterButton}` }>
-        < IoIosOptions className={style.icon} />
-      </button>
-      {/* <p className={style.pagination}>Showing {products.totalProductShowing} of {products.totalProducts} Products </p> */}
+        <button
+          onClick={handleFilterIcon}
+          className={showFilters ? `${style.hide}` : `${style.filterButton}`}
+        >
+          <IoIosOptions className={style.icon} />
+        </button>
       </div>
- 
+
       <div className={style.container}>
-    
-        <section className={ showFilters?  `${style.filter_section}` : `${style.hide}` }>
+        <section
+          className={showFilters ? `${style.filter_section}` : `${style.hide}`}
+        >
           <Filters
             colorsList={colors.colorList}
             handleColorClick={handleColorClick}
@@ -250,10 +257,14 @@ const FilterPage = () => {
 
         <section className={style.cards_section}>
           <div className={style.title}>
-          <h2>{styleFromState} Style</h2>
-          <p className={style.pagination}>Showing {products.totalProductShowing} of {products.totalProducts} Products </p>
+            <h2>{styleFromState} Style</h2>
+            <p className={style.pagination}>
+            {products?.productsRange[0]} - {products?.productsRange[1]} 
+            {" "}Showing  of {products.totalProducts}{" "}
+              Products{" "}
+            </p>
           </div>
-      
+
           <div className={style.cards_container}>
             {loading ? (
               <div className={style.message}>
@@ -280,7 +291,11 @@ const FilterPage = () => {
         <ScrollRestoration />
       </div>
 
-      <PageButtons page={pagination.page} handleNextPage={handleNextPage} handlePreviousPage={handlePreviousPage}/>
+      <PageButtons
+        page={pagination.page}
+        handleNextPage={handleNextPage}
+        handlePreviousPage={handlePreviousPage}
+      />
     </div>
   );
 };
