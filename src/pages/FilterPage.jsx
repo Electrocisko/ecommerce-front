@@ -5,11 +5,8 @@ import style from "../scss/pages/filterpages.module.scss";
 import { useLocation, Link, ScrollRestoration } from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
-import { RiEqualizer3Line} from "react-icons/ri";
+import { IoIosOptions } from "react-icons/io";
 import PageButtons from "../components/PageButtons";
-
-
-
 
 
 const FilterPage = () => {
@@ -50,7 +47,7 @@ const FilterPage = () => {
   const [filters, setFilters] = useState(filtersInit);
   const [priceValue, setPriceValue] = useState(100);
     // limit of pagination
-    const quantityToShow = 6;
+    const quantityToShow = 8;
     const [pagination, setPagination] = useState({limit: quantityToShow, page: 1});
     const [totalPages, setTotalPages] = useState(1);
 
@@ -159,6 +156,8 @@ const FilterPage = () => {
     // Hacer scroll hacia arriba
     window.scrollTo({ top: 0, behavior: "smooth" });
 
+    console.log(urlParams);
+
     filteredProducts(urlParams);
   };
 
@@ -175,7 +174,6 @@ const FilterPage = () => {
     }));
   };
 
- 
   const handlePreviousPage = () => {
     setPagination((prev) => ({
       ...prev,
@@ -183,10 +181,8 @@ const FilterPage = () => {
     }));
   };
   
-  
-
   useEffect(() => {
-    // window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({ top: 0, behavior: "smooth" });
     const URL = urlServer + "api/products";
      try {
       const fetchData = async () => {
@@ -206,6 +202,9 @@ const FilterPage = () => {
         setSizes(sizes);
         setTotalPages(products.totalPages)
         setFilters(filtersInit);
+
+
+        console.log(products);
       };
 
       fetchData();
@@ -221,9 +220,9 @@ const FilterPage = () => {
 
       <div className={style.show_icon_info}>
       <button onClick={handleFilterIcon} className={ showFilters?  `${style.hide}` : `${style.filterButton}` }>
-        <RiEqualizer3Line className={style.icon} />
+        < IoIosOptions className={style.icon} />
       </button>
-      <p className={style.pagination}>Showing {products.totalProductShowing} of {products.totalProducts} Products </p>
+      {/* <p className={style.pagination}>Showing {products.totalProductShowing} of {products.totalProducts} Products </p> */}
       </div>
  
       <div className={style.container}>
@@ -250,7 +249,11 @@ const FilterPage = () => {
         </section>
 
         <section className={style.cards_section}>
-        <h2>{styleFromState} Style</h2>
+          <div className={style.title}>
+          <h2>{styleFromState} Style</h2>
+          <p className={style.pagination}>Showing {products.totalProductShowing} of {products.totalProducts} Products </p>
+          </div>
+      
           <div className={style.cards_container}>
             {loading ? (
               <div className={style.message}>
