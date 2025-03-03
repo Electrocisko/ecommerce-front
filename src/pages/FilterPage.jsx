@@ -2,7 +2,7 @@
 import { useState, useEffect, useMemo } from "react";
 import { urlServer } from "../data/endpoints";
 import style from "../scss/pages/filterpages.module.scss";
-import { useLocation, Link, ScrollRestoration} from "react-router-dom";
+import { useLocation, Link, ScrollRestoration } from "react-router-dom";
 import Card from "../components/Card";
 import Filters from "../components/Filters";
 import { IoIosOptions } from "react-icons/io";
@@ -49,13 +49,13 @@ const FilterPage = () => {
   const [priceValue, setPriceValue] = useState(100);
   // limit of pagination
   const quantityToShow = 8;
-  const [pagination, setPagination] = useState({
-    limit: quantityToShow,
-    page: 1,
-  });
+  const [page, setPage] = useState(1);
   const [totalPages, setTotalPages] = useState(1);
 
-  const [products, setProducts] = useState({ data: [], productsRange:[0,quantityToShow] });
+  const [products, setProducts] = useState({
+    data: [],
+    productsRange: [0, quantityToShow],
+  });
 
   const filteredProducts = async (urlParams) => {
     try {
@@ -122,9 +122,9 @@ const FilterPage = () => {
   };
 
   const handleApplyFilters = () => {
+    const limit = quantityToShow;
     let urlParams = urlServer + "api/products/querys/?";
     // pagination
-    const { limit } = pagination;
     urlParams += "limit=" + limit + "&";
 
     if (filters.colors.length > 0) {
@@ -162,44 +162,41 @@ const FilterPage = () => {
     // Hacer scroll hacia arriba
     window.scrollTo({ top: 0, behavior: "smooth" });
 
-    console.log(urlParams);
+    setPage(1);
 
     filteredProducts(urlParams);
   };
 
   const handleFilterIcon = () => {
+    setPage(1);
     setShowFilters(!showFilters);
   };
 
   // Tengo que mandar el page y el limit.
   const handleNextPage = () => {
-    if (pagination.page < totalPages)
-      setPagination((prev) => ({
-        ...prev,
-        page: prev.page + 1,
-      }));
+    if (page < totalPages) setPage((prev) => prev + 1);
   };
 
   const handlePreviousPage = () => {
-    setPagination((prev) => ({
-      ...prev,
-      page: prev.page > 1 ? prev.page - 1 : 1,
-    }));
+    if (page > 1) {
+      setPage((prev) => prev - 1);
+    }
   };
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    const limit = quantityToShow;
     const URL = urlServer + "api/products";
     try {
       const fetchData = async () => {
         let response;
         if (styleFromState) {
           response = await fetch(
-            `${URL}/querys/?styles=${styleFromState}&limit=${pagination.limit}&page=${pagination.page}`
+            `${URL}/querys/?styles=${styleFromState}&limit=${limit}&page=${page}`
           );
         } else {
           response = await fetch(
-            `${URL}/querys/?limit=${pagination.limit}&page=${pagination.page}`
+            `${URL}/querys/?limit=${limit}&page=${page}`
           );
         }
         const products = await response.json();
@@ -218,7 +215,7 @@ const FilterPage = () => {
     } catch (error) {
       console.log(error);
     }
-  }, [styleFromState, pagination, filtersInit]);
+  }, [styleFromState,page]);
 
   return (
     <div className={style.maindiv}>
@@ -259,9 +256,8 @@ const FilterPage = () => {
           <div className={style.title}>
             <h2>{styleFromState} Style</h2>
             <p className={style.pagination}>
-            {products?.productsRange[0]} - {products?.productsRange[1]} 
-            {" "}Showing  of {products.totalProducts}{" "}
-              Products{" "}
+              {products?.productsRange[0]} - {products?.productsRange[1]}{" "}
+              Showing of {products.totalProducts} Products{" "}
             </p>
           </div>
 
@@ -292,7 +288,7 @@ const FilterPage = () => {
       </div>
 
       <PageButtons
-        page={pagination.page}
+        page={page}
         handleNextPage={handleNextPage}
         handlePreviousPage={handlePreviousPage}
       />
