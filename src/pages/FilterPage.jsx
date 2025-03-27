@@ -185,6 +185,15 @@ const FilterPage = () => {
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+
+    const filtersInitLocal = {
+      minPrice: 0,
+      maxPrice: 500,
+      range: [0, 500],
+      colors: [],
+      sizes: [],
+      styles: styleFromState ? [styleFromState] : [],
+    };
     const limit = quantityToShow;
     const URL = urlServer + "api/products";
     try {
@@ -208,7 +217,7 @@ const FilterPage = () => {
         setColors(colors);
         setSizes(sizes);
         setTotalPages(products.totalPages);
-        setFilters(filtersInit);
+        setFilters(filtersInitLocal);
       };
 
       fetchData();
