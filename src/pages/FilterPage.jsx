@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 /* eslint-disable react/prop-types */
-import { useState, useEffect, useMemo } from "react";
+import { useState, useEffect } from "react";
 import { urlServer } from "../data/endpoints";
 import style from "../scss/pages/filterpages.module.scss";
 import { useLocation, Link, ScrollRestoration } from "react-router-dom";
@@ -26,18 +27,7 @@ const FilterPage = () => {
     productsRange: [0, quantityToShow],
   });
 
-  // const filteredProducts = async (urlParams) => {
-  //   try {
-  //     setLoading(true);
-  //     const resp = await fetch(urlParams);
-  //     const data = await resp.json();
-  //     setProducts(data);
-  //   } catch (error) {
-  //     console.log("Error");
-  //   } finally {
-  //     setLoading(false);
-  //   }
-  // };
+
   const fetchFilteredProducts = async (filters) => {
     try {
       setLoading(true);
@@ -111,48 +101,6 @@ const FilterPage = () => {
     }
   };
 
-  // useEffect(() => {
-  //   window.scrollTo({ top: 0, behavior: "smooth" });
-
-  //   const filtersInitLocal = {
-  //     minPrice: 0,
-  //     maxPrice: 500,
-  //     range: [0, 500],
-  //     colors: [],
-  //     sizes: [],
-  //     styles: styleFromState ? [styleFromState] : [],
-  //   };
-  //   const limit = quantityToShow;
-  //   const URL = urlServer + "api/products";
-  //   try {
-  //     const fetchData = async () => {
-  //       let response;
-  //       if (styleFromState) {
-  //         response = await fetch(
-  //           `${URL}/querys/?styles=${styleFromState}&limit=${limit}&page=${page}`
-  //         );
-  //       } else {
-  //         response = await fetch(
-  //           `${URL}/querys/?limit=${limit}&page=${page}`
-  //         );
-  //       }
-  //       const products = await response.json();
-  //       const response1 = await fetch(urlServer + "api/colors");
-  //       const response2 = await fetch(urlServer + "api/sizes");
-  //       const colors = await response1.json();
-  //       const sizes = await response2.json();
-  //       setProducts(products);
-  //       setColors(colors);
-  //       setSizes(sizes);
-  //       setTotalPages(products.totalPages);
-  //       setFilters(filtersInitLocal);
-  //     };
-
-  //     fetchData();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // }, [styleFromState,page]);
 
   return (
     <div className={style.maindiv}>
