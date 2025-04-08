@@ -4,30 +4,85 @@ import ColorPicker from "./smalls/ColorPicker";
 import { FaAngleDown } from "react-icons/fa6";
 import { FaAngleUp } from "react-icons/fa6";
 import SizePicker from "./smalls/SizePicker";
-import { useState } from "react";
+import {useState, useEffect, useMemo } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { RiCloseLine } from "react-icons/ri";
 import { Link } from "react-router-dom";
+import { urlServer } from "../data/endpoints";
 
-const Filters = ({
-  colorsList,
-  handleColorClick,
-  selectedColor,
-  sizeList,
-  selectedSize,
-  handleSizeClick,
-  filters,
-  minPrice,
-  maxPrice,
-  handleSlider,
-  handleApplyFilters,
-  handleFilterIcon,
-  styleFromState,
-}) => {
+const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
   const [dropdownStyle, setDropdownStyle] = useState(false);
+
+
+  const filtersInit = useMemo(
+    () => ({
+      minPrice: 0,
+      maxPrice: 500,
+      range: [0, 500],
+      colors: [],
+      sizes: [],
+      styles: styleFromState ? [styleFromState] : [],
+    }),
+    [styleFromState]
+  );
+
+  const [filters, setFilters] = useState(filtersInit);
+  const [colors, setColors] = useState({ statusOk: true, colorList: [] });
+  const [sizes, setSizes] = useState({ statusOk: true, sizesList: [] });
+
+
+  useEffect(() => {
+    const fetchFilters = async () => {
+      try {
+        const resColors = await fetch(`${urlServer}api/colors`);
+        const resSizes = await fetch(`${urlServer}api/sizes`);
+        const colorData = await resColors.json();
+        const sizeData = await resSizes.json();
+        setColors(colorData);
+        setSizes(sizeData);
+      } catch (error) {
+        console.error("Error fetching filters data", error);
+      }
+    };
+    fetchFilters();
+  }, []);
+
+  const handleColorClick = (color) => {
+    const updatedColors = filters.colors.some(c => c.color_id === color.color_id)
+      ? filters.colors.filter(c => c.color_id !== color.color_id)
+      : [...filters.colors, color];
+
+    setFilters({ ...filters, colors: updatedColors });
+  };
+
+  const handleSizeClick = (size) => {
+    const updatedSizes = filters.sizes.some(s => s.size_id === size.size_id)
+      ? filters.sizes.filter(s => s.size_id !== size.size_id)
+      : [...filters.sizes, size];
+
+    setFilters({ ...filters, sizes: updatedSizes });
+  };
+
+  const handleSlider = (value) => {
+    setFilters({ ...filters, range: value });
+  };
+
+  const handleStyleChange = (e) => {
+    const { name, checked } = e.target;
+    const updatedStyles = checked
+      ? [...filters.styles, name]
+      : filters.styles.filter((style) => style !== name);
+
+    setFilters({ ...filters, styles: updatedStyles });
+  };
+
+  const handleApplyFilters = () => {
+    onApply(filters);
+  };
+
 
   return (
     <div className={` ${style.container}`}>
@@ -43,8 +98,8 @@ const Filters = ({
 
         <Slider
           range
-          min={minPrice}
-          max={maxPrice}
+          min={filters.minPrice}
+          max={filters.maxPrice}
           step={10}
           value={filters.range}
           styles={{
@@ -80,9 +135,9 @@ const Filters = ({
         </div>
 
         <ColorPicker
-          colorsList={colorsList}
+          colorsList={colors.colorList}
           handleColorClick={handleColorClick}
-          selectedColor={selectedColor}
+          //selectedColor={selectdColor}
           filters={filters}
         />
       </div>
@@ -105,9 +160,9 @@ const Filters = ({
           </button>
         </div>
         <SizePicker
-          sizeList={sizeList}
+          sizeList={sizes.sizesList}
           handleSizeClick={handleSizeClick}
-          selectedSize={selectedSize}
+          //selectedSize={selectedSize}
           filters={filters}
         />
       </div>

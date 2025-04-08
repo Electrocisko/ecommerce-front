@@ -13,40 +13,9 @@ const FilterPage = () => {
   const styleFromState = location.state?.styleState || null;
   const [showFilters, setShowFilters] = useState(false);
 
-  const filtersInit = useMemo(
-    () => ({
-      minPrice: 0,
-      maxPrice: 500,
-      range: [0, 500],
-      colors: [],
-      sizes: [],
-      styles: styleFromState ? [styleFromState] : [],
-    }),
-    [styleFromState]
-  );
 
   const [loading, setLoading] = useState(false);
-  const [sizes, setSizes] = useState({
-    statusOk: true,
-    sizesList: [
-      {
-        size_id: 1,
-        size_name: "XS",
-      },
-    ],
-  });
-  const [colors, setColors] = useState({
-    statusOk: true,
-    colorList: [
-      {
-        color_id: 1,
-        color_name: "Negro",
-        hsl_code: "hsl(0, 0%, 0%)",
-      },
-    ],
-  });
-  const [filters, setFilters] = useState(filtersInit);
-  const [priceValue, setPriceValue] = useState(100);
+
   // limit of pagination
   const quantityToShow = 8;
   const [page, setPage] = useState(1);
@@ -57,115 +26,74 @@ const FilterPage = () => {
     productsRange: [0, quantityToShow],
   });
 
-  const filteredProducts = async (urlParams) => {
+  // const filteredProducts = async (urlParams) => {
+  //   try {
+  //     setLoading(true);
+  //     const resp = await fetch(urlParams);
+  //     const data = await resp.json();
+  //     setProducts(data);
+  //   } catch (error) {
+  //     console.log("Error");
+  //   } finally {
+  //     setLoading(false);
+  //   }
+  // };
+  const fetchFilteredProducts = async (filters) => {
     try {
       setLoading(true);
+      let urlParams = `${urlServer}api/products/querys/?limit=${quantityToShow}&page=1`;
+
+      if (filters.colors.length > 0) {
+        const colors = filters.colors.map((c) => c.color_id).join(",");
+        urlParams += `&colors=${colors}`;
+      }
+
+      if (filters.sizes.length > 0) {
+        const sizes = filters.sizes.map((s) => s.size_id).join(",");
+        urlParams += `&sizes=${sizes}`;
+      }
+
+      if (filters.styles.length > 0) {
+        const styles = filters.styles.join(",");
+        urlParams += `&styles=${styles}`;
+      }
+
+      const [min, max] = filters.range;
+      urlParams += `&price_min=${min}&price_max=${max}`;
+
       const resp = await fetch(urlParams);
       const data = await resp.json();
+
       setProducts(data);
+      setTotalPages(data.totalPages);
+      setPage(1);
     } catch (error) {
-      console.log("Error");
+      console.error("Error fetching filtered products", error);
     } finally {
       setLoading(false);
     }
   };
 
-  const handleColorClick = (e) => {
-    const auxColorsList = filters.colors;
-    const index = auxColorsList.indexOf(e);
-    if (index != -1) {
-      auxColorsList.splice(index, 1);
-    } else {
-      auxColorsList.push(e);
+  const fetchInitialProducts = async () => {
+    try {
+      const url = `${urlServer}api/products/querys/?limit=${quantityToShow}&page=${page}${
+        styleFromState ? `&styles=${styleFromState}` : ""
+      }`;
+
+      const resp = await fetch(url);
+      const data = await resp.json();
+      setProducts(data);
+      setTotalPages(data.totalPages);
+    } catch (err) {
+      console.error("Error fetching initial products", err);
     }
-    const auxFilter = {
-      ...filters,
-      colors: auxColorsList,
-    };
-    setFilters(auxFilter);
   };
 
-  const handleSizeClick = (e) => {
-    const auxSizesList = filters.sizes;
-    const index = auxSizesList.indexOf(e);
-    if (index != -1) {
-      auxSizesList.splice(index, 1);
-    } else {
-      auxSizesList.push(e);
-    }
-    const auxFilter = {
-      ...filters,
-      sizes: auxSizesList,
-    };
-    setFilters(auxFilter);
-  };
-
-  const handleSlider = (value) => {
-    const auxFilter = {
-      ...filters,
-      range: value,
-    };
-    setFilters(auxFilter);
-  };
-
-  const handleStyleChange = (e) => {
-    const { name, checked } = e.target;
-    const updatedStyles = checked
-      ? [...filters.styles, name] // Agregar el estilo seleccionado
-      : filters.styles.filter((style) => style !== name);
-
-    const auxFilter = {
-      ...filters,
-      styles: updatedStyles,
-    };
-    setFilters(auxFilter);
-  };
-
-  const handleApplyFilters = () => {
-    const limit = quantityToShow;
-    let urlParams = urlServer + "api/products/querys/?";
-    // pagination
-    urlParams += "limit=" + limit + "&";
-
-    if (filters.colors.length > 0) {
-      const colors = filters.colors.map((color) => color.color_id);
-      const queryColors = "colors=" + colors + "&";
-      urlParams += queryColors;
-    }
-
-    if (filters.sizes.length > 0) {
-      const sizes = filters.sizes.map((size) => size.size_id);
-      const querySizes = "sizes=" + sizes + "&";
-      urlParams += querySizes;
-    }
-
-    if (filters.styles.length > 0) {
-      const queryStyles = "styles=" + filters.styles + "&";
-      urlParams += queryStyles;
-    }
-
-    if (filters.range[0] > 0) {
-      const queryMinPrice = "price_min=" + filters.range[0] + "&";
-      urlParams += queryMinPrice;
-    } else {
-      const queryMinPrice = "price_min=" + filters.minPrice + "&";
-      urlParams += queryMinPrice;
-    }
-
-    if (filters.range[1] < filters.maxPrice) {
-      const queryMaxPrice = "price_max=" + filters.range[1] + "&";
-      urlParams += queryMaxPrice;
-    } else {
-      const queryMaxPrice = "price_max=" + filters.maxPrice + "&";
-      urlParams += queryMaxPrice;
-    }
-    // Hacer scroll hacia arriba
+  useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    fetchInitialProducts();
+  }, [styleFromState, page]);
 
-    setPage(1);
-
-    filteredProducts(urlParams);
-  };
 
   const handleFilterIcon = () => {
     setPage(1);
@@ -183,48 +111,48 @@ const FilterPage = () => {
     }
   };
 
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+  // useEffect(() => {
+  //   window.scrollTo({ top: 0, behavior: "smooth" });
 
-    const filtersInitLocal = {
-      minPrice: 0,
-      maxPrice: 500,
-      range: [0, 500],
-      colors: [],
-      sizes: [],
-      styles: styleFromState ? [styleFromState] : [],
-    };
-    const limit = quantityToShow;
-    const URL = urlServer + "api/products";
-    try {
-      const fetchData = async () => {
-        let response;
-        if (styleFromState) {
-          response = await fetch(
-            `${URL}/querys/?styles=${styleFromState}&limit=${limit}&page=${page}`
-          );
-        } else {
-          response = await fetch(
-            `${URL}/querys/?limit=${limit}&page=${page}`
-          );
-        }
-        const products = await response.json();
-        const response1 = await fetch(urlServer + "api/colors");
-        const response2 = await fetch(urlServer + "api/sizes");
-        const colors = await response1.json();
-        const sizes = await response2.json();
-        setProducts(products);
-        setColors(colors);
-        setSizes(sizes);
-        setTotalPages(products.totalPages);
-        setFilters(filtersInitLocal);
-      };
+  //   const filtersInitLocal = {
+  //     minPrice: 0,
+  //     maxPrice: 500,
+  //     range: [0, 500],
+  //     colors: [],
+  //     sizes: [],
+  //     styles: styleFromState ? [styleFromState] : [],
+  //   };
+  //   const limit = quantityToShow;
+  //   const URL = urlServer + "api/products";
+  //   try {
+  //     const fetchData = async () => {
+  //       let response;
+  //       if (styleFromState) {
+  //         response = await fetch(
+  //           `${URL}/querys/?styles=${styleFromState}&limit=${limit}&page=${page}`
+  //         );
+  //       } else {
+  //         response = await fetch(
+  //           `${URL}/querys/?limit=${limit}&page=${page}`
+  //         );
+  //       }
+  //       const products = await response.json();
+  //       const response1 = await fetch(urlServer + "api/colors");
+  //       const response2 = await fetch(urlServer + "api/sizes");
+  //       const colors = await response1.json();
+  //       const sizes = await response2.json();
+  //       setProducts(products);
+  //       setColors(colors);
+  //       setSizes(sizes);
+  //       setTotalPages(products.totalPages);
+  //       setFilters(filtersInitLocal);
+  //     };
 
-      fetchData();
-    } catch (error) {
-      console.log(error);
-    }
-  }, [styleFromState,page]);
+  //     fetchData();
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // }, [styleFromState,page]);
 
   return (
     <div className={style.maindiv}>
@@ -241,23 +169,10 @@ const FilterPage = () => {
         <section
           className={showFilters ? `${style.filter_section}` : `${style.hide}`}
         >
-          <Filters
-            colorsList={colors.colorList}
-            handleColorClick={handleColorClick}
-            selectedColor={colors.colorList[0]}
-            sizeList={sizes.sizesList}
-            selectedSize={sizes.sizesList[0]}
-            handleSizeClick={handleSizeClick}
-            priceValue={priceValue}
-            setPriceValue={setPriceValue}
-            filters={filters}
-            minPrice={filters.minPrice}
-            maxPrice={filters.maxPrice}
-            handleSlider={handleSlider}
-            handleApplyFilters={handleApplyFilters}
-            handleStyleChange={handleStyleChange}
-            handleFilterIcon={handleFilterIcon}
+      <Filters
+            onApply={fetchFilteredProducts}
             styleFromState={styleFromState}
+            handleFilterIcon={handleFilterIcon}
           />
         </section>
 
