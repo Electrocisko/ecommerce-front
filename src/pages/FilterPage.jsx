@@ -13,8 +13,6 @@ const FilterPage = () => {
   const location = useLocation();
   const styleFromState = location.state?.styleState || null;
   const [showFilters, setShowFilters] = useState(false);
-
-
   const [loading, setLoading] = useState(false);
 
   // limit of pagination

@@ -8,13 +8,17 @@ import {useState, useEffect, useMemo } from "react";
 import Slider from "rc-slider";
 import "rc-slider/assets/index.css";
 import { RiCloseLine } from "react-icons/ri";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { urlServer } from "../data/endpoints";
 
 const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
   const [dropdownColor, setDropdownColor] = useState(true);
   const [dropdownSize, setDropdownSize] = useState(true);
   const [dropdownStyle, setDropdownStyle] = useState(false);
+  const thisPagePath = useLocation().pathname;
+
+ 
+
 
 
   const filtersInit = useMemo(
@@ -179,7 +183,7 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
             className={`${
               styleFromState == "All" ? style.bold : style.links
             }`}
-            to={"/filter"}
+            to={thisPagePath}
            state={{ styleState: "All" }}
           >
             <p>All</p>
@@ -188,7 +192,7 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
             className={`${
               styleFromState == "Casual" ? style.bold : style.links
             }`}
-            to={"/filter"}
+            to={thisPagePath}
             state={{ styleState: "Casual" }}
           >
             <p>Casual</p>
@@ -198,7 +202,7 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
             className={`${
               styleFromState == "Formal" ? style.bold : style.links
             }`}
-            to={"/filter"}
+            to={thisPagePath}
             state={{ styleState: "Formal" }}
           >
             <p>Formal</p>
@@ -208,7 +212,7 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
             className={`${
               styleFromState == "Party" ? style.bold : style.links
             }`}
-            to={"/filter"}
+            to={thisPagePath}
             state={{ styleState: "Party" }}
           >
             <p>Party</p>
@@ -216,7 +220,7 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
 
           <Link
             className={`${styleFromState == "Gym" ? style.bold : style.links}`}
-            to={"/filter"}
+            to={thisPagePath}
             state={{ styleState: "Gym" }}
           >
             <p>Gym</p>
