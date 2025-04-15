@@ -70,14 +70,7 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
     setFilters({ ...filters, range: value });
   };
 
-  const handleStyleChange = (e) => {
-    const { name, checked } = e.target;
-    const updatedStyles = checked
-      ? [...filters.styles, name]
-      : filters.styles.filter((style) => style !== name);
 
-    setFilters({ ...filters, styles: updatedStyles });
-  };
 
   const handleApplyFilters = () => {
     onApply(filters);
@@ -137,7 +130,6 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
         <ColorPicker
           colorsList={colors.colorList}
           handleColorClick={handleColorClick}
-          //selectedColor={selectdColor}
           filters={filters}
         />
       </div>
@@ -162,7 +154,6 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
         <SizePicker
           sizeList={sizes.sizesList}
           handleSizeClick={handleSizeClick}
-          //selectedSize={selectedSize}
           filters={filters}
         />
       </div>
