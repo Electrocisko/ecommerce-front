@@ -14,6 +14,7 @@ const WomenPage = () => {
   const styleFromState = location.state?.styleState || null;
   const [showFilters, setShowFilters] = useState(false);
   const [loading, setLoading] = useState(false);
+  const gender = "Women,Unisex";
 
   // limit of pagination
   const quantityToShow = 8;
@@ -25,11 +26,10 @@ const WomenPage = () => {
     productsRange: [0, quantityToShow],
   });
 
-
   const fetchFilteredProducts = async (filters) => {
     try {
       setLoading(true);
-      let urlParams = `${urlServer}api/products/querys/?genders=Women&limit=${quantityToShow}&page=1`;
+      let urlParams = `${urlServer}api/products/querys/?genders=${gender}&limit=${quantityToShow}&page=1`;
 
       if (filters.colors.length > 0) {
         const colors = filters.colors.map((c) => c.color_id).join(",");
@@ -64,7 +64,7 @@ const WomenPage = () => {
 
   const fetchInitialProducts = async () => {
     try {
-      const url = `${urlServer}api/products/querys/?genders=Women&limit=${quantityToShow}&page=${page}${
+      const url = `${urlServer}api/products/querys/?genders=${gender}&limit=${quantityToShow}&page=${page}${
         styleFromState ? `&styles=${styleFromState}` : ""
       }`;
 
@@ -80,9 +80,8 @@ const WomenPage = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
     fetchInitialProducts();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [styleFromState, page]);
-
 
   const handleFilterIcon = () => {
     setPage(1);
@@ -100,7 +99,6 @@ const WomenPage = () => {
     }
   };
 
-
   return (
     <div className={style.maindiv}>
       <h1>Women</h1>
@@ -117,7 +115,7 @@ const WomenPage = () => {
         <section
           className={showFilters ? `${style.filter_section}` : `${style.hide}`}
         >
-      <Filters
+          <Filters
             onApply={fetchFilteredProducts}
             styleFromState={styleFromState}
             handleFilterIcon={handleFilterIcon}
@@ -166,6 +164,6 @@ const WomenPage = () => {
       />
     </div>
   );
-}
+};
 
-export default WomenPage
+export default WomenPage;
