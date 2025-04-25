@@ -17,10 +17,6 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
   const [dropdownStyle, setDropdownStyle] = useState(false);
   const thisPagePath = useLocation().pathname;
 
- 
-
-
-
   const filtersInit = useMemo(
     () => ({
       minPrice: 0,
@@ -74,12 +70,9 @@ const Filters = ({ onApply, styleFromState, handleFilterIcon }) => {
     setFilters({ ...filters, range: value });
   };
 
-
-
   const handleApplyFilters = () => {
     onApply(filters);
   };
-
 
   return (
     <div className={` ${style.container}`}>

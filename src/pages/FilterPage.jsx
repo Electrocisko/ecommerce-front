@@ -56,6 +56,7 @@ const FilterPage = () => {
       setProducts(data);
       setTotalPages(data.totalPages);
       setPage(1);
+      setShowFilters(false)
     } catch (error) {
       console.error("Error fetching filtered products", error);
     } finally {

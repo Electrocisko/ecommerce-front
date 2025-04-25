@@ -10,6 +10,7 @@ import Card from "../components/Card";
 import Filters from "../components/Filters";
 import { IoIosOptions } from "react-icons/io";
 import PageButtons from "../components/PageButtons";
+import ButtonLight from "../components/smalls/ButtonLight";
 
 const ManPage = () => {
   const location = useLocation();
@@ -150,8 +151,9 @@ const ManPage = () => {
               ))
             ) : (
               <div className={style.message}>
-                <h2> Oops! No products found.</h2>{" "}
+                <h2> Oops! No products found.</h2>
                 <h3>Try modifying your search.</h3>
+                <ButtonLight text={"Reset"}></ButtonLight>
               </div>
             )}
           </div>
