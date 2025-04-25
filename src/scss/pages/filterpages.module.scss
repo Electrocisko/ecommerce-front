@@ -140,4 +140,19 @@ h1 {
         margin-left: 10px;
         margin-right: 10px;
     }
+    .message {
+        text-align: center;
+        
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        margin-left: auto;
+        margin-top:2rem;
+    
+    
+        h2 {
+            margin-left: 5%;
+        }
+    }
 }
