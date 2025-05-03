@@ -13,7 +13,6 @@ const Card = ({ urlImage, product }) => {
     <div className={style.card}>
       {loading && (
         <div className={style.spinner}>
-          {" "}
           <h2>Loading...</h2>
         </div>
       )}

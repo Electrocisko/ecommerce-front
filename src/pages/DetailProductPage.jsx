@@ -109,7 +109,8 @@ const DetailProductPage = () => {
       <div className={style.image_container}>
         <img
           className={style.image}
-          src={urlServer + "images/" + selectedColor.imageurl}
+          //src={urlServer + "images/" + selectedColor.imageurl}
+          src={selectedColor.imageurl}
           alt={"Imagen de " + product.name}
         />
 

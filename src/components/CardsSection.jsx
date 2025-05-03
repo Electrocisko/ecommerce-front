@@ -3,7 +3,6 @@ import { Link } from "react-router-dom";
 import style from "../scss/modules/cardssection.module.scss";
 import ButtonLight from "./smalls/ButtonLight";
 import Card from "./Card";
-import { urlServer } from "../data/endpoints.js";
 
 const CardsSection = ({ products, title, urlPath }) => {
 
@@ -15,7 +14,7 @@ const CardsSection = ({ products, title, urlPath }) => {
           <Link to={"/detail/" + item.product_id} key={item.product_id} >
             <Card
               name={item.name}
-              urlImage={urlServer + "images/" + item.imageurl}
+              urlImage={item.imageurl}
               product={item}
             />
           </Link>
