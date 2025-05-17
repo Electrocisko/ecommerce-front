@@ -2,6 +2,7 @@
 import { useState, useContext } from "react";
 import { GlobalContext } from "../../context/GlobalContext.jsx";
 import style from "../../scss/modules/loginform.module.scss";
+import { urlServer } from "../../data/endpoints.js";
 
 const LoginForm = ({toggleModal}) => {
   const [email, setEmail] = useState("");
@@ -11,7 +12,7 @@ const LoginForm = ({toggleModal}) => {
   const handleLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8080/api/sessions/login", {
+      const response = await fetch( urlServer+"api/sessions/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
