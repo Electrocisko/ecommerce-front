@@ -1,6 +1,5 @@
 import { useLoaderData } from "react-router-dom";
 import Card from "../components/Card";
-import { urlServer } from "../data/endpoints.js";
 import style from "../scss/pages/onsalepage.module.scss";
 import StyleSection from "../components/StyleSection.jsx";
 import { Link } from "react-router-dom";
