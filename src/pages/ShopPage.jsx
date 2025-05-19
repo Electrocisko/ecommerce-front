@@ -143,7 +143,7 @@ const ShopPage = () => {
               products.data.map((item) => (
                 <Link to={`/detail/${item.product_id}`} key={item.product_id}>
                   <Card
-                    urlImage={`${urlServer}images/${item.imageurl}`}
+                    urlImage={item.imageurl}
                     discount={item.discount}
                     product={item}
                   />

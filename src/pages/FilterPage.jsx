@@ -26,7 +26,6 @@ const FilterPage = () => {
     productsRange: [0, quantityToShow],
   });
 
-
   const fetchFilteredProducts = async (filters) => {
     try {
       setLoading(true);
@@ -56,7 +55,7 @@ const FilterPage = () => {
       setProducts(data);
       setTotalPages(data.totalPages);
       setPage(1);
-      setShowFilters(false)
+      setShowFilters(false);
     } catch (error) {
       console.error("Error fetching filtered products", error);
     } finally {
@@ -84,7 +83,6 @@ const FilterPage = () => {
     fetchInitialProducts();
   }, [styleFromState, page]);
 
-
   const handleFilterIcon = () => {
     setPage(1);
     setShowFilters(!showFilters);
@@ -101,7 +99,6 @@ const FilterPage = () => {
     }
   };
 
-
   return (
     <div className={style.maindiv}>
       <div className={style.show_icon_info}>
@@ -117,7 +114,7 @@ const FilterPage = () => {
         <section
           className={showFilters ? `${style.filter_section}` : `${style.hide}`}
         >
-      <Filters
+          <Filters
             onApply={fetchFilteredProducts}
             styleFromState={styleFromState}
             handleFilterIcon={handleFilterIcon}
@@ -142,7 +139,7 @@ const FilterPage = () => {
               products.data.map((item) => (
                 <Link to={`/detail/${item.product_id}`} key={item.product_id}>
                   <Card
-                    urlImage={`${urlServer}images/${item.imageurl}`}
+                    urlImage={item.imageurl}
                     discount={item.discount}
                     product={item}
                   />
@@ -152,7 +149,7 @@ const FilterPage = () => {
               <div className={style.message}>
                 <h2> Oops! No products found.</h2>
                 <h3>Try modifying your search.</h3>
-               <ButtonLight text={"Reset"}></ButtonLight>
+                <ButtonLight text={"Reset"}></ButtonLight>
               </div>
             )}
           </div>

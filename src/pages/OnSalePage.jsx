@@ -21,7 +21,7 @@ const OnSalePage = () => {
            <Link to={"/detail/" + item.product_id} key={item.product_id}>
            <Card
             product={item}
-             urlImage={urlServer + "images/" + item.imageurl}
+            urlImage={item.imageurl}
            />
          </Link>
           ))}
